@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Français - Séance 5</title>
+    <title>Français - Séance 6 (Actualizada)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
@@ -11,7 +11,7 @@
     <style>
       body {
         font-family: "Inter", sans-serif;
-        background-color: #f9fafb;
+        background-color: #f7fafc;
         scroll-behavior: smooth;
       }
       h1,
@@ -24,258 +24,249 @@
         background-color: white;
         border-radius: 0.75rem;
         padding: 1.5rem 2rem;
-        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
-          0 2px 4px -2px rgb(0 0 0 / 0.1);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -2px rgba(0, 0, 0, 0.1);
         margin-bottom: 2.5rem;
       }
       .correct {
-        border-color: #4ade80 !important;
-        background-color: #f0fdf4;
+        border-color: #48bb78 !important;
+        background-color: #f0fff4;
       }
       .incorrect {
-        border-color: #f87171 !important;
-        background-color: #fef2f2;
+        border-color: #f56565 !important;
+        background-color: #fff5f5;
       }
-      input,
-      select {
+      input {
         transition: all 0.2s ease-in-out;
-        border: 2px solid #d1d5db;
+        border: 2px solid #e2e8f0;
       }
-      details > summary {
-        cursor: pointer;
+      .quiz-question input {
+        border: 2px solid #cbd5e0;
+      }
+      .result-view .quiz-question input {
+        pointer-events: none;
+      }
+      .result-view .correct-answer {
+        color: #38a169;
         font-weight: bold;
-        color: #1e40af;
       }
     </style>
   </head>
   <body class="text-gray-800">
     <header
       class="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-50">
-      <h1 class="text-3xl font-bold text-blue-900">
-        Séance 5: Identité et Habitation
-      </h1>
+      <h1 class="text-3xl font-bold text-gray-800">Séance 6: Les Articles</h1>
     </header>
 
     <main class="max-w-4xl mx-auto p-6">
-      <!-- Sección Repaso Nacionalidades -->
-      <div class="content-box" id="repaso-nationalites">
-        <h2 class="text-3xl font-bold mb-4">Repaso: Les Nationalités</h2>
-        <div
-          class="bg-indigo-100 border-l-4 border-indigo-500 p-4 rounded-r-lg mb-6">
-          <h4 class="text-xl font-bold mb-2">Conceptos Clave</h4>
-          <ul class="list-disc list-inside space-y-2 font-semibold">
-            <li>
-              Masculin &rarr; Féminin : on ajoute un
-              <span class="bg-indigo-200 px-2 py-1 rounded">-e</span> (français
-              &rarr; français<span class="text-red-500 font-bold">e</span>)
-            </li>
-            <li>
-              Si le masculin termine en -e, ça ne change pas (suiss<span
-                class="text-red-500 font-bold"
-                >e</span
-              >
-              &rarr; suiss<span class="text-red-500 font-bold">e</span>)
-            </li>
-            <li>
-              Masculin en -ien &rarr; Féminin en
-              <span class="bg-indigo-200 px-2 py-1 rounded">-ienne</span>
-              (canad<span class="text-red-500 font-bold">ien</span> &rarr;
-              canad<span class="text-red-500 font-bold">ienne</span>)
-            </li>
-          </ul>
-        </div>
-
-        <h3 class="text-2xl font-bold mb-4">Exercice: Masculin ou Féminin?</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-          <!-- Generado por JavaScript -->
-        </div>
-      </div>
-
-      <!-- Sección Documentos de Identidad -->
-      <div class="content-box" id="documents">
+      <!-- Sección Articles Définis et Indéfinis -->
+      <div class="content-box" id="articles">
         <h2 class="text-3xl font-bold mb-4">
-          Vie Pratique: Documents d'identité
+          Les articles définis et indéfinis
         </h2>
-        <p class="mb-4 text-gray-600">
-          Observons les documents de la vie quotidienne.
-        </p>
         <img
-          src="./images/page_30.jpg"
-          alt="Página 30 del libro con documentos de identidad"
+          src="./images/page-33.png"
+          alt="Página 33 del libro sobre los artículos"
           class="rounded-lg shadow-md mb-6 w-full" />
 
         <div
-          class="bg-yellow-100 border-l-4 border-yellow-500 p-4 rounded-r-lg mb-6">
-          <h4 class="text-xl font-bold mb-2">Contexte Canadien</h4>
-          <p>En Canadá, los documentos más comunes que te pedirán son:</p>
-          <ul class="list-disc list-inside mt-2 space-y-1">
+          class="bg-blue-100 border-l-4 border-blue-500 p-4 rounded-r-lg mb-6">
+          <h4 class="text-xl font-bold mb-2">Conceptos Clave</h4>
+          <ul class="list-disc list-inside space-y-2">
             <li>
-              <strong>Le permis de conduire</strong> (Licencia de conducir): Es
-              la identificación principal en la vida diaria.
+              <b>Indéfinis (`un`, `une`, `des`):</b> Para algo general, no
+              específico, o que se menciona por primera vez. (Ej: "J'ai un
+              chien.")
             </li>
             <li>
-              <strong>La carte d'assurance maladie</strong> (Tarjeta de seguro
-              médico): Esencial para cualquier cita médica. Cada provincia tiene
-              la suya (RAMQ en Québec, OHIP en Ontario).
-            </li>
-            <li>
-              <strong>Le passeport</strong>: Para asuntos federales e
-              internacionales.
-            </li>
-          </ul>
-        </div>
-
-        <h3 class="text-2xl font-bold mb-4">Exercice: Compréhension Orale</h3>
-        <p class="mb-4 text-gray-600">
-          Écoute et associe chaque dialogue (A, B, C, D, E, F) à une situation
-          ci-dessous.
-        </p>
-        <audio controls class="w-full mb-6">
-          <source src="./audio/30_Edito_A1_Livre.mp3" type="audio/mpeg" />
-          Tu navegador no soporta el elemento de audio.
-        </audio>
-        <!-- Ejercicio de comprensión oral -->
-      </div>
-
-      <!-- Sección Unité 2 -->
-      <div class="content-box" id="unite2">
-        <h2 class="text-3xl font-bold mb-4">Unité 2: Près de moi</h2>
-        <img
-          src="./images/page_31.jpg"
-          alt="Página 31 del libro, Unité 2"
-          class="rounded-lg shadow-md mb-6 w-full" />
-        <details>
-          <summary>
-            Qu'est-ce qu'on voit dans l'image ? (Haz clic para ver)
-          </summary>
-          <ul
-            class="mt-4 list-disc list-inside space-y-2 p-4 bg-gray-50 rounded-lg">
-            <li>Des gens (personas)</li>
-            <li>Un arbre (un árbol)</li>
-            <li>Un pot (una maceta)</li>
-            <li>Des feuilles (hojas)</li>
-            <li>Un papillon (una mariposa)</li>
-            <li>Une grand-mère et un grand-père (abuelos)</li>
-          </ul>
-        </details>
-      </div>
-
-      <!-- Sección Tu habites où? -->
-      <div class="content-box" id="habitation">
-        <h2 class="text-3xl font-bold mb-4">A | Tu habites où?</h2>
-        <img
-          src="./images/page_32.jpg"
-          alt="Página 32 del libro, Tu habites où?"
-          class="rounded-lg shadow-md mb-6 w-full" />
-
-        <div
-          class="bg-green-100 border-l-4 border-green-500 p-4 rounded-r-lg mb-6">
-          <h4 class="text-xl font-bold mb-2">Note: "On" vs "Nous"</h4>
-          <p>
-            En francés, <span class="font-bold">`on`</span> y
-            <span class="font-bold">`nous`</span> significan "nosotros".
-          </p>
-          <ul class="list-disc list-inside mt-2 space-y-1">
-            <li>
-              <strong>`Nous`</strong> es formal y se usa principalmente al
-              escribir. Se conjuga con `-ons`: `Nous habitons`.
-            </li>
-            <li>
-              <strong>`On`</strong> es muy común al hablar, es más informal. ¡Se
-              conjuga como `il/elle`!: `On habite`.
-            </li>
-            <li>
-              En Canadá, escucharás `on` el 99% del tiempo en conversaciones
-              cotidianas.
+              <b>Définis (`le`, `la`, `l'`, `les`): </b>Para algo específico,
+              único, o ya conocido en la conversación. (Ej: "Le chien est
+              noir.")
             </li>
           </ul>
         </div>
 
         <h3 class="text-2xl font-bold mb-4">
-          Production Orale: Phrases utiles
+          Exercice 1: Complète les phrases
         </h3>
-        <div class="bg-gray-100 p-6 rounded-lg">
-          <p class="mb-4">
-            Para el ejercicio de "Production orale", puedes usar estas frases
-            adaptadas a un contexto canadiense:
-          </p>
-          <ul class="list-disc list-inside space-y-2 text-gray-800">
-            <li>
-              Où tu restes? (Forma muy quebequense de decir "Où tu habites?")
-            </li>
-            <li>Je reste dans le quartier du Plateau, à Montréal.</li>
-            <li>C'est un quartier le fun! (le fun = sympa, cool)</li>
-            <li>J'habite dans un condo / un appart.</li>
-          </ul>
+        <p class="mb-4 text-gray-600">
+          Elige el artículo correcto (`un`, `une`, `le`, `la`, `des`, `les`)
+          para cada espacio.
+        </p>
+        <div id="exercise1" class="space-y-3 text-lg">
+          <!-- Ejercicios generados con JS -->
+        </div>
+
+        <h3 class="text-2xl font-bold mt-8 mb-4">
+          Exercice 2: Choisis l'article
+        </h3>
+        <div id="exercise2" class="space-y-3 text-lg">
+          <!-- Ejercicios generados con JS -->
         </div>
       </div>
 
-      <!-- Sección Acento Québecois -->
-      <div class="content-box" id="quebecois">
-        <h2 class="text-3xl font-bold mb-4">Le français québécois: L'accent</h2>
-        <div class="bg-red-100 border-l-4 border-red-500 p-4 rounded-r-lg">
-          <h4 class="text-xl font-bold mb-2">Comprendre les différences</h4>
-          <p>
-            El acento de Québec es muy particular. Una de las diferencias más
-            notables es cómo suenan las vocales. ¡Escuchemos para aprender a
-            reconocerlo!
-          </p>
-        </div>
-        <div class="mt-6">
-          <h3 class="text-2xl font-bold mb-3">
-            Vidéo: 7 différences de prononciation
-          </h3>
-          <div class="bg-gray-100 p-4 rounded-lg text-center">
-            <iframe
-              width="100%"
-              height="475"
-              src="https://www.youtube.com/embed/VrPj8mKcf6I"
-              title="PARLER QUÉBÉCOIS EN 5 MINUTES | DENYZEE"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen></iframe>
+      <!-- Actividad Dinámica -->
+      <div class="content-box" id="dynamic-activity">
+        <h2 class="text-3xl font-bold mb-4">Activité: Décris la scène !</h2>
+        <p class="mb-4 text-gray-600">
+          Regarde cette photo du Lac Moraine, près de Calgary. Décris ce que tu
+          vois en utilisant les articles corrects.
+        </p>
+        <img
+          src="./images/calgary.jpeg"
+          alt="Photo du Lac Moraine près de Calgary"
+          class="rounded-lg shadow-md mb-6 w-full" />
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <h4 class="font-bold mb-2">Vocabulaire utile :</h4>
+          <div class="flex flex-wrap gap-x-4 gap-y-2">
+            <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full"
+              >un lac</span
+            >
+            <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full"
+              >des montagnes (f.)</span
+            >
+            <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full"
+              >des pins (m.)</span
+            >
+            <span class="bg-sky-200 text-sky-800 px-3 py-1 rounded-full"
+              >le ciel</span
+            >
+            <span class="bg-white text-gray-800 px-3 py-1 rounded-full border"
+              >de la neige (f.)</span
+            >
+            <span
+              class="bg-yellow-800 bg-opacity-70 text-white px-3 py-1 rounded-full"
+              >des roches (f.)</span
+            >
+          </div>
+          <div class="mt-4">
+            <label for="scene-description" class="font-bold"
+              >Ta description :</label
+            >
+            <textarea
+              id="scene-description"
+              rows="4"
+              class="w-full border-2 border-gray-300 rounded-md p-2 mt-1"
+              placeholder="Ej: Je vois un lac. Le lac est bleu..."></textarea>
           </div>
         </div>
+      </div>
+
+      <!-- Kahoot -->
+      <div class="content-box text-center">
+        <h2 class="text-3xl font-bold mb-4">Activité: Jouons à Kahoot!</h2>
+        <p class="mb-4 text-gray-600">
+          ¡Vamos a practicar los artículos con un juego!
+        </p>
+        <a
+          href="https://create.kahoot.it/share/articles-definis-et-indefinis/a22f73b6-9767-4e6c-a810-7e3f1406540c"
+          target="_blank"
+          class="inline-block bg-purple-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-purple-700 transition-transform hover:scale-105">
+          Lancer le Kahoot!
+        </a>
+      </div>
+
+      <!-- Devoirs / Quiz -->
+      <div class="content-box" id="devoirs">
+        <h2 class="text-3xl font-bold mb-4">Devoirs (Quiz Final)</h2>
+        <p class="mb-6 text-gray-600">
+          Completa el siguiente quiz. Al hacer clic en "Corriger", verás tus
+          aciertos y las respuestas correctas.
+        </p>
+        <form id="final-quiz" class="space-y-4">
+          <!-- Preguntas del quiz generadas por JS -->
+        </form>
+        <button
+          onclick="checkQuiz('final-quiz')"
+          class="mt-6 bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700">
+          Corriger le Quiz
+        </button>
       </div>
     </main>
 
     <script>
-      const nationalities = [
-        { m: "français", f: "française" },
-        { m: "canadien", f: "canadienne" },
-        { m: "américain", f: "américaine" },
-        { m: "espagnol", f: "espagnole" },
-        { m: "italien", f: "italienne" },
-        { m: "allemand", f: "allemande" },
-        { m: "chinois", f: "chinoise" },
-        { m: "japonais", f: "japonaise" },
-        { m: "mexicain", f: "mexicaine" },
-        { m: "suisse", f: "suisse" },
-        { m: "belge", f: "belge" },
-        { m: "russe", f: "russe" },
-        { m: "portugais", f: "portugaise" },
-        { m: "anglais", f: "anglaise" },
-        { m: "grec", f: "grecque" },
-        { m: "turc", f: "turque" },
-        { m: "indien", f: "indienne" },
-        { m: "brésilien", f: "brésilienne" },
-        { m: "marocain", f: "marocaine" },
-        { m: "algérien", f: "algérienne" },
-      ];
+      const exercises = {
+        exercise1: [
+          { q: "J'habite dans ___ quartier calme.", a: "un" },
+          { q: "C'est ___ rue Mantega.", a: "la" },
+          { q: "Tu as ___ guitare?", a: "une" },
+          { q: "Ce sont ___ instruments de Julie.", a: "les" },
+          { q: "J'aime ___ chocolat.", a: "le" },
+          { q: "Il y a ___ livre sur la table.", a: "un" },
+          { q: "___ livre est intéressant.", a: "le" },
+          { q: "Elle a ___ voiture rouge.", a: "une" },
+          { q: "___ voiture est rapide.", a: "la" },
+          { q: "Nous achetons ___ fleurs.", a: "des" },
+          { q: "___ fleurs sont pour toi.", a: "les" },
+          { q: "Il aime ___ sport.", a: "le" },
+          { q: "C'est ___ université.", a: "une" },
+          { q: "___ université est grande.", a: "l'" },
+          { q: "J'ai ___ idée!", a: "une" },
+          { q: "___ idée est géniale!", a: "l'" },
+          { q: "On voit ___ amis ce soir.", a: "des" },
+          { q: "___ amis sont québécois.", a: "les" },
+          { q: "C'est ___ bon restaurant.", a: "un" },
+          { q: "___ restaurant s'appelle 'Poutineville'.", a: "le" },
+        ],
+        exercise2: [
+          { q: "À Nice, il y a (la / une) mer.", a: "la" },
+          { q: "Je cherche (un / l') appartement.", a: "un" },
+          { q: "J'adore (le / un) cinéma canadien.", a: "le" },
+          { q: "C'est (la / une) photo de ma famille.", a: "une" },
+          { q: "(Les / Des) photos sont sur le mur.", a: "les" },
+          { q: "On a (un / l') piano.", a: "un" },
+          { q: "C'est (le / un) piano de ma soeur.", a: "le" },
+          { q: "J'écoute (la / une) musique de Cœur de Pirate.", a: "la" },
+          { q: "Elle est (une / l') artiste que j'adore.", a: "une" },
+          { q: "J'ai (des / les) billets pour le concert.", a: "les" },
+          { q: "Il faut (un / le) passeport pour voyager.", a: "un" },
+          { q: "Tu vois (le / un) chat sur le toit?", a: "le" },
+          { q: "C'est (un / l') acteur célèbre.", a: "un" },
+          { q: "Je voudrais (un / le) café, s'il vous plaît.", a: "un" },
+          { q: "J'aime (l' / un) hiver au Québec.", a: "l'" },
+          { q: "Il y a (des / les) poutines incroyables ici.", a: "des" },
+          { q: "Elle lit (un / le) livre de Michel Tremblay.", a: "un" },
+          { q: "Tu connais (la / une) rue Sainte-Catherine?", a: "la" },
+          { q: "C'est (un / l') homme sympathique.", a: "un" },
+          { q: "(L' / Un) homme porte une tuque.", a: "l'" },
+        ],
+        "final-quiz": [
+          { q: "J'habite dans ___ appartement à Montréal.", a: "un" },
+          { q: "___ appartement a une belle vue.", a: "l'" },
+          { q: "J'aime beaucoup ___ poutine.", a: "la" },
+          { q: "Je vais acheter ___ tuque pour l'hiver.", a: "une" },
+          { q: "Tu as ___ frères ou soeurs?", a: "des" },
+          { q: "___ sport national du Canada est le hockey.", a: "le" },
+          { q: "C'est ___ ville très animée.", a: "une" },
+          { q: "J'ai vu ___ film québécois hier soir.", a: "un" },
+          { q: "___ film s'appelle 'C.R.A.Z.Y.'.", a: "le" },
+          { q: "Elle écoute ___ musique francophone.", a: "de la" },
+        ],
+      };
 
-      function createNationalityExercise() {
-        const container = document.querySelector("#repaso-nationalites .grid");
-        nationalities.forEach((nat) => {
-          const isMasculineQuestion = Math.random() > 0.5;
-          const question = isMasculineQuestion
-            ? `Il est ${nat.m}. Elle est...`
-            : `Elle est ${nat.f}. Il est...`;
-          const answer = isMasculineQuestion ? nat.f : nat.m;
-
+      function populateExercise(containerId, data) {
+        const container = document.getElementById(containerId);
+        data.forEach((item, index) => {
           const div = document.createElement("div");
-          div.className = "space-y-1";
-          div.innerHTML = `<label>${question}</label><input type="text" onkeyup="checkAnswer(this, '${answer}')" class="rounded p-2 w-full">`;
+          const isDropdown = item.q.includes("(");
+          if (isDropdown) {
+            const parts = item.q.split("(");
+            const options = parts[1].replace(")", "").split("/");
+            div.innerHTML = `${index + 1}. ${parts[0]} 
+                                     <select onchange="checkAnswer(this, '${
+                                       item.a
+                                     }')" class="rounded p-1 border-2 border-gray-300">
+                                        <option value="">--</option>
+                                        <option value="${options[0].trim()}">${options[0].trim()}</option>
+                                        <option value="${options[1].trim()}">${options[1].trim()}</option>
+                                     </select>
+                                     ${parts.length > 2 ? parts[2] : ""}`;
+          } else {
+            div.innerHTML = `${index + 1}. ${item.q.replace(
+              "___",
+              `<input type="text" onkeyup="checkAnswer(this, '${item.a}')" class="rounded px-2 w-20 text-center border-2 border-gray-300">`
+            )}`;
+          }
           container.appendChild(div);
         });
       }
@@ -283,7 +274,10 @@
       function checkAnswer(input, correctAnswer) {
         const userAnswer = input.value.toLowerCase().trim();
         if (!userAnswer) {
-          input.className = "rounded p-2 w-full";
+          input.className =
+            input.tagName === "SELECT"
+              ? "rounded p-1 border-2 border-gray-300"
+              : "rounded px-2 w-20 text-center border-2 border-gray-300";
           return;
         }
         if (userAnswer === correctAnswer.toLowerCase().trim()) {
@@ -295,8 +289,52 @@
         }
       }
 
+      function populateQuiz(quizId) {
+        const form = document.getElementById(quizId);
+        if (!form) return;
+        const data = exercises[quizId];
+        data.forEach((item, index) => {
+          const div = document.createElement("div");
+          div.className = "quiz-question";
+          const questionHtml = item.q.replace(
+            "___",
+            `<input type="text" id="${quizId}-${index}" data-answer="${item.a}" class="rounded p-2 w-24">`
+          );
+          div.innerHTML = `<label for="${quizId}-${index}" class="block mb-1 text-gray-700">${
+            index + 1
+          }. ${questionHtml}</label>
+                                 <div id="result-${quizId}-${index}" class="text-sm mt-1 h-5"></div>`;
+          form.appendChild(div);
+        });
+      }
+
+      function checkQuiz(quizId) {
+        const form = document.getElementById(quizId);
+        if (!form) return;
+        form.parentElement.classList.add("result-view");
+        const data = exercises[quizId];
+        data.forEach((item, index) => {
+          const input = document.getElementById(`${quizId}-${index}`);
+          const resultDiv = document.getElementById(
+            `result-${quizId}-${index}`
+          );
+          const userAnswer = input.value.toLowerCase().trim();
+
+          input.classList.remove("correct", "incorrect");
+          if (userAnswer === item.a.toLowerCase().trim()) {
+            input.classList.add("correct");
+            resultDiv.innerHTML = "";
+          } else {
+            input.classList.add("incorrect");
+            resultDiv.innerHTML = `Respuesta correcta: <span class="correct-answer">${item.a}</span>`;
+          }
+        });
+      }
+
       document.addEventListener("DOMContentLoaded", () => {
-        createNationalityExercise();
+        populateExercise("exercise1", exercises.exercise1);
+        populateExercise("exercise2", exercises.exercise2);
+        populateQuiz("final-quiz");
       });
     </script>
   </body>
