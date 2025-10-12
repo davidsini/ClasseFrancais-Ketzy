@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Français - Séance 6 (Actualizada)</title>
+    <title>Français - Séance 8</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
@@ -40,114 +40,124 @@
         transition: all 0.2s ease-in-out;
         border: 2px solid #e2e8f0;
       }
-      .quiz-question input {
-        border: 2px solid #cbd5e0;
+      .wayground-embed {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        max-width: 100%;
       }
-      .result-view .quiz-question input {
-        pointer-events: none;
+      .wayground-embed iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
       }
-      .result-view .correct-answer {
-        color: #38a169;
-        font-weight: bold;
+      #word-scramble button {
+        transition: background-color 0.2s;
       }
     </style>
   </head>
   <body class="text-gray-800">
     <header
-      class="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-50">
-      <h1 class="text-3xl font-bold text-gray-800">Séance 6: Les Articles</h1>
+      class="bg-white shadow-md p-4 flex justify-between items-center sticky top: 0; z-index: 50;">
+      <h1 class="text-3xl font-bold text-gray-800">
+        Séance 8: Les verbes en -ER et les loisirs
+      </h1>
     </header>
 
     <main class="max-w-4xl mx-auto p-6">
-      <!-- Sección Articles Définis et Indéfinis -->
-      <div class="content-box" id="articles">
-        <h2 class="text-3xl font-bold mb-4">
-          Les articles définis et indéfinis
-        </h2>
-        <img
-          src="./images/page-33.png"
-          alt="Página 33 del libro sobre los artículos"
-          class="rounded-lg shadow-md mb-6 w-full" />
-
-        <div
-          class="bg-blue-100 border-l-4 border-blue-500 p-4 rounded-r-lg mb-6">
-          <h4 class="text-xl font-bold mb-2">Conceptos Clave</h4>
-          <ul class="list-disc list-inside space-y-2">
-            <li>
-              <b>Indéfinis (`un`, `une`, `des`):</b> Para algo general, no
-              específico, o que se menciona por primera vez. (Ej: "J'ai un
-              chien.")
-            </li>
-            <li>
-              <b>Définis (`le`, `la`, `l'`, `les`): </b>Para algo específico,
-              único, o ya conocido en la conversación. (Ej: "Le chien est
-              noir.")
-            </li>
-          </ul>
-        </div>
-
-        <h3 class="text-2xl font-bold mb-4">
-          Exercice 1: Complète les phrases
-        </h3>
+      <!-- Sección Repaso Verbos en -ER -->
+      <div class="content-box" id="verbes-er">
+        <h2 class="text-3xl font-bold mb-4">Repaso: Les verbes en -ER</h2>
         <p class="mb-4 text-gray-600">
-          Elige el artículo correcto (`un`, `une`, `le`, `la`, `des`, `les`)
-          para cada espacio.
+          Vamos a repasar la conjugación de los verbos regulares que terminan en
+          -ER, ¡el grupo más grande y útil de verbos en francés!
         </p>
-        <div id="exercise1" class="space-y-3 text-lg">
-          <!-- Ejercicios generados con JS -->
-        </div>
-
-        <h3 class="text-2xl font-bold mt-8 mb-4">
-          Exercice 2: Choisis l'article
-        </h3>
-        <div id="exercise2" class="space-y-3 text-lg">
-          <!-- Ejercicios generados con JS -->
+        <div class="wayground-embed rounded-lg shadow-md mb-6">
+          <iframe
+            src="https://wayground.com/admin/presentation/6194fdea4512cb001d3cdc51"
+            frameborder="0"
+            allow="fullscreen"></iframe>
         </div>
       </div>
 
-      <!-- Actividad Dinámica -->
-      <div class="content-box" id="dynamic-activity">
-        <h2 class="text-3xl font-bold mb-4">Activité: Décris la scène !</h2>
+      <!-- Ejercicios Verbos en -ER -->
+      <div class="content-box" id="exercices-verbes">
+        <h2 class="text-3xl font-bold mb-4">Exercices: Conjugaison</h2>
+        <h3 class="text-xl font-bold mb-4">
+          Exercice 1: Complète la conjugaison
+        </h3>
+        <div
+          id="conjugation-exercise"
+          class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 mb-8">
+          <!-- Ejercicios de conjugación generados con JS -->
+        </div>
+
+        <h3 class="text-xl font-bold mb-4">Exercice 2: Le bon verbe</h3>
         <p class="mb-4 text-gray-600">
-          Regarde cette photo du Lac Moraine, près de Calgary. Décris ce que tu
-          vois en utilisant les articles corrects.
+          Arrastra el verbo conjugado correcto a cada frase.
         </p>
-        <img
-          src="./images/calgary.jpeg"
-          alt="Photo du Lac Moraine près de Calgary"
-          class="rounded-lg shadow-md mb-6 w-full" />
-        <div class="bg-gray-100 p-4 rounded-lg">
-          <h4 class="font-bold mb-2">Vocabulaire utile :</h4>
-          <div class="flex flex-wrap gap-x-4 gap-y-2">
-            <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full"
-              >un lac</span
-            >
-            <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full"
-              >des montagnes (f.)</span
-            >
-            <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full"
-              >des pins (m.)</span
-            >
-            <span class="bg-sky-200 text-sky-800 px-3 py-1 rounded-full"
-              >le ciel</span
-            >
-            <span class="bg-white text-gray-800 px-3 py-1 rounded-full border"
-              >de la neige (f.)</span
-            >
-            <span
-              class="bg-yellow-800 bg-opacity-70 text-white px-3 py-1 rounded-full"
-              >des roches (f.)</span
-            >
+        <div id="drag-drop-container" class="space-y-4">
+          <div
+            id="verb-bank"
+            class="flex flex-wrap gap-2 p-4 bg-gray-100 rounded-lg justify-center mb-4">
+            <!-- Verbos arrastrables generados con JS -->
           </div>
-          <div class="mt-4">
-            <label for="scene-description" class="font-bold"
-              >Ta description :</label
-            >
-            <textarea
-              id="scene-description"
-              rows="4"
-              class="w-full border-2 border-gray-300 rounded-md p-2 mt-1"
-              placeholder="Ej: Je vois un lac. Le lac est bleu..."></textarea>
+          <div id="sentence-container" class="space-y-3">
+            <!-- Frases con zonas para soltar generadas con JS -->
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold mt-8 mb-4">
+          Exercice 3: Écris une phrase
+        </h3>
+        <p class="mb-4 text-gray-600">
+          Usa las palabras para formar una frase coherente y escríbela en el
+          Google Docs.
+        </p>
+        <div
+          id="word-scramble"
+          class="bg-indigo-100 p-6 rounded-lg text-center">
+          <div
+            id="scrambled-words"
+            class="flex flex-wrap gap-4 justify-center text-lg font-semibold mb-4">
+            <!-- Palabras desordenadas generadas con JS -->
+          </div>
+          <button
+            id="next-scramble"
+            class="bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700">
+            Phrase suivante &rarr;
+          </button>
+        </div>
+      </div>
+
+      <!-- Sección Loisirs y Gustos -->
+      <div class="content-box" id="loisirs">
+        <h2 class="text-3xl font-bold mb-4">
+          Exprimer ses goûts et parler des loisirs
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <img
+              src="./images/page-34.png"
+              alt="Página 34 del libro"
+              class="rounded-lg shadow-md w-full" />
+            <h4 class="text-lg font-semibold mt-4">Audio de la page 34:</h4>
+            <audio controls class="w-full mt-2">
+              <source src="./audio/31_Edito_A1_Livre.mp3" type="audio/mpeg" />
+            </audio>
+          </div>
+          <div>
+            <img
+              src="./images/page-35.png"
+              alt="Página 35 del libro"
+              class="rounded-lg shadow-md w-full" />
+            <h4 class="text-lg font-semibold mt-4">Audio de la page 35:</h4>
+            <audio controls class="w-full mt-2">
+              <source src="./audio/34_Edito_A1_Livre.mp3" type="audio/mpeg" />
+            </audio>
           </div>
         </div>
       </div>
@@ -155,132 +165,57 @@
       <!-- Kahoot -->
       <div class="content-box text-center">
         <h2 class="text-3xl font-bold mb-4">Activité: Jouons à Kahoot!</h2>
-        <p class="mb-4 text-gray-600">
-          ¡Vamos a practicar los artículos con un juego!
-        </p>
         <a
-          href="https://create.kahoot.it/share/articles-definis-et-indefinis/a22f73b6-9767-4e6c-a810-7e3f1406540c"
+          href="https://create.kahoot.it/share/conjuguez-les-verbes-en-er/e06d42a9-8c74-42d8-b931-b6ab8dd51a1f"
           target="_blank"
           class="inline-block bg-purple-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-purple-700 transition-transform hover:scale-105">
           Lancer le Kahoot!
         </a>
       </div>
-
-      <!-- Devoirs / Quiz -->
-      <div class="content-box" id="devoirs">
-        <h2 class="text-3xl font-bold mb-4">Devoirs (Quiz Final)</h2>
-        <p class="mb-6 text-gray-600">
-          Completa el siguiente quiz. Al hacer clic en "Corriger", verás tus
-          aciertos y las respuestas correctas.
-        </p>
-        <form id="final-quiz" class="space-y-4">
-          <!-- Preguntas del quiz generadas por JS -->
-        </form>
-        <button
-          onclick="checkQuiz('final-quiz')"
-          class="mt-6 bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700">
-          Corriger le Quiz
-        </button>
-      </div>
     </main>
 
     <script>
-      const exercises = {
-        exercise1: [
-          { q: "J'habite dans ___ quartier calme.", a: "un" },
-          { q: "C'est ___ rue Mantega.", a: "la" },
-          { q: "Tu as ___ guitare?", a: "une" },
-          { q: "Ce sont ___ instruments de Julie.", a: "les" },
-          { q: "J'aime ___ chocolat.", a: "le" },
-          { q: "Il y a ___ livre sur la table.", a: "un" },
-          { q: "___ livre est intéressant.", a: "le" },
-          { q: "Elle a ___ voiture rouge.", a: "une" },
-          { q: "___ voiture est rapide.", a: "la" },
-          { q: "Nous achetons ___ fleurs.", a: "des" },
-          { q: "___ fleurs sont pour toi.", a: "les" },
-          { q: "Il aime ___ sport.", a: "le" },
-          { q: "C'est ___ université.", a: "une" },
-          { q: "___ université est grande.", a: "l'" },
-          { q: "J'ai ___ idée!", a: "une" },
-          { q: "___ idée est géniale!", a: "l'" },
-          { q: "On voit ___ amis ce soir.", a: "des" },
-          { q: "___ amis sont québécois.", a: "les" },
-          { q: "C'est ___ bon restaurant.", a: "un" },
-          { q: "___ restaurant s'appelle 'Poutineville'.", a: "le" },
-        ],
-        exercise2: [
-          { q: "À Nice, il y a (la / une) mer.", a: "la" },
-          { q: "Je cherche (un / l') appartement.", a: "un" },
-          { q: "J'adore (le / un) cinéma canadien.", a: "le" },
-          { q: "C'est (la / une) photo de ma famille.", a: "une" },
-          { q: "(Les / Des) photos sont sur le mur.", a: "les" },
-          { q: "On a (un / l') piano.", a: "un" },
-          { q: "C'est (le / un) piano de ma soeur.", a: "le" },
-          { q: "J'écoute (la / une) musique de Cœur de Pirate.", a: "la" },
-          { q: "Elle est (une / l') artiste que j'adore.", a: "une" },
-          { q: "J'ai (des / les) billets pour le concert.", a: "les" },
-          { q: "Il faut (un / le) passeport pour voyager.", a: "un" },
-          { q: "Tu vois (le / un) chat sur le toit?", a: "le" },
-          { q: "C'est (un / l') acteur célèbre.", a: "un" },
-          { q: "Je voudrais (un / le) café, s'il vous plaît.", a: "un" },
-          { q: "J'aime (l' / un) hiver au Québec.", a: "l'" },
-          { q: "Il y a (des / les) poutines incroyables ici.", a: "des" },
-          { q: "Elle lit (un / le) livre de Michel Tremblay.", a: "un" },
-          { q: "Tu connais (la / une) rue Sainte-Catherine?", a: "la" },
-          { q: "C'est (un / l') homme sympathique.", a: "un" },
-          { q: "(L' / Un) homme porte une tuque.", a: "l'" },
-        ],
-        "final-quiz": [
-          { q: "J'habite dans ___ appartement à Montréal.", a: "un" },
-          { q: "___ appartement a une belle vue.", a: "l'" },
-          { q: "J'aime beaucoup ___ poutine.", a: "la" },
-          { q: "Je vais acheter ___ tuque pour l'hiver.", a: "une" },
-          { q: "Tu as ___ frères ou soeurs?", a: "des" },
-          { q: "___ sport national du Canada est le hockey.", a: "le" },
-          { q: "C'est ___ ville très animée.", a: "une" },
-          { q: "J'ai vu ___ film québécois hier soir.", a: "un" },
-          { q: "___ film s'appelle 'C.R.A.Z.Y.'.", a: "le" },
-          { q: "Elle écoute ___ musique francophone.", a: "de la" },
-        ],
-      };
+      // --- EJERCICIO 1: COMPLETAR CONJUGACIÓN ---
+      const conjugationData = [
+        { verb: "parler", subject: "Je", answer: "parle" },
+        { verb: "aimer", subject: "Tu", answer: "aimes" },
+        { verb: "habiter", subject: "Il", answer: "habite" },
+        { verb: "regarder", subject: "Elle", answer: "regarde" },
+        { verb: "marcher", subject: "Nous", answer: "marchons" },
+        { verb: "danser", subject: "Vous", answer: "dansez" },
+        { verb: "chanter", subject: "Ils", answer: "chantent" },
+        { verb: "jouer", subject: "Elles", answer: "jouent" },
+        { verb: "travailler", subject: "Je", answer: "travaille" },
+        { verb: "étudier", subject: "Tu", answer: "étudies" },
+        { verb: "penser", subject: "On", answer: "pense" },
+        { verb: "trouver", subject: "Nous", answer: "trouvons" },
+        { verb: "donner", subject: "Vous", answer: "donnez" },
+        { verb: "écouter", subject: "Ils", answer: "écoutent" },
+        { verb: "skier", subject: "Je", answer: "skie" },
+        { verb: "détester", subject: "Tu", answer: "détestes" },
+        { verb: "adorer", subject: "Il", answer: "adore" },
+        { verb: "chercher", subject: "Nous", answer: "cherchons" },
+        { verb: "préparer", subject: "Vous", answer: "préparez" },
+        { verb: "arriver", subject: "Elles", answer: "arrivent" },
+      ];
 
-      function populateExercise(containerId, data) {
-        const container = document.getElementById(containerId);
-        data.forEach((item, index) => {
-          const div = document.createElement("div");
-          const isDropdown = item.q.includes("(");
-          if (isDropdown) {
-            const parts = item.q.split("(");
-            const options = parts[1].replace(")", "").split("/");
-            div.innerHTML = `${index + 1}. ${parts[0]} 
-                                     <select onchange="checkAnswer(this, '${
-                                       item.a
-                                     }')" class="rounded p-1 border-2 border-gray-300">
-                                        <option value="">--</option>
-                                        <option value="${options[0].trim()}">${options[0].trim()}</option>
-                                        <option value="${options[1].trim()}">${options[1].trim()}</option>
-                                     </select>
-                                     ${parts.length > 2 ? parts[2] : ""}`;
-          } else {
-            div.innerHTML = `${index + 1}. ${item.q.replace(
-              "___",
-              `<input type="text" onkeyup="checkAnswer(this, '${item.a}')" class="rounded px-2 w-20 text-center border-2 border-gray-300">`
-            )}`;
-          }
-          container.appendChild(div);
-        });
-      }
+      const conjugationContainer = document.getElementById(
+        "conjugation-exercise"
+      );
+      conjugationData.forEach((item) => {
+        const div = document.createElement("div");
+        div.innerHTML = `<label class="text-gray-700">${item.subject} (${item.verb})</label>
+                             <input type="text" onkeyup="checkAnswer(this, '${item.answer}')" class="rounded p-2 w-full mt-1">`;
+        conjugationContainer.appendChild(div);
+      });
 
       function checkAnswer(input, correctAnswer) {
         const userAnswer = input.value.toLowerCase().trim();
         if (!userAnswer) {
-          input.className =
-            input.tagName === "SELECT"
-              ? "rounded p-1 border-2 border-gray-300"
-              : "rounded px-2 w-20 text-center border-2 border-gray-300";
+          input.className = "rounded p-2 w-full mt-1";
           return;
         }
-        if (userAnswer === correctAnswer.toLowerCase().trim()) {
+        if (userAnswer === correctAnswer) {
           input.classList.add("correct");
           input.classList.remove("incorrect");
         } else {
@@ -289,53 +224,110 @@
         }
       }
 
-      function populateQuiz(quizId) {
-        const form = document.getElementById(quizId);
-        if (!form) return;
-        const data = exercises[quizId];
-        data.forEach((item, index) => {
-          const div = document.createElement("div");
-          div.className = "quiz-question";
-          const questionHtml = item.q.replace(
-            "___",
-            `<input type="text" id="${quizId}-${index}" data-answer="${item.a}" class="rounded p-2 w-24">`
-          );
-          div.innerHTML = `<label for="${quizId}-${index}" class="block mb-1 text-gray-700">${
-            index + 1
-          }. ${questionHtml}</label>
-                                 <div id="result-${quizId}-${index}" class="text-sm mt-1 h-5"></div>`;
-          form.appendChild(div);
+      // --- EJERCICIO 2: DRAG AND DROP ---
+      const dragDropData = [
+        { sentence: "___ la musique classique.", verb: "J'écoute" },
+        { sentence: "Est-ce que tu ___ le hockey?", verb: "aimes" },
+        { sentence: "Mon frère ___ à Montréal.", verb: "habite" },
+        { sentence: "Nous ___ le français.", verb: "parlons" },
+        { sentence: "Vous ___ très bien!", verb: "dansez" },
+        { sentence: "Mes parents ___ au Canada.", verb: "travaillent" },
+      ];
+
+      const verbBank = document.getElementById("verb-bank");
+      const sentenceContainer = document.getElementById("sentence-container");
+
+      // Shuffle for variety
+      dragDropData.sort(() => Math.random() - 0.5);
+      const verbs = dragDropData.map((item) => item.verb);
+      verbs.sort(() => Math.random() - 0.5);
+
+      verbs.forEach((verb) => {
+        const verbEl = document.createElement("button");
+        verbEl.id = `verb-${verb}`;
+        verbEl.textContent = verb;
+        verbEl.draggable = true;
+        verbEl.className =
+          "drag-item bg-blue-200 text-blue-800 px-3 py-1 rounded-full font-semibold";
+        verbEl.addEventListener("dragstart", (e) =>
+          e.dataTransfer.setData("text/plain", verb)
+        );
+        verbBank.appendChild(verbEl);
+      });
+
+      dragDropData.forEach((item, index) => {
+        const sentenceEl = document.createElement("div");
+        sentenceEl.className =
+          "flex items-center gap-2 p-3 bg-gray-50 rounded-lg";
+        const dropZone = document.createElement("div");
+        dropZone.className = "drop-zone p-2 rounded-lg w-28 text-center";
+        dropZone.dataset.answer = item.verb;
+
+        dropZone.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          dropZone.classList.add("over");
         });
-      }
+        dropZone.addEventListener("dragleave", () =>
+          dropZone.classList.remove("over")
+        );
+        dropZone.addEventListener("drop", (e) => {
+          e.preventDefault();
+          dropZone.classList.remove("over");
+          const droppedVerb = e.dataTransfer.getData("text/plain");
 
-      function checkQuiz(quizId) {
-        const form = document.getElementById(quizId);
-        if (!form) return;
-        form.parentElement.classList.add("result-view");
-        const data = exercises[quizId];
-        data.forEach((item, index) => {
-          const input = document.getElementById(`${quizId}-${index}`);
-          const resultDiv = document.getElementById(
-            `result-${quizId}-${index}`
-          );
-          const userAnswer = input.value.toLowerCase().trim();
+          // Si hay un verbo, devolverlo al banco
+          if (dropZone.textContent) {
+            document.getElementById(
+              `verb-${dropZone.textContent}`
+            ).style.display = "inline-block";
+          }
 
-          input.classList.remove("correct", "incorrect");
-          if (userAnswer === item.a.toLowerCase().trim()) {
-            input.classList.add("correct");
-            resultDiv.innerHTML = "";
+          dropZone.textContent = droppedVerb;
+          document.getElementById(`verb-${droppedVerb}`).style.display = "none";
+
+          if (dropZone.textContent === dropZone.dataset.answer) {
+            dropZone.classList.add("correct");
+            dropZone.classList.remove("incorrect");
           } else {
-            input.classList.add("incorrect");
-            resultDiv.innerHTML = `Respuesta correcta: <span class="correct-answer">${item.a}</span>`;
+            dropZone.classList.add("incorrect");
+            dropZone.classList.remove("correct");
           }
         });
+
+        sentenceEl.appendChild(dropZone);
+        sentenceEl.append(item.sentence.split("___")[1]);
+        sentenceContainer.appendChild(sentenceEl);
+      });
+
+      // --- EJERCICIO 3: REORDENAR FRASES ---
+      const scrambleData = [
+        ["Nous", "adorons", "le", "cinéma", "québécois", "."],
+        ["Elle", "habite", "à", "Toronto", "?"],
+        ["Je", "ne", "parle", "pas", "bien", "français", "."],
+        ["Vous", "aimez", "la", "poutine", "?"],
+        ["Mes", "amis", "regardent", "un", "match", "de", "hockey", "."],
+      ];
+      let currentScrambleIndex = 0;
+      const scrambleContainer = document.getElementById("scrambled-words");
+      const nextScrambleBtn = document.getElementById("next-scramble");
+
+      function loadScramble(index) {
+        scrambleContainer.innerHTML = "";
+        const words = [...scrambleData[index]].sort(() => Math.random() - 0.5);
+        words.forEach((word) => {
+          const wordEl = document.createElement("span");
+          wordEl.textContent = word;
+          wordEl.className = "bg-white px-4 py-2 rounded-md shadow-sm";
+          scrambleContainer.appendChild(wordEl);
+        });
       }
 
-      document.addEventListener("DOMContentLoaded", () => {
-        populateExercise("exercise1", exercises.exercise1);
-        populateExercise("exercise2", exercises.exercise2);
-        populateQuiz("final-quiz");
+      nextScrambleBtn.addEventListener("click", () => {
+        currentScrambleIndex = (currentScrambleIndex + 1) % scrambleData.length;
+        loadScramble(currentScrambleIndex);
       });
+
+      loadScramble(0); // Cargar la primera frase al inicio
     </script>
   </body>
 </html>
