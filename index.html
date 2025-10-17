@@ -69,6 +69,41 @@
         cursor: not-allowed;
         border-color: #68d391;
       }
+
+      /* Estilos adicionales para juegos */
+      .kahoot-card {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        padding: 1rem;
+        border-radius: 0.75rem;
+        background: linear-gradient(135deg, #6ee7b7 0%, #3b82f6 100%);
+        color: white;
+        box-shadow: 0 6px 18px rgba(59, 130, 246, 0.18);
+        text-decoration: none;
+      }
+      .kahoot-card:hover {
+        transform: translateY(-4px);
+        transition: transform 0.18s ease;
+      }
+      .word-btn {
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+      }
+      .selected-word {
+        outline: 3px solid rgba(99, 102, 241, 0.25);
+      }
+      .flashcard {
+        min-height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body class="text-gray-800">
@@ -270,10 +305,10 @@
               <h4 class="text-lg font-bold">1. ¿Quién es el dueño?</h4>
               <p class="text-sm">Esto define el grupo de etiquetas.</p>
               <ul class="list-disc list-inside ml-4 mt-2">
-                <li>Si el dueño soy **YO** (Je) &rarr; `mon, ma, mes`</li>
-                <li>Si el dueño eres **TÚ** (Tu) &rarr; `ton, ta, tes`</li>
+                <li>Si el dueño soy <b>YO</b> (Je) &rarr; `mon, ma, mes`</li>
+                <li>Si el dueño eres <b>TÚ</b> (Tu) &rarr; `ton, ta, tes`</li>
                 <li>
-                  Si el dueño es **ÉL/ELLA** (Il/Elle) &rarr; `son, sa, ses`
+                  Si el dueño es <b>ÉL/ELLA</b> (Il/Elle) &rarr; `son, sa, ses`
                 </li>
               </ul>
             </div>
@@ -295,16 +330,136 @@
         </div>
       </div>
 
-      <!-- Tarea -->
+      <!-- Enlace bonito al Kahoot (añadido) -->
+      <div class="content-box">
+        <h2 class="text-3xl font-bold mb-4">Actividad extra: Kahoot</h2>
+        <p class="mb-4 text-gray-600">
+          Juega este Kahoot rápido para repasar "La famille et les adjectifs
+          possessifs".
+        </p>
+        <a
+          href="https://create.kahoot.it/share/la-famille-et-les-adjectifs-possesifs/fb6b5ad9-b33b-439f-aae3-0f795571c0b6"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="kahoot-card">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-12 w-12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            stroke-width="1.5">
+            <path
+              d="M3 12a9 9 0 1018 0 9 9 0 00-18 0z"
+              stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M8 12h8" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 8v8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <div>
+            <div class="text-lg font-bold">
+              La famille et les adjectifs possessifs
+            </div>
+            <div class="text-sm opacity-90">
+              Kahoot — repaso rápido y divertido
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Tarea (Devoirs) ampliada con juegos nuevos -->
       <div class="content-box" id="devoirs">
         <h2 class="text-3xl font-bold mb-4">
-          Devoirs: Pratique de vocabulaire
+          Devoirs: Pratique de vocabulaire (más juegos)
         </h2>
         <p class="mb-4 text-gray-600">
-          ¡Vamos a jugar a "Conexiones"! El objetivo es encontrar 4 grupos de 4
-          palabras que tengan algo en común.
+          Vamos a jugar con las relaciones palabra ⇄ significado. El sistema
+          corrige automáticamente (no hace falta enviar nada).
         </p>
-        <div id="connections-game" class="p-4 bg-gray-50 rounded-lg">
+
+        <!-- Panel de selección de juego -->
+        <div class="mb-4 flex gap-2">
+          <button
+            id="game-match-btn"
+            class="bg-indigo-600 text-white py-2 px-4 rounded">
+            Emparejar (FR ⇄ ES)
+          </button>
+          <button
+            id="game-flash-btn"
+            class="bg-green-600 text-white py-2 px-4 rounded">
+            Tarjetas (Flashcards)
+          </button>
+          <button
+            id="game-quiz-btn"
+            class="bg-yellow-600 text-white py-2 px-4 rounded">
+            Mini-quiz
+          </button>
+          <button
+            id="game-write-btn"
+            class="bg-pink-600 text-white py-2 px-4 rounded">
+            Escribir traducción
+          </button>
+        </div>
+
+        <!-- Contenedor de juegos -->
+        <div id="games-container" class="space-y-6">
+          <!-- Game: Match pairs -->
+          <div id="game-match" class="hidden">
+            <h3 class="text-xl font-bold mb-2">
+              Emparejar palabra — significado
+            </h3>
+            <p class="text-sm mb-3 text-gray-600">
+              Haz clic en una palabra en francés y luego en su traducción en
+              español para emparejar.
+            </p>
+            <div class="grid grid-cols-2 gap-4">
+              <div id="match-fr" class="p-4 bg-gray-50 rounded-lg"></div>
+              <div id="match-es" class="p-4 bg-gray-50 rounded-lg"></div>
+            </div>
+            <div id="match-feedback" class="mt-3 font-semibold h-6"></div>
+            <div id="match-found" class="mt-3 space-y-2"></div>
+          </div>
+
+          <!-- Game: Flashcards -->
+          <div id="game-flash" class="hidden">
+            <h3 class="text-xl font-bold mb-2">Flashcards</h3>
+            <p class="text-sm mb-3 text-gray-600">
+              Haz clic en la tarjeta para girarla (FR ⇄ ES).
+            </p>
+            <div class="grid grid-cols-3 gap-4" id="flash-grid"></div>
+            <div class="mt-3">
+              <button
+                id="flash-shuffle"
+                class="bg-gray-800 text-white py-1 px-3 rounded">
+                Barajar
+              </button>
+            </div>
+          </div>
+
+          <!-- Game: Mini-quiz -->
+          <div id="game-quiz" class="hidden">
+            <h3 class="text-xl font-bold mb-2">Mini-quiz (opción múltiple)</h3>
+            <div id="quiz-area" class="p-4 bg-gray-50 rounded-lg"></div>
+            <div id="quiz-feedback" class="mt-3 font-semibold h-6"></div>
+          </div>
+
+          <!-- Game: Write translation -->
+          <div id="game-write" class="hidden">
+            <h3 class="text-xl font-bold mb-2">Escribe la traducción</h3>
+            <p class="text-sm mb-2 text-gray-600">
+              Escribe la traducción española correcta. Autocorrección
+              automática.
+            </p>
+            <div id="write-area" class="space-y-3"></div>
+            <div id="write-feedback" class="mt-2 font-semibold h-6"></div>
+          </div>
+        </div>
+
+        <!-- Conexiones clásico (mantuve el juego original) -->
+        <div class="mt-6">
+          <h3 class="text-2xl font-bold mb-3">
+            Juego: Conexiones (original ampliado)
+          </h3>
           <div id="word-grid" class="grid grid-cols-4 gap-2 mb-4">
             <!-- Palabras del juego generadas con JS -->
           </div>
@@ -326,7 +481,7 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        // --- COMPRÉHENSION ORALE ---
+        // --- COMPRÉHENSION ORALE (código existente) ---
         const list1 = document.getElementById("comprehension-list1");
         const list2 = document.getElementById("comprehension-list2");
         let selected = null;
@@ -370,7 +525,7 @@
           }
         }
 
-        // --- VRAI OU FAUX ---
+        // --- VRAI OU FAUX (existing) ---
         const vraiFauxData = [
           { q: "a. Théo invite son oncle Paul.", a: "vrai" },
           { q: "b. Théo n'invite pas sa cousine.", a: "faux" },
@@ -387,7 +542,7 @@
           vraiFauxContainer.appendChild(div);
         });
 
-        // --- DRAG AND DROP VOCAB ---
+        // --- DRAG AND DROP VOCAB (existing) ---
         const vocabBank = document.getElementById("vocab-bank");
         const vocabSentences = document.getElementById("vocab-sentences");
         const words = ["fille", "nièce", "frère", "célibataire", "fils unique"];
@@ -467,7 +622,7 @@
           });
         });
 
-        // --- JUEGO DE CONEXIONES ---
+        // --- JUEGO DE CONEXIONES (original ampliado) ---
         const connectionsGameData = {
           groups: {
             Personnes: {
@@ -604,9 +759,344 @@
           selectedWords = [];
           submitBtn.disabled = true;
         });
-      });
 
-      // Función genérica de chequeo para inputs, selects y divs
+        // --------------------------
+        // NUEVOS JUEGOS: datos de vocabulario (lista que me diste)
+        // --------------------------
+        const vocabPairs = [
+          { fr: "quartier", es: "colonia" },
+          { fr: "exprimer", es: "expresar" },
+          { fr: "demander", es: "preguntar" },
+          { fr: "voir", es: "ver" },
+          { fr: "arbre", es: "árbol" },
+          { fr: "fleur", es: "flor" },
+          { fr: "garçon", es: "chico" },
+          { fr: "fille", es: "chica" },
+          { fr: "feuilles", es: "hojas" },
+          { fr: "pot", es: "maceta" },
+          { fr: "couple", es: "pareja" },
+          { fr: "papillon", es: "mariposa" },
+          { fr: "gens", es: "personas" },
+          { fr: "discussion", es: "conversación" },
+          { fr: "il y a", es: "hay" },
+          { fr: "écrire", es: "escribir" },
+          { fr: "échauffement", es: "calentamiento" },
+          { fr: "entraînement", es: "entrenamiento" },
+          { fr: "rue", es: "calle" },
+          { fr: "voiture", es: "carro" },
+          { fr: "char", es: "carro" },
+          { fr: "acheter", es: "comprar" },
+          { fr: "nager", es: "nadar" },
+          { fr: "rencontrer", es: "conocer" },
+          { fr: "donner", es: "dar" },
+          { fr: "regarder", es: "observar" },
+          { fr: "jouer", es: "jugar" },
+          { fr: "trouver", es: "encontrar" },
+          { fr: "ville", es: "ciudad" },
+          { fr: "vélo", es: "bicicleta" },
+          { fr: "soif", es: "sed" },
+          { fr: "demi", es: "medio" },
+          { fr: "plus", es: "más" },
+          { fr: "moins", es: "menos" },
+          { fr: "devoirs", es: "tarea" },
+          { fr: "canadien", es: "Canadiense" },
+          { fr: "québécois", es: "Quebequense" },
+          { fr: "âge", es: "edad" },
+          { fr: "nationalité", es: "nacionalidad" },
+          { fr: "chien", es: "perro" },
+          { fr: "pluie", es: "lluvia" },
+          { fr: "sport", es: "deporte" },
+          { fr: "cinéma", es: "cine" },
+          { fr: "langues", es: "idiomas" },
+          { fr: "musique", es: "música" },
+          { fr: "cadre", es: "marco" },
+          { fr: "tiret", es: "guion" },
+          { fr: "lieu", es: "lugar" },
+          { fr: "naissance", es: "nacimiento" },
+          { fr: "adresse", es: "dirección" },
+        ];
+
+        // util: normalizar (quita acentos y minúsculas)
+        function normalizeText(t) {
+          return t
+            .toString()
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/\s+/g, " ")
+            .trim();
+        }
+
+        // ---------- MATCH GAME ----------
+        const gameMatchBtn = document.getElementById("game-match-btn");
+        const gameFlashBtn = document.getElementById("game-flash-btn");
+        const gameQuizBtn = document.getElementById("game-quiz-btn");
+        const gameWriteBtn = document.getElementById("game-write-btn");
+        const gamesContainer = document.getElementById("games-container");
+
+        function hideAllGames() {
+          document
+            .querySelectorAll("#games-container > div")
+            .forEach((d) => d.classList.add("hidden"));
+          // clear feedbacks
+          document.getElementById("match-feedback").textContent = "";
+          document.getElementById("quiz-feedback").textContent = "";
+          document.getElementById("write-feedback").textContent = "";
+        }
+
+        gameMatchBtn.addEventListener("click", () => {
+          hideAllGames();
+          document.getElementById("game-match").classList.remove("hidden");
+          startMatchGame();
+        });
+        gameFlashBtn.addEventListener("click", () => {
+          hideAllGames();
+          document.getElementById("game-flash").classList.remove("hidden");
+          startFlashcards();
+        });
+        gameQuizBtn.addEventListener("click", () => {
+          hideAllGames();
+          document.getElementById("game-quiz").classList.remove("hidden");
+          startQuiz();
+        });
+        gameWriteBtn.addEventListener("click", () => {
+          hideAllGames();
+          document.getElementById("game-write").classList.remove("hidden");
+          startWrite();
+        });
+
+        // MATCH: FR on left, ES on right
+        function startMatchGame() {
+          const left = document.getElementById("match-fr");
+          const right = document.getElementById("match-es");
+          const feedback = document.getElementById("match-feedback");
+          const found = document.getElementById("match-found");
+          left.innerHTML = "";
+          right.innerHTML = "";
+          found.innerHTML = "";
+          feedback.textContent = "";
+
+          const pairs = [...vocabPairs]
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 12);
+          const frList = pairs.map((p) => p.fr).sort(() => Math.random() - 0.5);
+          const esList = pairs.map((p) => p.es).sort(() => Math.random() - 0.5);
+
+          let selectedFr = null;
+          let selectedEs = null;
+          let matches = 0;
+
+          frList.forEach((fr) => {
+            const btn = document.createElement("div");
+            btn.className = "word-btn p-2 bg-white border rounded mb-2";
+            btn.textContent = fr;
+            btn.addEventListener("click", () => {
+              document
+                .querySelectorAll("#match-fr .word-btn")
+                .forEach((el) => el.classList.remove("selected-word"));
+              btn.classList.add("selected-word");
+              selectedFr = fr;
+              tryCheck();
+            });
+            left.appendChild(btn);
+          });
+
+          esList.forEach((es) => {
+            const btn = document.createElement("div");
+            btn.className = "word-btn p-2 bg-white border rounded mb-2";
+            btn.textContent = es;
+            btn.addEventListener("click", () => {
+              document
+                .querySelectorAll("#match-es .word-btn")
+                .forEach((el) => el.classList.remove("selected-word"));
+              btn.classList.add("selected-word");
+              selectedEs = es;
+              tryCheck();
+            });
+            right.appendChild(btn);
+          });
+
+          function tryCheck() {
+            if (!selectedFr || !selectedEs) return;
+            const correct = pairs.find(
+              (p) =>
+                normalizeText(p.fr) === normalizeText(selectedFr) &&
+                normalizeText(p.es) === normalizeText(selectedEs)
+            );
+            if (correct) {
+              feedback.textContent = `Correcto: ${selectedFr} → ${selectedEs}`;
+              feedback.className = "mt-3 font-semibold text-green-600";
+              // marcar como encontrados
+              const frBtn = Array.from(left.children).find(
+                (n) => n.textContent === selectedFr
+              );
+              const esBtn = Array.from(right.children).find(
+                (n) => n.textContent === selectedEs
+              );
+              if (frBtn) {
+                frBtn.style.visibility = "hidden";
+              }
+              if (esBtn) {
+                esBtn.style.visibility = "hidden";
+              }
+              found.insertAdjacentHTML(
+                "afterbegin",
+                `<div class="p-2 bg-green-100 rounded">${selectedFr} — ${selectedEs}</div>`
+              );
+              matches++;
+              selectedFr = null;
+              selectedEs = null;
+              if (matches === pairs.length) {
+                feedback.textContent =
+                  "¡Genial! Encontraste todas las parejas.";
+              }
+            } else {
+              feedback.textContent = "No coincide. Intenta otra vez.";
+              feedback.className = "mt-3 font-semibold text-red-600";
+              // reset selection
+              document
+                .querySelectorAll("#match-fr .word-btn, #match-es .word-btn")
+                .forEach((el) => el.classList.remove("selected-word"));
+              selectedFr = null;
+              selectedEs = null;
+            }
+          }
+        }
+
+        // FLASHCARDS
+        function startFlashcards() {
+          const grid = document.getElementById("flash-grid");
+          grid.innerHTML = "";
+          const sample = [...vocabPairs]
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 12);
+          sample.forEach((pair) => {
+            const card = document.createElement("div");
+            card.className = "flashcard bg-white border shadow-sm";
+            card.textContent = pair.fr;
+            card.dataset.fr = pair.fr;
+            card.dataset.es = pair.es;
+            card.dataset.show = "fr";
+            card.addEventListener("click", () => {
+              if (card.dataset.show === "fr") {
+                card.textContent = pair.es;
+                card.dataset.show = "es";
+                card.classList.add("bg-indigo-50");
+              } else {
+                card.textContent = pair.fr;
+                card.dataset.show = "fr";
+                card.classList.remove("bg-indigo-50");
+              }
+            });
+            grid.appendChild(card);
+          });
+
+          document.getElementById("flash-shuffle").onclick = () => {
+            startFlashcards();
+          };
+        }
+
+        // QUIZ (opción múltiple)
+        function startQuiz() {
+          const area = document.getElementById("quiz-area");
+          const feedback = document.getElementById("quiz-feedback");
+          area.innerHTML = "";
+          feedback.textContent = "";
+          const sample = [...vocabPairs]
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 6);
+          let score = 0;
+          sample.forEach((pair, idx) => {
+            const options = new Set([pair.es]);
+            while (options.size < 4) {
+              const rand =
+                vocabPairs[Math.floor(Math.random() * vocabPairs.length)].es;
+              options.add(rand);
+            }
+            const optsArr = Array.from(options).sort(() => Math.random() - 0.5);
+            const qDiv = document.createElement("div");
+            qDiv.className = "mb-3 p-3 bg-white rounded border";
+            qDiv.innerHTML = `<div class="font-semibold mb-2">${
+              idx + 1
+            }. ¿Cómo se traduce "<span class='italic'>${
+              pair.fr
+            }</span>"?</div>`;
+            optsArr.forEach((opt) => {
+              const but = document.createElement("button");
+              but.className =
+                "block w-full text-left p-2 my-1 border rounded bg-gray-50";
+              but.textContent = opt;
+              but.addEventListener("click", () => {
+                if (but.dataset.answered) return;
+                but.dataset.answered = "1";
+                if (normalizeText(opt) === normalizeText(pair.es)) {
+                  but.classList.add("bg-green-100");
+                  score++;
+                } else {
+                  but.classList.add("bg-red-100");
+                  // marcar correcta
+                  const correctBtn = Array.from(
+                    qDiv.querySelectorAll("button")
+                  ).find(
+                    (b) =>
+                      normalizeText(b.textContent) === normalizeText(pair.es)
+                  );
+                  if (correctBtn) correctBtn.classList.add("bg-green-100");
+                }
+                // bloquear todas las opciones
+                qDiv
+                  .querySelectorAll("button")
+                  .forEach((b) => (b.disabled = true));
+                feedback.textContent = `Puntuación: ${score} / ${sample.length}`;
+              });
+              qDiv.appendChild(but);
+            });
+            area.appendChild(qDiv);
+          });
+        }
+
+        // WRITE: escribir traducción (autocorrección)
+        function startWrite() {
+          const area = document.getElementById("write-area");
+          const feedback = document.getElementById("write-feedback");
+          area.innerHTML = "";
+          feedback.textContent = "";
+          const sample = [...vocabPairs]
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 8);
+          sample.forEach((pair) => {
+            const row = document.createElement("div");
+            row.className = "flex gap-2 items-center";
+            row.innerHTML = `<div class="w-1/3 p-2 bg-gray-50 rounded">${pair.fr}</div>
+              <input class="flex-1 border p-2 rounded" placeholder="traducción..." />
+              <div class="w-24 text-center"></div>`;
+            const input = row.querySelector("input");
+            const resultBox = row.querySelector("div.w-24");
+            input.addEventListener("keyup", () => {
+              if (!input.value.trim()) {
+                input.classList.remove("correct", "incorrect");
+                resultBox.textContent = "";
+                return;
+              }
+              if (normalizeText(input.value) === normalizeText(pair.es)) {
+                input.classList.add("correct");
+                input.classList.remove("incorrect");
+                resultBox.textContent = "✓";
+              } else {
+                input.classList.add("incorrect");
+                input.classList.remove("correct");
+                resultBox.textContent = "✕";
+              }
+            });
+            area.appendChild(row);
+          });
+        }
+
+        // activar game match por defecto (opcional)
+        // startMatchGame();
+      }); // DOMContentLoaded end
+
+      // Función genérica de chequeo para inputs, selects y divs (ya existente)
       function checkAnswer(element, correctAnswer) {
         const userAnswer =
           element.tagName === "INPUT" || element.tagName === "SELECT"
@@ -617,7 +1107,17 @@
           element.classList.remove("correct", "incorrect");
           return;
         }
-        if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+        // comparación simple: ignora mayúsculas y acentos
+        const normalize = (t) =>
+          t
+            .toString()
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/\s+/g, " ")
+            .trim();
+
+        if (normalize(userAnswer) === normalize(correctAnswer)) {
           element.classList.add("correct");
           element.classList.remove("incorrect");
         } else {
