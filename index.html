@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Français - Séance 8</title>
+    <title>Français - Séance 9</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
@@ -11,7 +11,7 @@
     <style>
       body {
         font-family: "Inter", sans-serif;
-        background-color: #f7fafc;
+        background-color: #f9fafb;
         scroll-behavior: smooth;
       }
       h1,
@@ -24,310 +24,607 @@
         background-color: white;
         border-radius: 0.75rem;
         padding: 1.5rem 2rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-          0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
         margin-bottom: 2.5rem;
       }
       .correct {
-        border-color: #48bb78 !important;
-        background-color: #f0fff4;
+        border-color: #4ade80 !important;
+        background-color: #f0fdf4;
       }
       .incorrect {
-        border-color: #f56565 !important;
-        background-color: #fff5f5;
+        border-color: #f87171 !important;
+        background-color: #fef2f2;
       }
-      input {
+      input,
+      select {
         transition: all 0.2s ease-in-out;
-        border: 2px solid #e2e8f0;
+        border: 2px solid #d1d5db;
       }
-      .wayground-embed {
-        position: relative;
-        padding-bottom: 56.25%;
-        height: 0;
-        overflow: hidden;
-        max-width: 100%;
+      .drag-item {
+        cursor: grab;
+        user-select: none;
       }
-      .wayground-embed iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+      .drop-zone {
+        border: 2px dashed #a0aec0;
+        min-height: 40px;
+        display: inline-block;
+        padding: 4px 8px;
+        text-align: center;
+        border-radius: 0.5rem;
       }
-      #word-scramble button {
+      .drop-zone.over {
+        background-color: #ebf8ff;
+        border-color: #4299e1;
+      }
+      .comprehension-item {
         transition: background-color 0.2s;
+      }
+      .comprehension-item.selected {
+        background-color: #fefcbf;
+        border-color: #f6e05e;
+      }
+      .comprehension-item.matched {
+        background-color: #c6f6d5;
+        cursor: not-allowed;
+        border-color: #68d391;
       }
     </style>
   </head>
   <body class="text-gray-800">
     <header
-      class="bg-white shadow-md p-4 flex justify-between items-center sticky top: 0; z-index: 50;">
+      class="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-50">
       <h1 class="text-3xl font-bold text-gray-800">
-        Séance 8: Les verbes en -ER et les loisirs
+        Séance 9: La Famille et les Possessifs
       </h1>
     </header>
 
     <main class="max-w-4xl mx-auto p-6">
-      <!-- Sección Repaso Verbos en -ER -->
-      <div class="content-box" id="verbes-er">
-        <h2 class="text-3xl font-bold mb-4">Repaso: Les verbes en -ER</h2>
-        <p class="mb-4 text-gray-600">
-          Vamos a repasar la conjugación de los verbos regulares que terminan en
-          -ER, ¡el grupo más grande y útil de verbos en francés!
-        </p>
-        <div class="wayground-embed rounded-lg shadow-md mb-6">
-          <iframe
-            src="https://wayground.com/admin/presentation/6194fdea4512cb001d3cdc51"
-            frameborder="0"
-            allow="fullscreen"></iframe>
-        </div>
-      </div>
-
-      <!-- Ejercicios Verbos en -ER -->
-      <div class="content-box" id="exercices-verbes">
-        <h2 class="text-3xl font-bold mb-4">Exercices: Conjugaison</h2>
-        <h3 class="text-xl font-bold mb-4">
-          Exercice 1: Complète la conjugaison
-        </h3>
-        <div
-          id="conjugation-exercise"
-          class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 mb-8">
-          <!-- Ejercicios de conjugación generados con JS -->
-        </div>
-
-        <h3 class="text-xl font-bold mb-4">Exercice 2: Le bon verbe</h3>
-        <p class="mb-4 text-gray-600">
-          Arrastra el verbo conjugado correcto a cada frase.
-        </p>
-        <div id="drag-drop-container" class="space-y-4">
-          <div
-            id="verb-bank"
-            class="flex flex-wrap gap-2 p-4 bg-gray-100 rounded-lg justify-center mb-4">
-            <!-- Verbos arrastrables generados con JS -->
-          </div>
-          <div id="sentence-container" class="space-y-3">
-            <!-- Frases con zonas para soltar generadas con JS -->
-          </div>
-        </div>
-
-        <h3 class="text-xl font-bold mt-8 mb-4">
-          Exercice 3: Écris une phrase
-        </h3>
-        <p class="mb-4 text-gray-600">
-          Usa las palabras para formar una frase coherente y escríbela en el
-          Google Docs.
-        </p>
-        <div
-          id="word-scramble"
-          class="bg-indigo-100 p-6 rounded-lg text-center">
-          <div
-            id="scrambled-words"
-            class="flex flex-wrap gap-4 justify-center text-lg font-semibold mb-4">
-            <!-- Palabras desordenadas generadas con JS -->
-          </div>
-          <button
-            id="next-scramble"
-            class="bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700">
-            Phrase suivante &rarr;
-          </button>
-        </div>
-      </div>
-
-      <!-- Sección Loisirs y Gustos -->
-      <div class="content-box" id="loisirs">
+      <!-- Sección L'essentiel -->
+      <div class="content-box" id="l-essentiel">
         <h2 class="text-3xl font-bold mb-4">
-          Exprimer ses goûts et parler des loisirs
+          L'essentiel: Grammaire et Compréhension
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <img
-              src="./images/page-34.png"
-              alt="Página 34 del libro"
-              class="rounded-lg shadow-md w-full" />
-            <h4 class="text-lg font-semibold mt-4">Audio de la page 34:</h4>
-            <audio controls class="w-full mt-2">
-              <source src="./audio/31_Edito_A1_Livre.mp3" type="audio/mpeg" />
-            </audio>
+        <img
+          src="./images/page-36.png"
+          alt="Página 36 del libro"
+          class="rounded-lg shadow-md mb-6 w-full" />
+
+        <h3 class="text-2xl font-bold mb-4 mt-8">
+          Exercice: Compréhension Orale
+        </h3>
+        <p class="mb-4 text-gray-600">
+          Écoute l'audio et réponds aux questions suivantes.
+        </p>
+        <audio controls class="w-full mb-6">
+          <source src="./audio/38_Edito_A1_Livre.mp3" type="audio/mpeg" />
+          Tu navegador no soporta el elemento de audio.
+        </audio>
+
+        <div id="comprehension-exercise">
+          <h4 class="text-xl font-bold mb-3">1. Associez:</h4>
+          <div class="grid grid-cols-2 gap-4 items-start">
+            <ul id="comprehension-list1" class="space-y-2">
+              <li
+                data-match="belgique"
+                class="p-2 border rounded-md cursor-pointer comprehension-item">
+                a. Arthur et Lucas habitent
+              </li>
+              <li
+                data-match="suisse"
+                class="p-2 border rounded-md cursor-pointer comprehension-item">
+                b. Manu et Laure habitent
+              </li>
+            </ul>
+            <ul id="comprehension-list2" class="space-y-2">
+              <li
+                data-match="suisse"
+                class="p-2 border rounded-md cursor-pointer comprehension-item">
+                1. en Suisse, à Montreux.
+              </li>
+              <li
+                data-match="belgique"
+                class="p-2 border rounded-md cursor-pointer comprehension-item">
+                2. en Belgique, à Bruxelles.
+              </li>
+            </ul>
           </div>
-          <div>
-            <img
-              src="./images/page-35.png"
-              alt="Página 35 del libro"
-              class="rounded-lg shadow-md w-full" />
-            <h4 class="text-lg font-semibold mt-4">Audio de la page 35:</h4>
-            <audio controls class="w-full mt-2">
-              <source src="./audio/34_Edito_A1_Livre.mp3" type="audio/mpeg" />
-            </audio>
+
+          <h4 class="text-xl font-bold mt-6 mb-3">
+            2-5. Complète les réponses (mots clés):
+          </h4>
+          <div class="space-y-4">
+            <p>
+              <strong>2. Pourquoi aiment-ils leur lieu d'habitation?</strong
+              ><br />
+              Arthur aime la
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'ville')"
+                class="rounded p-2 mt-1" />
+              et le
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'quartier sympa')"
+                class="rounded p-2 mt-1" />. Manu adore la
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'montagne')"
+                class="rounded p-2 mt-1" />.
+            </p>
+
+            <p>
+              <strong>3. Quels sont leurs loisirs?</strong><br />
+              Arthur aime le
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'cinéma')"
+                class="rounded p-2 mt-1" />
+              et la
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'musique')"
+                class="rounded p-2 mt-1" />. Manu aime marcher.
+            </p>
+
+            <p>
+              <strong>4. Quels instruments ont-ils?</strong><br />
+              Lucas a une
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'guitare')"
+                class="rounded p-2 mt-1" />
+              et Arthur a un
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'piano')"
+                class="rounded p-2 mt-1" />.
+            </p>
+
+            <p>
+              <strong>5. Quelle activité Laure n'aime pas?</strong><br />
+              Elle déteste la
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'marche')"
+                class="rounded p-2 mt-1" />.
+            </p>
           </div>
         </div>
       </div>
 
-      <!-- Kahoot -->
-      <div class="content-box text-center">
-        <h2 class="text-3xl font-bold mb-4">Activité: Jouons à Kahoot!</h2>
-        <a
-          href="https://create.kahoot.it/share/conjuguez-les-verbes-en-er/e06d42a9-8c74-42d8-b931-b6ab8dd51a1f"
-          target="_blank"
-          class="inline-block bg-purple-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-purple-700 transition-transform hover:scale-105">
-          Lancer le Kahoot!
-        </a>
+      <!-- Documento "On invite qui?" -->
+      <div class="content-box">
+        <h2 class="text-3xl font-bold mb-4">Documents: On invite qui?</h2>
+        <img
+          src="./images/page-38.png"
+          alt="Página 38 del libro"
+          class="rounded-lg shadow-md w-full" />
+      </div>
+
+      <!-- Ejercicios página 39-A -->
+      <div class="content-box">
+        <h2 class="text-3xl font-bold mb-4">Exercices: Présenter sa famille</h2>
+        <img
+          src="./images/page-39-A.png"
+          alt="Ejercicios de la página 39"
+          class="rounded-lg shadow-md mb-6 w-full" />
+
+        <h3 class="text-2xl font-bold mb-4">1 & 2. Questions ouvertes</h3>
+        <div class="space-y-3">
+          <p>
+            <strong>1. À votre avis, qui sont Nina et Théo?</strong><br />
+            <input
+              type="text"
+              placeholder="Ils sont..."
+              class="border rounded p-2 w-full mt-1" />
+          </p>
+          <p>
+            <strong>2. Qu'est-ce que Nina prépare?</strong><br />
+            <input
+              type="text"
+              placeholder="Elle prépare..."
+              class="border rounded p-2 w-full mt-1" />
+          </p>
+        </div>
+
+        <h3 class="text-2xl font-bold mt-8 mb-4">3. Vrai ou faux ?</h3>
+        <div id="vrai-faux-exercise" class="space-y-3">
+          <!-- Vrai/Faux generado con JS -->
+        </div>
+
+        <h3 class="text-2xl font-bold mt-8 mb-4">4. Complétez les phrases</h3>
+        <div id="drag-drop-vocab" class="space-y-4">
+          <div
+            id="vocab-bank"
+            class="flex flex-wrap gap-2 p-4 bg-gray-100 rounded-lg justify-center mb-4">
+            <!-- Palabras arrastrables generadas con JS -->
+          </div>
+          <div id="vocab-sentences" class="space-y-3">
+            <!-- Frases con drop zones generadas con JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Adjetivos Posesivos -->
+      <div class="content-box" id="adjectifs-possessifs">
+        <h2 class="text-3xl font-bold mb-4">
+          Grammaire: Les adjectifs possessifs
+        </h2>
+        <img
+          src="./images/page-39-B.png"
+          alt="Teoría de adjetivos posesivos"
+          class="rounded-lg shadow-md mb-6 w-full" />
+
+        <div
+          class="bg-purple-100 border-l-4 border-purple-500 p-6 rounded-r-lg mt-6">
+          <h3 class="text-2xl font-bold mb-3 text-purple-900">
+            Une façon simple de le voir
+          </h3>
+          <p class="mb-4">
+            Imagina que cada persona tiene "etiquetas" para sus cosas. ¡Solo
+            necesitas saber 2 cosas!
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="text-lg font-bold">1. ¿Quién es el dueño?</h4>
+              <p class="text-sm">Esto define el grupo de etiquetas.</p>
+              <ul class="list-disc list-inside ml-4 mt-2">
+                <li>Si el dueño soy **YO** (Je) &rarr; `mon, ma, mes`</li>
+                <li>Si el dueño eres **TÚ** (Tu) &rarr; `ton, ta, tes`</li>
+                <li>
+                  Si el dueño es **ÉL/ELLA** (Il/Elle) &rarr; `son, sa, ses`
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="text-lg font-bold">2. ¿Cómo es el objeto?</h4>
+              <p class="text-sm">Esto define la etiqueta exacta.</p>
+              <ul class="list-disc list-inside ml-4 mt-2">
+                <li>Si es 1 objeto masculino &rarr; `mon, ton, son`</li>
+                <li>Si es 1 objeto femenino &rarr; `ma, ta, sa`</li>
+                <li>Si son varios objetos &rarr; `mes, tes, ses`</li>
+              </ul>
+            </div>
+          </div>
+          <p class="mt-4 text-sm italic border-t border-purple-300 pt-3">
+            <strong>¡El truco!</strong> Con palabra femenina que empieza con
+            vocal, usa la etiqueta masculina: <strong>mon</strong> amie,
+            <strong>ton</strong> idée.
+          </p>
+        </div>
+      </div>
+
+      <!-- Tarea -->
+      <div class="content-box" id="devoirs">
+        <h2 class="text-3xl font-bold mb-4">
+          Devoirs: Pratique de vocabulaire
+        </h2>
+        <p class="mb-4 text-gray-600">
+          ¡Vamos a jugar a "Conexiones"! El objetivo es encontrar 4 grupos de 4
+          palabras que tengan algo en común.
+        </p>
+        <div id="connections-game" class="p-4 bg-gray-50 rounded-lg">
+          <div id="word-grid" class="grid grid-cols-4 gap-2 mb-4">
+            <!-- Palabras del juego generadas con JS -->
+          </div>
+          <div class="flex items-center justify-between">
+            <button
+              id="submit-group"
+              class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 disabled:bg-gray-400">
+              Soumettre
+            </button>
+            <div id="attempts" class="font-semibold">
+              Intentos restantes: <span>4</span>
+            </div>
+          </div>
+          <div id="feedback" class="mt-4 text-center font-semibold h-6"></div>
+          <div id="found-groups" class="mt-4 space-y-2"></div>
+        </div>
       </div>
     </main>
 
     <script>
-      // --- EJERCICIO 1: COMPLETAR CONJUGACIÓN ---
-      const conjugationData = [
-        { verb: "parler", subject: "Je", answer: "parle" },
-        { verb: "aimer", subject: "Tu", answer: "aimes" },
-        { verb: "habiter", subject: "Il", answer: "habite" },
-        { verb: "regarder", subject: "Elle", answer: "regarde" },
-        { verb: "marcher", subject: "Nous", answer: "marchons" },
-        { verb: "danser", subject: "Vous", answer: "dansez" },
-        { verb: "chanter", subject: "Ils", answer: "chantent" },
-        { verb: "jouer", subject: "Elles", answer: "jouent" },
-        { verb: "travailler", subject: "Je", answer: "travaille" },
-        { verb: "étudier", subject: "Tu", answer: "étudies" },
-        { verb: "penser", subject: "On", answer: "pense" },
-        { verb: "trouver", subject: "Nous", answer: "trouvons" },
-        { verb: "donner", subject: "Vous", answer: "donnez" },
-        { verb: "écouter", subject: "Ils", answer: "écoutent" },
-        { verb: "skier", subject: "Je", answer: "skie" },
-        { verb: "détester", subject: "Tu", answer: "détestes" },
-        { verb: "adorer", subject: "Il", answer: "adore" },
-        { verb: "chercher", subject: "Nous", answer: "cherchons" },
-        { verb: "préparer", subject: "Vous", answer: "préparez" },
-        { verb: "arriver", subject: "Elles", answer: "arrivent" },
-      ];
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- COMPRÉHENSION ORALE ---
+        const list1 = document.getElementById("comprehension-list1");
+        const list2 = document.getElementById("comprehension-list2");
+        let selected = null;
 
-      const conjugationContainer = document.getElementById(
-        "conjugation-exercise"
-      );
-      conjugationData.forEach((item) => {
-        const div = document.createElement("div");
-        div.innerHTML = `<label class="text-gray-700">${item.subject} (${item.verb})</label>
-                             <input type="text" onkeyup="checkAnswer(this, '${item.answer}')" class="rounded p-2 w-full mt-1">`;
-        conjugationContainer.appendChild(div);
+        [list1, list2].forEach((list) => {
+          list.addEventListener("click", (e) =>
+            handleSelection(e.target, list)
+          );
+        });
+
+        function handleSelection(item, list) {
+          if (item.tagName !== "LI" || item.classList.contains("matched"))
+            return;
+
+          document
+            .querySelectorAll(".comprehension-item.selected")
+            .forEach((el) => el.classList.remove("selected"));
+          item.classList.add("selected");
+
+          if (!selected) {
+            selected = { item, list };
+          } else if (selected.list !== list) {
+            const match1 = selected.item.dataset.match;
+            const match2 = item.dataset.match;
+            if (match1 === match2) {
+              selected.item.classList.add("matched");
+              item.classList.add("matched");
+              selected.item.classList.remove("selected");
+              item.classList.remove("selected");
+            } else {
+              selected.item.classList.add("incorrect");
+              item.classList.add("incorrect");
+              setTimeout(() => {
+                selected.item.classList.remove("incorrect", "selected");
+                item.classList.remove("incorrect", "selected");
+              }, 600);
+            }
+            selected = null;
+          } else {
+            selected = { item, list };
+          }
+        }
+
+        // --- VRAI OU FAUX ---
+        const vraiFauxData = [
+          { q: "a. Théo invite son oncle Paul.", a: "vrai" },
+          { q: "b. Théo n'invite pas sa cousine.", a: "faux" },
+          { q: "c. Le frère de Nina est marié.", a: "vrai" },
+          { q: "d. Sofia, l'amie de Théo, a des enfants.", a: "vrai" },
+        ];
+        const vraiFauxContainer = document.getElementById("vrai-faux-exercise");
+        vraiFauxData.forEach((item) => {
+          const div = document.createElement("div");
+          div.innerHTML = `<span>${item.q}</span>
+                    <select onchange="checkAnswer(this, '${item.a}')" class="ml-2 rounded p-1 border-2">
+                        <option value="">--</option><option value="vrai">Vrai</option><option value="faux">Faux</option>
+                    </select>`;
+          vraiFauxContainer.appendChild(div);
+        });
+
+        // --- DRAG AND DROP VOCAB ---
+        const vocabBank = document.getElementById("vocab-bank");
+        const vocabSentences = document.getElementById("vocab-sentences");
+        const words = ["fille", "nièce", "frère", "célibataire", "fils unique"];
+
+        words
+          .sort(() => Math.random() - 0.5)
+          .forEach((word) => {
+            const wordEl = document.createElement("span");
+            wordEl.id = `word-${word.replace(/\s/g, "-")}`;
+            wordEl.textContent = word;
+            wordEl.draggable = true;
+            wordEl.className =
+              "drag-item bg-blue-200 text-blue-800 px-3 py-1 rounded-full font-semibold";
+            wordEl.addEventListener("dragstart", (e) =>
+              e.dataTransfer.setData("text/plain", word)
+            );
+            vocabBank.appendChild(wordEl);
+          });
+
+        const vocabData = [
+          {
+            sentence: "a. Clara a deux enfants, un fils et une ___ .",
+            answers: ["fille"],
+          },
+          {
+            sentence:
+              "b. Nina a un neveu et une ___ : les enfants de son ___ .",
+            answers: ["nièce", "frère"],
+          },
+          {
+            sentence: "c. Nessim n'est pas marié, il est ___ .",
+            answers: ["célibataire"],
+          },
+          {
+            sentence: "d. Théo n'a pas de frères et soeurs, il est ___ .",
+            answers: ["fils unique"],
+          },
+        ];
+
+        vocabData.forEach((item) => {
+          let sentenceHtml = item.sentence;
+          item.answers.forEach((answer) => {
+            sentenceHtml = sentenceHtml.replace(
+              "___",
+              `<div class="drop-zone" data-answer="${answer}"></div>`
+            );
+          });
+          const p = document.createElement("p");
+          p.innerHTML = sentenceHtml;
+          vocabSentences.appendChild(p);
+        });
+
+        document.querySelectorAll(".drop-zone").forEach((zone) => {
+          zone.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            zone.classList.add("over");
+          });
+          zone.addEventListener("dragleave", () =>
+            zone.classList.remove("over")
+          );
+          zone.addEventListener("drop", (e) => {
+            e.preventDefault();
+            zone.classList.remove("over");
+            const droppedWord = e.dataTransfer.getData("text/plain");
+
+            if (zone.textContent) {
+              document.getElementById(
+                `word-${zone.textContent.replace(/\s/g, "-")}`
+              ).style.display = "inline-block";
+            }
+            zone.textContent = droppedWord;
+            document.getElementById(
+              `word-${droppedWord.replace(/\s/g, "-")}`
+            ).style.display = "none";
+
+            checkAnswer(zone, zone.dataset.answer);
+          });
+        });
+
+        // --- JUEGO DE CONEXIONES ---
+        const connectionsGameData = {
+          groups: {
+            Personnes: {
+              words: ["garçon", "fille", "gens", "couple"],
+              color: "bg-green-200",
+            },
+            Nature: {
+              words: ["arbre", "fleur", "feuilles", "papillon"],
+              color: "bg-blue-200",
+            },
+            Lieux: {
+              words: ["quartier", "rue", "ville", "lieu"],
+              color: "bg-yellow-200",
+            },
+            Actions: {
+              words: ["demander", "voir", "écrire", "trouver"],
+              color: "bg-purple-200",
+            },
+          },
+          allWords: [
+            "garçon",
+            "fleur",
+            "quartier",
+            "demander",
+            "fille",
+            "arbre",
+            "rue",
+            "voir",
+            "gens",
+            "feuilles",
+            "ville",
+            "écrire",
+            "couple",
+            "papillon",
+            "lieu",
+            "trouver",
+          ],
+        };
+
+        const grid = document.getElementById("word-grid");
+        const submitBtn = document.getElementById("submit-group");
+        const attemptsSpan = document.querySelector("#attempts span");
+        const feedbackDiv = document.getElementById("feedback");
+        const foundGroupsDiv = document.getElementById("found-groups");
+        let selectedWords = [];
+        let attempts = 4;
+        let foundCategories = 0;
+
+        connectionsGameData.allWords
+          .sort(() => Math.random() - 0.5)
+          .forEach((word) => {
+            const wordDiv = document.createElement("div");
+            wordDiv.textContent = word;
+            wordDiv.className =
+              "p-4 bg-gray-200 rounded-md text-center font-semibold cursor-pointer transition-colors";
+            wordDiv.addEventListener("click", () => {
+              if (wordDiv.classList.contains("found")) return;
+
+              if (selectedWords.includes(word)) {
+                wordDiv.classList.remove("bg-indigo-500", "text-white");
+                selectedWords = selectedWords.filter((w) => w !== word);
+              } else if (selectedWords.length < 4) {
+                wordDiv.classList.add("bg-indigo-500", "text-white");
+                selectedWords.push(word);
+              }
+              submitBtn.disabled = selectedWords.length !== 4;
+            });
+            grid.appendChild(wordDiv);
+          });
+
+        submitBtn.disabled = true;
+        submitBtn.addEventListener("click", () => {
+          if (selectedWords.length !== 4) return;
+
+          let correctCategory = null;
+          for (const category in connectionsGameData.groups) {
+            const groupWords = connectionsGameData.groups[category].words;
+            if (
+              selectedWords.every((w) => groupWords.includes(w)) &&
+              selectedWords.length === groupWords.length
+            ) {
+              correctCategory = category;
+              break;
+            }
+          }
+
+          if (correctCategory) {
+            feedbackDiv.textContent = `¡Grupo encontrado! Categoría: ${correctCategory}`;
+            feedbackDiv.className =
+              "mt-4 text-center font-semibold text-green-600";
+
+            const groupInfo = connectionsGameData.groups[correctCategory];
+            const groupDiv = document.createElement("div");
+            groupDiv.className = `${groupInfo.color} p-4 rounded-lg`;
+            groupDiv.innerHTML = `<p class="font-bold">${correctCategory}</p><p>${groupInfo.words.join(
+              ", "
+            )}</p>`;
+            foundGroupsDiv.prepend(groupDiv);
+
+            selectedWords.forEach((word) => {
+              const wordDiv = Array.from(grid.children).find(
+                (el) => el.textContent === word
+              );
+              wordDiv.className = `p-4 ${groupInfo.color} rounded-md text-center font-semibold cursor-not-allowed found`;
+            });
+
+            foundCategories++;
+            if (foundCategories === 4) {
+              feedbackDiv.textContent =
+                "¡Felicidades, encontraste todos los grupos!";
+              submitBtn.disabled = true;
+            }
+          } else {
+            attempts--;
+            attemptsSpan.textContent = attempts;
+            feedbackDiv.textContent =
+              "Intenta de nuevo. Esas palabras no forman un grupo.";
+            feedbackDiv.className =
+              "mt-4 text-center font-semibold text-red-600 h-6";
+            if (attempts === 0) {
+              feedbackDiv.textContent = "¡Juego terminado!";
+              submitBtn.disabled = true;
+            }
+          }
+
+          selectedWords.forEach((word) => {
+            const wordDiv = Array.from(grid.children).find(
+              (el) => el.textContent === word
+            );
+            if (wordDiv && !wordDiv.classList.contains("found")) {
+              wordDiv.classList.remove("bg-indigo-500", "text-white");
+            }
+          });
+          selectedWords = [];
+          submitBtn.disabled = true;
+        });
       });
 
-      function checkAnswer(input, correctAnswer) {
-        const userAnswer = input.value.toLowerCase().trim();
+      // Función genérica de chequeo para inputs, selects y divs
+      function checkAnswer(element, correctAnswer) {
+        const userAnswer =
+          element.tagName === "INPUT" || element.tagName === "SELECT"
+            ? element.value.trim()
+            : element.textContent.trim();
+
         if (!userAnswer) {
-          input.className = "rounded p-2 w-full mt-1";
+          element.classList.remove("correct", "incorrect");
           return;
         }
-        if (userAnswer === correctAnswer) {
-          input.classList.add("correct");
-          input.classList.remove("incorrect");
+        if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+          element.classList.add("correct");
+          element.classList.remove("incorrect");
         } else {
-          input.classList.add("incorrect");
-          input.classList.remove("correct");
+          element.classList.add("incorrect");
+          element.classList.remove("correct");
         }
       }
-
-      // --- EJERCICIO 2: DRAG AND DROP ---
-      const dragDropData = [
-        { sentence: "___ la musique classique.", verb: "J'écoute" },
-        { sentence: "Est-ce que tu ___ le hockey?", verb: "aimes" },
-        { sentence: "Mon frère ___ à Montréal.", verb: "habite" },
-        { sentence: "Nous ___ le français.", verb: "parlons" },
-        { sentence: "Vous ___ très bien!", verb: "dansez" },
-        { sentence: "Mes parents ___ au Canada.", verb: "travaillent" },
-      ];
-
-      const verbBank = document.getElementById("verb-bank");
-      const sentenceContainer = document.getElementById("sentence-container");
-
-      // Shuffle for variety
-      dragDropData.sort(() => Math.random() - 0.5);
-      const verbs = dragDropData.map((item) => item.verb);
-      verbs.sort(() => Math.random() - 0.5);
-
-      verbs.forEach((verb) => {
-        const verbEl = document.createElement("button");
-        verbEl.id = `verb-${verb}`;
-        verbEl.textContent = verb;
-        verbEl.draggable = true;
-        verbEl.className =
-          "drag-item bg-blue-200 text-blue-800 px-3 py-1 rounded-full font-semibold";
-        verbEl.addEventListener("dragstart", (e) =>
-          e.dataTransfer.setData("text/plain", verb)
-        );
-        verbBank.appendChild(verbEl);
-      });
-
-      dragDropData.forEach((item, index) => {
-        const sentenceEl = document.createElement("div");
-        sentenceEl.className =
-          "flex items-center gap-2 p-3 bg-gray-50 rounded-lg";
-        const dropZone = document.createElement("div");
-        dropZone.className = "drop-zone p-2 rounded-lg w-28 text-center";
-        dropZone.dataset.answer = item.verb;
-
-        dropZone.addEventListener("dragover", (e) => {
-          e.preventDefault();
-          dropZone.classList.add("over");
-        });
-        dropZone.addEventListener("dragleave", () =>
-          dropZone.classList.remove("over")
-        );
-        dropZone.addEventListener("drop", (e) => {
-          e.preventDefault();
-          dropZone.classList.remove("over");
-          const droppedVerb = e.dataTransfer.getData("text/plain");
-
-          // Si hay un verbo, devolverlo al banco
-          if (dropZone.textContent) {
-            document.getElementById(
-              `verb-${dropZone.textContent}`
-            ).style.display = "inline-block";
-          }
-
-          dropZone.textContent = droppedVerb;
-          document.getElementById(`verb-${droppedVerb}`).style.display = "none";
-
-          if (dropZone.textContent === dropZone.dataset.answer) {
-            dropZone.classList.add("correct");
-            dropZone.classList.remove("incorrect");
-          } else {
-            dropZone.classList.add("incorrect");
-            dropZone.classList.remove("correct");
-          }
-        });
-
-        sentenceEl.appendChild(dropZone);
-        sentenceEl.append(item.sentence.split("___")[1]);
-        sentenceContainer.appendChild(sentenceEl);
-      });
-
-      // --- EJERCICIO 3: REORDENAR FRASES ---
-      const scrambleData = [
-        ["Nous", "adorons", "le", "cinéma", "québécois", "."],
-        ["Elle", "habite", "à", "Toronto", "?"],
-        ["Je", "ne", "parle", "pas", "bien", "français", "."],
-        ["Vous", "aimez", "la", "poutine", "?"],
-        ["Mes", "amis", "regardent", "un", "match", "de", "hockey", "."],
-      ];
-      let currentScrambleIndex = 0;
-      const scrambleContainer = document.getElementById("scrambled-words");
-      const nextScrambleBtn = document.getElementById("next-scramble");
-
-      function loadScramble(index) {
-        scrambleContainer.innerHTML = "";
-        const words = [...scrambleData[index]].sort(() => Math.random() - 0.5);
-        words.forEach((word) => {
-          const wordEl = document.createElement("span");
-          wordEl.textContent = word;
-          wordEl.className = "bg-white px-4 py-2 rounded-md shadow-sm";
-          scrambleContainer.appendChild(wordEl);
-        });
-      }
-
-      nextScrambleBtn.addEventListener("click", () => {
-        currentScrambleIndex = (currentScrambleIndex + 1) % scrambleData.length;
-        loadScramble(currentScrambleIndex);
-      });
-
-      loadScramble(0); // Cargar la primera frase al inicio
     </script>
   </body>
 </html>
