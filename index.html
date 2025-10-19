@@ -6,12 +6,15 @@
     <title>Français - Séance 9</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
       rel="stylesheet" />
     <style>
       body {
         font-family: "Inter", sans-serif;
-        background-color: #f9fafb;
+        background-color: #f8f9fa;
         scroll-behavior: smooth;
       }
       h1,
@@ -23,7 +26,7 @@
       .content-box {
         background-color: white;
         border-radius: 0.75rem;
-        padding: 1.5rem 2rem;
+        padding: 2rem;
         box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
           0 2px 4px -2px rgb(0 0 0 / 0.1);
         margin-bottom: 2.5rem;
@@ -41,1083 +44,595 @@
         transition: all 0.2s ease-in-out;
         border: 2px solid #d1d5db;
       }
-      .drag-item {
-        cursor: grab;
-        user-select: none;
+      input[type="radio"] {
+        border: 2px solid #d1d5db;
+        appearance: none;
+        width: 1.25em;
+        height: 1.25em;
+        border-radius: 50%;
+        vertical-align: middle;
+        position: relative;
+        cursor: pointer;
       }
-      .drop-zone {
-        border: 2px dashed #a0aec0;
-        min-height: 40px;
-        display: inline-block;
-        padding: 4px 8px;
-        text-align: center;
+      input[type="radio"]:checked {
+        border-color: #3b82f6;
+      }
+      input[type="radio"]:checked::before {
+        content: "";
+        display: block;
+        width: 0.75em;
+        height: 0.75em;
+        border-radius: 50%;
+        background-color: #3b82f6;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .correct-answer-text {
+        color: #16a34a;
+        font-weight: bold;
+      }
+      .wrong-answer-text {
+        color: #dc2626;
+        font-weight: bold;
+      }
+      details > summary {
+        cursor: pointer;
+        padding: 0.75rem 1.25rem;
+        background-color: #f3f4f6;
         border-radius: 0.5rem;
-      }
-      .drop-zone.over {
-        background-color: #ebf8ff;
-        border-color: #4299e1;
-      }
-      .comprehension-item {
+        font-weight: 700;
+        color: #1e3a8a;
         transition: background-color 0.2s;
       }
-      .comprehension-item.selected {
-        background-color: #fefcbf;
-        border-color: #f6e05e;
+      details > summary:hover {
+        background-color: #e5e7eb;
       }
-      .comprehension-item.matched {
-        background-color: #c6f6d5;
-        cursor: not-allowed;
-        border-color: #68d391;
+      details[open] > summary {
+        background-color: #dbeafe;
       }
-
-      /* Estilos adicionales para juegos */
-      .kahoot-card {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-        padding: 1rem;
-        border-radius: 0.75rem;
-        background: linear-gradient(135deg, #6ee7b7 0%, #3b82f6 100%);
+      /* Carousel Styles */
+      .carousel-container {
+        position: relative;
+        max-width: 600px;
+        margin: auto;
+        overflow: hidden;
+        border-radius: 0.5rem;
+      }
+      .carousel-slide {
+        display: none;
+        padding: 40px;
+        text-align: center;
+        background-color: #e0f2fe;
+        border: 2px solid #7dd3fc;
+        border-radius: 0.5rem;
+      }
+      .carousel-slide h4 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #0c4a6e;
+      }
+      .carousel-slide p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+      .carousel-prev,
+      .carousel-next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
         color: white;
-        box-shadow: 0 6px 18px rgba(59, 130, 246, 0.18);
-        text-decoration: none;
+        background-color: rgba(13, 110, 253, 0.7);
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
       }
-      .kahoot-card:hover {
-        transform: translateY(-4px);
-        transition: transform 0.18s ease;
+      .carousel-next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
       }
-      .word-btn {
-        padding: 0.5rem 0.75rem;
-        border-radius: 0.5rem;
+      .carousel-prev:hover,
+      .carousel-next:hover {
+        background-color: rgba(13, 110, 253, 1);
+      }
+      .dots-container {
+        text-align: center;
+        padding: 10px;
+      }
+      .dot {
         cursor: pointer;
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
       }
-      .selected-word {
-        outline: 3px solid rgba(99, 102, 241, 0.25);
-      }
-      .flashcard {
-        min-height: 72px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        border-radius: 0.5rem;
-        padding: 1rem;
+      .profession {
         cursor: pointer;
+        padding: 2px 4px;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        border-bottom: 2px dotted #9ca3af;
+      }
+      .profession:hover {
+        background-color: #e5e7eb;
+      }
+      .profession.correct-selection {
+        background-color: #d1fae5;
+        border-bottom: 2px solid #10b981;
+        font-weight: bold;
+      }
+      .profession.incorrect-selection {
+        background-color: #fee2e2;
+        border-bottom: 2px solid #ef4444;
+      }
+      .active,
+      .dot:hover {
+        background-color: #717171;
       }
     </style>
   </head>
   <body class="text-gray-800">
     <header
       class="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-50">
-      <h1 class="text-3xl font-bold text-gray-800">
-        Séance 9: La Famille et les Possessifs
+      <h1 class="text-3xl font-bold text-blue-900">
+        Séance 9: Les Professions et les Possessions
       </h1>
     </header>
 
     <main class="max-w-4xl mx-auto p-6">
-      <!-- Sección L'essentiel -->
-      <div class="content-box" id="l-essentiel">
-        <h2 class="text-3xl font-bold mb-4">
-          L'essentiel: Grammaire et Compréhension
+      <!-- Page 39 -->
+      <div class="content-box">
+        <h2 class="text-3xl font-bold mb-6 text-center">
+          Entraînement - Page 39
         </h2>
         <img
-          src="./images/page-36.png"
-          alt="Página 36 del libro"
+          src="./images/page-39-C.png"
+          alt="Page 39 du livre"
           class="rounded-lg shadow-md mb-6 w-full" />
 
-        <h3 class="text-2xl font-bold mb-4 mt-8">
-          Exercice: Compréhension Orale
-        </h3>
-        <p class="mb-4 text-gray-600">
+        <h3 class="text-2xl font-bold mb-4">3 | Complétez.</h3>
+        <div class="space-y-4 mb-8">
+          <p>
+            a. J'ai un oncle.
+            <input
+              type="text"
+              onkeyup="checkAnswer(this, 'mon')"
+              class="rounded px-2 w-24 text-center" />
+            oncle a 48 ans.
+          </p>
+          <p>
+            b. J'ai des cousins.
+            <input
+              type="text"
+              onkeyup="checkAnswer(this, 'mes')"
+              class="rounded px-2 w-24 text-center" />
+            cousins habitent à Toulouse.
+          </p>
+          <p>
+            c. Elle a deux frères.
+            <input
+              type="text"
+              onkeyup="checkAnswer(this, 'ses')"
+              class="rounded px-2 w-24 text-center" />
+            frères sont sympas.
+          </p>
+          <p>
+            d. Nous avons une fille.
+            <input
+              type="text"
+              onkeyup="checkAnswer(this, 'notre')"
+              class="rounded px-2 w-24 text-center" />
+            fille déteste le sport.
+          </p>
+        </div>
+
+        <h3 class="text-2xl font-bold mt-8 mb-4">4 | Production écrite</h3>
+        <p class="text-gray-600 mb-4">
+          Vous organisez une fête avec votre sœur. Vous écrivez un mail à votre
+          sœur : dites qui vous invitez (famille et amis).
+        </p>
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <div class="flex items-center mb-2">
+            <label class="font-bold w-16">De:</label>
+            <input
+              type="text"
+              class="rounded p-2 w-full bg-white"
+              placeholder="Qui envoie ce message?" />
+          </div>
+          <div class="flex items-center mb-2">
+            <label class="font-bold w-16">À:</label>
+            <input
+              type="text"
+              class="rounded p-2 w-full bg-white"
+              value="lucas.dubois@edito.com"
+              disabled />
+          </div>
+          <div class="flex items-center mb-4">
+            <label class="font-bold w-16">Objet:</label>
+            <input
+              type="text"
+              class="rounded p-2 w-full bg-white"
+              placeholder="Sujet..." />
+          </div>
+          <textarea
+            class="w-full h-40 p-3 rounded-md border-2 border-gray-300 focus:border-blue-500 focus:outline-none"
+            placeholder="Bonjour, ..."></textarea>
+        </div>
+      </div>
+
+      <!-- Wordwall Exercises -->
+      <div class="content-box">
+        <h2 class="text-3xl font-bold mb-6 text-center">
+          Activités Interactives
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="w-full">
+            <iframe
+              style="max-width: 100%"
+              src="https://wordwall.net/fr/embed/1a51b61f76a24ab88411f3cf01d4f84b?themeId=1&templateId=5&fontStackId=0"
+              width="500"
+              height="380"
+              frameborder="0"
+              allowfullscreen></iframe>
+          </div>
+          <div class="w-full">
+            <iframe
+              style="max-width: 100%"
+              src="https://wordwall.net/fr/embed/562f8f8414dd4e39954c691e8498bddd?themeId=1&templateId=36&fontStackId=0"
+              width="500"
+              height="380"
+              frameborder="0"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Page 40 & Audio -->
+      <div class="content-box">
+        <h2 class="text-3xl font-bold mb-6 text-center">
+          Compréhension Orale - Page 40
+        </h2>
+        <img
+          src="./images/page-40.png"
+          alt="Page 40 du livre"
+          class="rounded-lg shadow-md mb-6 w-full" />
+
+        <p class="mb-4 text-gray-600 text-center">
           Écoute l'audio et réponds aux questions suivantes.
         </p>
         <audio controls class="w-full mb-6">
-          <source src="./audio/38_Edito_A1_Livre.mp3" type="audio/mpeg" />
+          <source src="./audio/livre/39_Edito_A1_Livre.mp3" type="audio/mpeg" />
           Tu navegador no soporta el elemento de audio.
         </audio>
 
-        <div id="comprehension-exercise">
-          <h4 class="text-xl font-bold mb-3">1. Associez:</h4>
-          <div class="grid grid-cols-2 gap-4 items-start">
-            <ul id="comprehension-list1" class="space-y-2">
-              <li
-                data-match="belgique"
-                class="p-2 border rounded-md cursor-pointer comprehension-item">
-                a. Arthur et Lucas habitent
-              </li>
-              <li
-                data-match="suisse"
-                class="p-2 border rounded-md cursor-pointer comprehension-item">
-                b. Manu et Laure habitent
-              </li>
-            </ul>
-            <ul id="comprehension-list2" class="space-y-2">
-              <li
-                data-match="suisse"
-                class="p-2 border rounded-md cursor-pointer comprehension-item">
-                1. en Suisse, à Montreux.
-              </li>
-              <li
-                data-match="belgique"
-                class="p-2 border rounded-md cursor-pointer comprehension-item">
-                2. en Belgique, à Bruxelles.
-              </li>
-            </ul>
+        <details class="mb-6">
+          <summary>Voir la transcription</summary>
+          <div class="mt-4 border-t pt-4">
+            <img
+              src="./images/page-40-transcription.png"
+              alt="Transcription de l'audio"
+              class="rounded-lg shadow-md w-full" />
           </div>
+        </details>
 
-          <h4 class="text-xl font-bold mt-6 mb-3">
-            2-5. Complète les réponses (mots clés):
+        <h3 class="text-2xl font-bold mt-8 mb-2 text-indigo-700">
+          1<sup>re</sup> écoute
+        </h3>
+        <div class="pl-4">
+          <h4 class="text-xl font-bold mb-3">
+            2 | Vrai ou faux ? Thomas présente Barbara à ses parents.
           </h4>
-          <div class="space-y-4">
-            <p>
-              <strong>2. Pourquoi aiment-ils leur lieu d'habitation?</strong
-              ><br />
-              Arthur aime la
+          <div class="space-y-2 mb-6" id="q2">
+            <label class="flex items-center cursor-pointer">
               <input
-                type="text"
-                onkeyup="checkAnswer(this, 'ville')"
-                class="rounded p-2 mt-1" />
-              et le
+                type="radio"
+                name="q2"
+                value="vrai"
+                onclick="checkRadioAnswer(this, 'vrai')" />
+              <span class="ml-3">Vrai</span>
+            </label>
+            <label class="flex items-center cursor-pointer">
               <input
-                type="text"
-                onkeyup="checkAnswer(this, 'quartier sympa')"
-                class="rounded p-2 mt-1" />. Manu adore la
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'montagne')"
-                class="rounded p-2 mt-1" />.
-            </p>
+                type="radio"
+                name="q2"
+                value="faux"
+                onclick="checkRadioAnswer(this, 'vrai')" />
+              <span class="ml-3">Faux</span>
+            </label>
+          </div>
 
-            <p>
-              <strong>3. Quels sont leurs loisirs?</strong><br />
-              Arthur aime le
+          <h4 class="text-xl font-bold mb-3">3 | Barbara est :</h4>
+          <div class="space-y-2 mb-6" id="q3">
+            <label class="flex items-center cursor-pointer">
               <input
-                type="text"
-                onkeyup="checkAnswer(this, 'cinéma')"
-                class="rounded p-2 mt-1" />
-              et la
+                type="radio"
+                name="q3"
+                value="a"
+                onclick="checkRadioAnswer(this, 'a')" />
+              <span class="ml-3">a. une amie de Thomas.</span>
+            </label>
+            <label class="flex items-center cursor-pointer">
               <input
-                type="text"
-                onkeyup="checkAnswer(this, 'musique')"
-                class="rounded p-2 mt-1" />. Manu aime marcher.
-            </p>
-
-            <p>
-              <strong>4. Quels instruments ont-ils?</strong><br />
-              Lucas a une
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'guitare')"
-                class="rounded p-2 mt-1" />
-              et Arthur a un
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'piano')"
-                class="rounded p-2 mt-1" />.
-            </p>
-
-            <p>
-              <strong>5. Quelle activité Laure n'aime pas?</strong><br />
-              Elle déteste la
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'marche')"
-                class="rounded p-2 mt-1" />.
-            </p>
+                type="radio"
+                name="q3"
+                value="b"
+                onclick="checkRadioAnswer(this, 'a')" />
+              <span class="ml-3">b. la petite amie de Thomas.</span>
+            </label>
           </div>
         </div>
-      </div>
 
-      <!-- Documento "On invite qui?" -->
-      <div class="content-box">
-        <h2 class="text-3xl font-bold mb-4">Documents: On invite qui?</h2>
-        <img
-          src="./images/page-38.png"
-          alt="Página 38 del libro"
-          class="rounded-lg shadow-md w-full" />
-      </div>
-
-      <!-- Ejercicios página 39-A -->
-      <div class="content-box">
-        <h2 class="text-3xl font-bold mb-4">Exercices: Présenter sa famille</h2>
-        <img
-          src="./images/page-39-A.png"
-          alt="Ejercicios de la página 39"
-          class="rounded-lg shadow-md mb-6 w-full" />
-
-        <h3 class="text-2xl font-bold mb-4">1 & 2. Questions ouvertes</h3>
-        <div class="space-y-3">
-          <p>
-            <strong>1. À votre avis, qui sont Nina et Théo?</strong><br />
+        <h3 class="text-2xl font-bold mt-8 mb-2 text-indigo-700">
+          2<sup>e</sup> écoute
+        </h3>
+        <div class="pl-4">
+          <h4 class="text-xl font-bold mb-3">
+            4 | Thomas et Barbara travaillent ?
+          </h4>
+          <div class="mb-6">
             <input
               type="text"
-              placeholder="Ils sont..."
-              class="border rounded p-2 w-full mt-1" />
-          </p>
-          <p>
-            <strong>2. Qu'est-ce que Nina prépare?</strong><br />
-            <input
-              type="text"
-              placeholder="Elle prépare..."
-              class="border rounded p-2 w-full mt-1" />
-          </p>
-        </div>
-
-        <h3 class="text-2xl font-bold mt-8 mb-4">3. Vrai ou faux ?</h3>
-        <div id="vrai-faux-exercise" class="space-y-3">
-          <!-- Vrai/Faux generado con JS -->
-        </div>
-
-        <h3 class="text-2xl font-bold mt-8 mb-4">4. Complétez les phrases</h3>
-        <div id="drag-drop-vocab" class="space-y-4">
-          <div
-            id="vocab-bank"
-            class="flex flex-wrap gap-2 p-4 bg-gray-100 rounded-lg justify-center mb-4">
-            <!-- Palabras arrastrables generadas con JS -->
+              onkeyup="checkAnswer(this, 'oui')"
+              class="rounded p-2 w-full"
+              placeholder="Répondez ici..." />
           </div>
-          <div id="vocab-sentences" class="space-y-3">
-            <!-- Frases con drop zones generadas con JS -->
+
+          <h4 class="text-xl font-bold mb-3">
+            5 | Qui travaille à l’hôpital ? Qui travaille à l’université ?
+          </h4>
+          <div class="space-y-3">
+            <p>
+              À l'hôpital :
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'barbara')"
+                class="rounded px-2 w-48 text-center"
+                placeholder="Nom..." />
+            </p>
+            <p>
+              À l'université :
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'thomas')"
+                class="rounded px-2 w-48 text-center"
+                placeholder="Nom..." />
+            </p>
           </div>
         </div>
       </div>
 
-      <!-- Adjetivos Posesivos -->
-      <div class="content-box" id="adjectifs-possessifs">
-        <h2 class="text-3xl font-bold mb-4">
-          Grammaire: Les adjectifs possessifs
+      <!-- Le masculin et féminin des professions -->
+      <div class="content-box">
+        <h2 class="text-3xl font-bold mb-6 text-center">
+          Grammaire: Le masculin et féminin des professions
         </h2>
-        <img
-          src="./images/page-39-B.png"
-          alt="Teoría de adjetivos posesivos"
-          class="rounded-lg shadow-md mb-6 w-full" />
 
         <div
-          class="bg-purple-100 border-l-4 border-purple-500 p-6 rounded-r-lg mt-6">
-          <h3 class="text-2xl font-bold mb-3 text-purple-900">
-            Une façon simple de le voir
-          </h3>
-          <p class="mb-4">
-            Imagina que cada persona tiene "etiquetas" para sus cosas. ¡Solo
-            necesitas saber 2 cosas!
+          class="bg-indigo-50 p-4 rounded-lg mb-8 border-l-4 border-indigo-400">
+          <h3 class="text-2xl font-bold mb-3 text-indigo-800">Échauffement</h3>
+          <p class="text-gray-700 mb-4">
+            Lisez les phrases. Cliquez sur les professions au féminin pour les
+            souligner.
           </p>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h4 class="text-lg font-bold">1. ¿Quién es el dueño?</h4>
-              <p class="text-sm">Esto define el grupo de etiquetas.</p>
-              <ul class="list-disc list-inside ml-4 mt-2">
-                <li>Si el dueño soy <b>YO</b> (Je) &rarr; `mon, ma, mes`</li>
-                <li>Si el dueño eres <b>TÚ</b> (Tu) &rarr; `ton, ta, tes`</li>
-                <li>
-                  Si el dueño es <b>ÉL/ELLA</b> (Il/Elle) &rarr; `son, sa, ses`
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 class="text-lg font-bold">2. ¿Cómo es el objeto?</h4>
-              <p class="text-sm">Esto define la etiqueta exacta.</p>
-              <ul class="list-disc list-inside ml-4 mt-2">
-                <li>Si es 1 objeto masculino &rarr; `mon, ton, son`</li>
-                <li>Si es 1 objeto femenino &rarr; `ma, ta, sa`</li>
-                <li>Si son varios objetos &rarr; `mes, tes, ses`</li>
-              </ul>
-            </div>
+          <div class="space-y-3 text-lg">
+            <p>
+              a. Tu es
+              <span class="profession" data-correct="true">étudiante</span>,
+              Barbara ?
+            </p>
+            <p>
+              b. Mon père est
+              <span class="profession" data-correct="false">informaticien</span
+              >.
+            </p>
+            <p>
+              c. Ma mère est
+              <span class="profession" data-correct="true">professeure</span>.
+            </p>
+            <p>
+              d. Moi, je suis
+              <span class="profession" data-correct="true">infirmière</span> et
+              le père de Thomas est
+              <span class="profession" data-correct="false">fleuriste</span>.
+            </p>
           </div>
-          <p class="mt-4 text-sm italic border-t border-purple-300 pt-3">
-            <strong>¡El truco!</strong> Con palabra femenina que empieza con
-            vocal, usa la etiqueta masculina: <strong>mon</strong> amie,
-            <strong>ton</strong> idée.
+        </div>
+
+        <div class="carousel-container">
+          <div class="carousel-slide">
+            <h4>Règle générale : On ajoute un -E</h4>
+            <p>
+              Pour la plupart des professions, il suffit d'ajouter un
+              <strong>-e</strong> à la fin de la forme masculine.
+            </p>
+            <p class="mt-2 font-mono">
+              un avocat ➔ une avocat<strong>e</strong>
+            </p>
+          </div>
+          <div class="carousel-slide">
+            <h4>Cas 1 : -EUR ➔ -EUSE</h4>
+            <p>
+              Les professions qui terminent en <strong>-eur</strong> changent
+              souvent en <strong>-euse</strong>.
+            </p>
+            <p class="mt-2 font-mono">
+              un vend<strong>eur</strong> ➔ une vend<strong>euse</strong>
+            </p>
+          </div>
+          <div class="carousel-slide">
+            <h4>Cas 2 : -TEUR ➔ -TRICE</h4>
+            <p>
+              Celles qui terminent en <strong>-teur</strong> changent souvent en
+              <strong>-trice</strong>.
+            </p>
+            <p class="mt-2 font-mono">
+              un ac<strong>teur</strong> ➔ une ac<strong>trice</strong>
+            </p>
+          </div>
+          <div class="carousel-slide">
+            <h4>Cas 3 : -IEN ➔ -IENNE</h4>
+            <p>
+              Pour les professions finissant par <strong>-ien</strong>, on
+              double le 'n' et on ajoute un -e.
+            </p>
+            <p class="mt-2 font-mono">
+              un music<strong>ien</strong> ➔ une music<strong>ienne</strong>
+            </p>
+          </div>
+          <div class="carousel-slide">
+            <h4>Cas 4 : Les invariables</h4>
+            <p>
+              Certaines professions ne changent pas ! On utilise un article
+              féminin (une/la) pour indiquer le genre.
+            </p>
+            <p class="mt-2 font-mono">un médecin ➔ une médecin</p>
+            <p class="mt-1 font-mono">un professeur ➔ une professeur</p>
+          </div>
+
+          <a class="carousel-prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="carousel-next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <div class="dots-container">
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+          <span class="dot" onclick="currentSlide(3)"></span>
+          <span class="dot" onclick="currentSlide(4)"></span>
+          <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
+
+        <h3 class="text-2xl font-bold mt-8 mb-4">Exercice d'application</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label>un chanteur ➔ une</label>
+            <input
+              type="text"
+              onkeyup="checkAnswer(this, 'chanteuse')"
+              class="rounded p-2 w-full mt-1" />
+          </div>
+          <div>
+            <label>un directeur ➔ une</label>
+            <input
+              type="text"
+              onkeyup="checkAnswer(this, 'directrice')"
+              class="rounded p-2 w-full mt-1" />
+          </div>
+          <div>
+            <label>un pharmacien ➔ une</label>
+            <input
+              type="text"
+              onkeyup="checkAnswer(this, 'pharmacienne')"
+              class="rounded p-2 w-full mt-1" />
+          </div>
+          <div>
+            <label>un employé ➔ une</label>
+            <input
+              type="text"
+              onkeyup="checkAnswer(this, 'employée')"
+              class="rounded p-2 w-full mt-1" />
+          </div>
+        </div>
+
+        <h3 class="text-2xl font-bold mt-10 mb-4">
+          Entraînement (Livre Page 40)
+        </h3>
+        <div class="space-y-4">
+          <p>
+            a. Maxime est coiffeur. Laure est
+            <input
+              type="text"
+              onkeyup="checkAnswer(this, 'coiffeuse')"
+              class="rounded px-2 w-32 text-center" />.
+          </p>
+          <p>
+            b. Élodie est infirmière. Jean est
+            <input
+              type="text"
+              onkeyup="checkAnswer(this, 'infirmier')"
+              class="rounded px-2 w-32 text-center" />.
+          </p>
+          <p>
+            c. Gabriel est fleuriste. Florence est
+            <input
+              type="text"
+              onkeyup="checkAnswer(this, 'fleuriste')"
+              class="rounded px-2 w-32 text-center" />.
+          </p>
+          <p>
+            d. Manuelle est actrice. Xavier est
+            <input
+              type="text"
+              onkeyup="checkAnswer(this, 'acteur')"
+              class="rounded px-2 w-32 text-center" />.
+          </p>
+          <p>
+            e. Christine est étudiante. Pedro est
+            <input
+              type="text"
+              onkeyup="checkAnswer(this, 'étudiant')"
+              class="rounded px-2 w-32 text-center" />.
           </p>
         </div>
       </div>
 
-      <!-- Enlace bonito al Kahoot (añadido) -->
-      <div class="content-box">
-        <h2 class="text-3xl font-bold mb-4">Actividad extra: Kahoot</h2>
-        <p class="mb-4 text-gray-600">
-          Juega este Kahoot rápido para repasar "La famille et les adjectifs
-          possessifs".
-        </p>
+      <!-- Wayground Quiz -->
+      <div class="content-box text-center">
+        <h2 class="text-3xl font-bold mb-4">Quiz: Les Professions</h2>
+        <p class="mb-6">Pratique encore plus avec ce quiz externe !</p>
         <a
-          href="https://create.kahoot.it/share/la-famille-et-les-adjectifs-possesifs/fb6b5ad9-b33b-439f-aae3-0f795571c0b6"
+          href="https://wayground.com/admin/quiz/675fe16297048263e1e6f6be/le-masculin-et-le-feminin-des-professions"
           target="_blank"
-          rel="noopener noreferrer"
-          class="kahoot-card">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-12 w-12"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="white"
-            stroke-width="1.5">
-            <path
-              d="M3 12a9 9 0 1018 0 9 9 0 00-18 0z"
-              stroke-linecap="round"
-              stroke-linejoin="round" />
-            <path d="M8 12h8" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M12 8v8" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-          <div>
-            <div class="text-lg font-bold">
-              La famille et les adjectifs possessifs
-            </div>
-            <div class="text-sm opacity-90">
-              Kahoot — repaso rápido y divertido
-            </div>
-          </div>
+          class="inline-block bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold py-3 px-8 rounded-full hover:from-cyan-600 hover:to-blue-600 transition-transform transform hover:scale-105 shadow-lg">
+          <i class="fa-solid fa-star mr-2"></i> Commencer le Quiz
         </a>
       </div>
 
-      <!-- Tarea (Devoirs) ampliada con juegos nuevos -->
-      <div class="content-box" id="devoirs">
-        <h2 class="text-3xl font-bold mb-4">
-          Devoirs: Pratique de vocabulaire (más juegos)
-        </h2>
-        <p class="mb-4 text-gray-600">
-          Vamos a jugar con las relaciones palabra ⇄ significado. El sistema
-          corrige automáticamente (no hace falta enviar nada).
+      <!-- Devoirs -->
+      <div class="content-box bg-blue-50 border-l-4 border-blue-500">
+        <h2 class="text-3xl font-bold mb-4 text-blue-900">Devoirs</h2>
+        <p class="text-lg mb-4">
+          Page 23 et 24 du <strong>Cahier d'Activités</strong>.
         </p>
-
-        <!-- Panel de selección de juego -->
-        <div class="mb-4 flex gap-2">
-          <button
-            id="game-match-btn"
-            class="bg-indigo-600 text-white py-2 px-4 rounded">
-            Emparejar (FR ⇄ ES)
-          </button>
-          <button
-            id="game-flash-btn"
-            class="bg-green-600 text-white py-2 px-4 rounded">
-            Tarjetas (Flashcards)
-          </button>
-          <button
-            id="game-quiz-btn"
-            class="bg-yellow-600 text-white py-2 px-4 rounded">
-            Mini-quiz
-          </button>
-          <button
-            id="game-write-btn"
-            class="bg-pink-600 text-white py-2 px-4 rounded">
-            Escribir traducción
-          </button>
-        </div>
-
-        <!-- Contenedor de juegos -->
-        <div id="games-container" class="space-y-6">
-          <!-- Game: Match pairs -->
-          <div id="game-match" class="hidden">
-            <h3 class="text-xl font-bold mb-2">
-              Emparejar palabra — significado
-            </h3>
-            <p class="text-sm mb-3 text-gray-600">
-              Haz clic en una palabra en francés y luego en su traducción en
-              español para emparejar.
-            </p>
-            <div class="grid grid-cols-2 gap-4">
-              <div id="match-fr" class="p-4 bg-gray-50 rounded-lg"></div>
-              <div id="match-es" class="p-4 bg-gray-50 rounded-lg"></div>
-            </div>
-            <div id="match-feedback" class="mt-3 font-semibold h-6"></div>
-            <div id="match-found" class="mt-3 space-y-2"></div>
+        <p class="mb-6 italic text-gray-600">
+          (À l'exception de l'exercice de phone-graphie).
+        </p>
+        <div class="space-y-4">
+          <div>
+            <p class="font-semibold mb-1">Audio pour la page 23:</p>
+            <audio controls class="w-full">
+              <source src="./audio/cahier/piste_023.mp3" type="audio/mpeg" />
+            </audio>
           </div>
-
-          <!-- Game: Flashcards -->
-          <div id="game-flash" class="hidden">
-            <h3 class="text-xl font-bold mb-2">Flashcards</h3>
-            <p class="text-sm mb-3 text-gray-600">
-              Haz clic en la tarjeta para girarla (FR ⇄ ES).
-            </p>
-            <div class="grid grid-cols-3 gap-4" id="flash-grid"></div>
-            <div class="mt-3">
-              <button
-                id="flash-shuffle"
-                class="bg-gray-800 text-white py-1 px-3 rounded">
-                Barajar
-              </button>
-            </div>
+          <div>
+            <p class="font-semibold mb-1">Audio pour la page 24:</p>
+            <audio controls class="w-full">
+              <source src="./audio/cahier/piste_024.mp3" type="audio/mpeg" />
+            </audio>
           </div>
-
-          <!-- Game: Mini-quiz -->
-          <div id="game-quiz" class="hidden">
-            <h3 class="text-xl font-bold mb-2">Mini-quiz (opción múltiple)</h3>
-            <div id="quiz-area" class="p-4 bg-gray-50 rounded-lg"></div>
-            <div id="quiz-feedback" class="mt-3 font-semibold h-6"></div>
-          </div>
-
-          <!-- Game: Write translation -->
-          <div id="game-write" class="hidden">
-            <h3 class="text-xl font-bold mb-2">Escribe la traducción</h3>
-            <p class="text-sm mb-2 text-gray-600">
-              Escribe la traducción española correcta. Autocorrección
-              automática.
-            </p>
-            <div id="write-area" class="space-y-3"></div>
-            <div id="write-feedback" class="mt-2 font-semibold h-6"></div>
-          </div>
-        </div>
-
-        <!-- Conexiones clásico (mantuve el juego original) -->
-        <div class="mt-6">
-          <h3 class="text-2xl font-bold mb-3">
-            Juego: Conexiones (original ampliado)
-          </h3>
-          <div id="word-grid" class="grid grid-cols-4 gap-2 mb-4">
-            <!-- Palabras del juego generadas con JS -->
-          </div>
-          <div class="flex items-center justify-between">
-            <button
-              id="submit-group"
-              class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 disabled:bg-gray-400">
-              Soumettre
-            </button>
-            <div id="attempts" class="font-semibold">
-              Intentos restantes: <span>4</span>
-            </div>
-          </div>
-          <div id="feedback" class="mt-4 text-center font-semibold h-6"></div>
-          <div id="found-groups" class="mt-4 space-y-2"></div>
         </div>
       </div>
     </main>
 
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // --- COMPRÉHENSION ORALE (código existente) ---
-        const list1 = document.getElementById("comprehension-list1");
-        const list2 = document.getElementById("comprehension-list2");
-        let selected = null;
-
-        [list1, list2].forEach((list) => {
-          list.addEventListener("click", (e) =>
-            handleSelection(e.target, list)
-          );
-        });
-
-        function handleSelection(item, list) {
-          if (item.tagName !== "LI" || item.classList.contains("matched"))
-            return;
-
-          document
-            .querySelectorAll(".comprehension-item.selected")
-            .forEach((el) => el.classList.remove("selected"));
-          item.classList.add("selected");
-
-          if (!selected) {
-            selected = { item, list };
-          } else if (selected.list !== list) {
-            const match1 = selected.item.dataset.match;
-            const match2 = item.dataset.match;
-            if (match1 === match2) {
-              selected.item.classList.add("matched");
-              item.classList.add("matched");
-              selected.item.classList.remove("selected");
-              item.classList.remove("selected");
-            } else {
-              selected.item.classList.add("incorrect");
-              item.classList.add("incorrect");
-              setTimeout(() => {
-                selected.item.classList.remove("incorrect", "selected");
-                item.classList.remove("incorrect", "selected");
-              }, 600);
-            }
-            selected = null;
-          } else {
-            selected = { item, list };
-          }
-        }
-
-        // --- VRAI OU FAUX (existing) ---
-        const vraiFauxData = [
-          { q: "a. Théo invite son oncle Paul.", a: "vrai" },
-          { q: "b. Théo n'invite pas sa cousine.", a: "faux" },
-          { q: "c. Le frère de Nina est marié.", a: "vrai" },
-          { q: "d. Sofia, l'amie de Théo, a des enfants.", a: "vrai" },
-        ];
-        const vraiFauxContainer = document.getElementById("vrai-faux-exercise");
-        vraiFauxData.forEach((item) => {
-          const div = document.createElement("div");
-          div.innerHTML = `<span>${item.q}</span>
-                    <select onchange="checkAnswer(this, '${item.a}')" class="ml-2 rounded p-1 border-2">
-                        <option value="">--</option><option value="vrai">Vrai</option><option value="faux">Faux</option>
-                    </select>`;
-          vraiFauxContainer.appendChild(div);
-        });
-
-        // --- DRAG AND DROP VOCAB (existing) ---
-        const vocabBank = document.getElementById("vocab-bank");
-        const vocabSentences = document.getElementById("vocab-sentences");
-        const words = ["fille", "nièce", "frère", "célibataire", "fils unique"];
-
-        words
-          .sort(() => Math.random() - 0.5)
-          .forEach((word) => {
-            const wordEl = document.createElement("span");
-            wordEl.id = `word-${word.replace(/\s/g, "-")}`;
-            wordEl.textContent = word;
-            wordEl.draggable = true;
-            wordEl.className =
-              "drag-item bg-blue-200 text-blue-800 px-3 py-1 rounded-full font-semibold";
-            wordEl.addEventListener("dragstart", (e) =>
-              e.dataTransfer.setData("text/plain", word)
-            );
-            vocabBank.appendChild(wordEl);
-          });
-
-        const vocabData = [
-          {
-            sentence: "a. Clara a deux enfants, un fils et une ___ .",
-            answers: ["fille"],
-          },
-          {
-            sentence:
-              "b. Nina a un neveu et une ___ : les enfants de son ___ .",
-            answers: ["nièce", "frère"],
-          },
-          {
-            sentence: "c. Nessim n'est pas marié, il est ___ .",
-            answers: ["célibataire"],
-          },
-          {
-            sentence: "d. Théo n'a pas de frères et soeurs, il est ___ .",
-            answers: ["fils unique"],
-          },
-        ];
-
-        vocabData.forEach((item) => {
-          let sentenceHtml = item.sentence;
-          item.answers.forEach((answer) => {
-            sentenceHtml = sentenceHtml.replace(
-              "___",
-              `<div class="drop-zone" data-answer="${answer}"></div>`
-            );
-          });
-          const p = document.createElement("p");
-          p.innerHTML = sentenceHtml;
-          vocabSentences.appendChild(p);
-        });
-
-        document.querySelectorAll(".drop-zone").forEach((zone) => {
-          zone.addEventListener("dragover", (e) => {
-            e.preventDefault();
-            zone.classList.add("over");
-          });
-          zone.addEventListener("dragleave", () =>
-            zone.classList.remove("over")
-          );
-          zone.addEventListener("drop", (e) => {
-            e.preventDefault();
-            zone.classList.remove("over");
-            const droppedWord = e.dataTransfer.getData("text/plain");
-
-            if (zone.textContent) {
-              document.getElementById(
-                `word-${zone.textContent.replace(/\s/g, "-")}`
-              ).style.display = "inline-block";
-            }
-            zone.textContent = droppedWord;
-            document.getElementById(
-              `word-${droppedWord.replace(/\s/g, "-")}`
-            ).style.display = "none";
-
-            checkAnswer(zone, zone.dataset.answer);
-          });
-        });
-
-        // --- JUEGO DE CONEXIONES (original ampliado) ---
-        const connectionsGameData = {
-          groups: {
-            Personnes: {
-              words: ["garçon", "fille", "gens", "couple"],
-              color: "bg-green-200",
-            },
-            Nature: {
-              words: ["arbre", "fleur", "feuilles", "papillon"],
-              color: "bg-blue-200",
-            },
-            Lieux: {
-              words: ["quartier", "rue", "ville", "lieu"],
-              color: "bg-yellow-200",
-            },
-            Actions: {
-              words: ["demander", "voir", "écrire", "trouver"],
-              color: "bg-purple-200",
-            },
-          },
-          allWords: [
-            "garçon",
-            "fleur",
-            "quartier",
-            "demander",
-            "fille",
-            "arbre",
-            "rue",
-            "voir",
-            "gens",
-            "feuilles",
-            "ville",
-            "écrire",
-            "couple",
-            "papillon",
-            "lieu",
-            "trouver",
-          ],
-        };
-
-        const grid = document.getElementById("word-grid");
-        const submitBtn = document.getElementById("submit-group");
-        const attemptsSpan = document.querySelector("#attempts span");
-        const feedbackDiv = document.getElementById("feedback");
-        const foundGroupsDiv = document.getElementById("found-groups");
-        let selectedWords = [];
-        let attempts = 4;
-        let foundCategories = 0;
-
-        connectionsGameData.allWords
-          .sort(() => Math.random() - 0.5)
-          .forEach((word) => {
-            const wordDiv = document.createElement("div");
-            wordDiv.textContent = word;
-            wordDiv.className =
-              "p-4 bg-gray-200 rounded-md text-center font-semibold cursor-pointer transition-colors";
-            wordDiv.addEventListener("click", () => {
-              if (wordDiv.classList.contains("found")) return;
-
-              if (selectedWords.includes(word)) {
-                wordDiv.classList.remove("bg-indigo-500", "text-white");
-                selectedWords = selectedWords.filter((w) => w !== word);
-              } else if (selectedWords.length < 4) {
-                wordDiv.classList.add("bg-indigo-500", "text-white");
-                selectedWords.push(word);
-              }
-              submitBtn.disabled = selectedWords.length !== 4;
-            });
-            grid.appendChild(wordDiv);
-          });
-
-        submitBtn.disabled = true;
-        submitBtn.addEventListener("click", () => {
-          if (selectedWords.length !== 4) return;
-
-          let correctCategory = null;
-          for (const category in connectionsGameData.groups) {
-            const groupWords = connectionsGameData.groups[category].words;
-            if (
-              selectedWords.every((w) => groupWords.includes(w)) &&
-              selectedWords.length === groupWords.length
-            ) {
-              correctCategory = category;
-              break;
-            }
-          }
-
-          if (correctCategory) {
-            feedbackDiv.textContent = `¡Grupo encontrado! Categoría: ${correctCategory}`;
-            feedbackDiv.className =
-              "mt-4 text-center font-semibold text-green-600";
-
-            const groupInfo = connectionsGameData.groups[correctCategory];
-            const groupDiv = document.createElement("div");
-            groupDiv.className = `${groupInfo.color} p-4 rounded-lg`;
-            groupDiv.innerHTML = `<p class="font-bold">${correctCategory}</p><p>${groupInfo.words.join(
-              ", "
-            )}</p>`;
-            foundGroupsDiv.prepend(groupDiv);
-
-            selectedWords.forEach((word) => {
-              const wordDiv = Array.from(grid.children).find(
-                (el) => el.textContent === word
-              );
-              wordDiv.className = `p-4 ${groupInfo.color} rounded-md text-center font-semibold cursor-not-allowed found`;
-            });
-
-            foundCategories++;
-            if (foundCategories === 4) {
-              feedbackDiv.textContent =
-                "¡Felicidades, encontraste todos los grupos!";
-              submitBtn.disabled = true;
-            }
-          } else {
-            attempts--;
-            attemptsSpan.textContent = attempts;
-            feedbackDiv.textContent =
-              "Intenta de nuevo. Esas palabras no forman un grupo.";
-            feedbackDiv.className =
-              "mt-4 text-center font-semibold text-red-600 h-6";
-            if (attempts === 0) {
-              feedbackDiv.textContent = "¡Juego terminado!";
-              submitBtn.disabled = true;
-            }
-          }
-
-          selectedWords.forEach((word) => {
-            const wordDiv = Array.from(grid.children).find(
-              (el) => el.textContent === word
-            );
-            if (wordDiv && !wordDiv.classList.contains("found")) {
-              wordDiv.classList.remove("bg-indigo-500", "text-white");
-            }
-          });
-          selectedWords = [];
-          submitBtn.disabled = true;
-        });
-
-        // --------------------------
-        // NUEVOS JUEGOS: datos de vocabulario (lista que me diste)
-        // --------------------------
-        const vocabPairs = [
-          { fr: "quartier", es: "colonia" },
-          { fr: "exprimer", es: "expresar" },
-          { fr: "demander", es: "preguntar" },
-          { fr: "voir", es: "ver" },
-          { fr: "arbre", es: "árbol" },
-          { fr: "fleur", es: "flor" },
-          { fr: "garçon", es: "chico" },
-          { fr: "fille", es: "chica" },
-          { fr: "feuilles", es: "hojas" },
-          { fr: "pot", es: "maceta" },
-          { fr: "couple", es: "pareja" },
-          { fr: "papillon", es: "mariposa" },
-          { fr: "gens", es: "personas" },
-          { fr: "discussion", es: "conversación" },
-          { fr: "il y a", es: "hay" },
-          { fr: "écrire", es: "escribir" },
-          { fr: "échauffement", es: "calentamiento" },
-          { fr: "entraînement", es: "entrenamiento" },
-          { fr: "rue", es: "calle" },
-          { fr: "voiture", es: "carro" },
-          { fr: "char", es: "carro" },
-          { fr: "acheter", es: "comprar" },
-          { fr: "nager", es: "nadar" },
-          { fr: "rencontrer", es: "conocer" },
-          { fr: "donner", es: "dar" },
-          { fr: "regarder", es: "observar" },
-          { fr: "jouer", es: "jugar" },
-          { fr: "trouver", es: "encontrar" },
-          { fr: "ville", es: "ciudad" },
-          { fr: "vélo", es: "bicicleta" },
-          { fr: "soif", es: "sed" },
-          { fr: "demi", es: "medio" },
-          { fr: "plus", es: "más" },
-          { fr: "moins", es: "menos" },
-          { fr: "devoirs", es: "tarea" },
-          { fr: "canadien", es: "Canadiense" },
-          { fr: "québécois", es: "Quebequense" },
-          { fr: "âge", es: "edad" },
-          { fr: "nationalité", es: "nacionalidad" },
-          { fr: "chien", es: "perro" },
-          { fr: "pluie", es: "lluvia" },
-          { fr: "sport", es: "deporte" },
-          { fr: "cinéma", es: "cine" },
-          { fr: "langues", es: "idiomas" },
-          { fr: "musique", es: "música" },
-          { fr: "cadre", es: "marco" },
-          { fr: "tiret", es: "guion" },
-          { fr: "lieu", es: "lugar" },
-          { fr: "naissance", es: "nacimiento" },
-          { fr: "adresse", es: "dirección" },
-        ];
-
-        // util: normalizar (quita acentos y minúsculas)
-        function normalizeText(t) {
-          return t
-            .toString()
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .replace(/\s+/g, " ")
-            .trim();
-        }
-
-        // ---------- MATCH GAME ----------
-        const gameMatchBtn = document.getElementById("game-match-btn");
-        const gameFlashBtn = document.getElementById("game-flash-btn");
-        const gameQuizBtn = document.getElementById("game-quiz-btn");
-        const gameWriteBtn = document.getElementById("game-write-btn");
-        const gamesContainer = document.getElementById("games-container");
-
-        function hideAllGames() {
-          document
-            .querySelectorAll("#games-container > div")
-            .forEach((d) => d.classList.add("hidden"));
-          // clear feedbacks
-          document.getElementById("match-feedback").textContent = "";
-          document.getElementById("quiz-feedback").textContent = "";
-          document.getElementById("write-feedback").textContent = "";
-        }
-
-        gameMatchBtn.addEventListener("click", () => {
-          hideAllGames();
-          document.getElementById("game-match").classList.remove("hidden");
-          startMatchGame();
-        });
-        gameFlashBtn.addEventListener("click", () => {
-          hideAllGames();
-          document.getElementById("game-flash").classList.remove("hidden");
-          startFlashcards();
-        });
-        gameQuizBtn.addEventListener("click", () => {
-          hideAllGames();
-          document.getElementById("game-quiz").classList.remove("hidden");
-          startQuiz();
-        });
-        gameWriteBtn.addEventListener("click", () => {
-          hideAllGames();
-          document.getElementById("game-write").classList.remove("hidden");
-          startWrite();
-        });
-
-        // MATCH: FR on left, ES on right
-        function startMatchGame() {
-          const left = document.getElementById("match-fr");
-          const right = document.getElementById("match-es");
-          const feedback = document.getElementById("match-feedback");
-          const found = document.getElementById("match-found");
-          left.innerHTML = "";
-          right.innerHTML = "";
-          found.innerHTML = "";
-          feedback.textContent = "";
-
-          const pairs = [...vocabPairs]
-            .sort(() => Math.random() - 0.5)
-            .slice(0, 12);
-          const frList = pairs.map((p) => p.fr).sort(() => Math.random() - 0.5);
-          const esList = pairs.map((p) => p.es).sort(() => Math.random() - 0.5);
-
-          let selectedFr = null;
-          let selectedEs = null;
-          let matches = 0;
-
-          frList.forEach((fr) => {
-            const btn = document.createElement("div");
-            btn.className = "word-btn p-2 bg-white border rounded mb-2";
-            btn.textContent = fr;
-            btn.addEventListener("click", () => {
-              document
-                .querySelectorAll("#match-fr .word-btn")
-                .forEach((el) => el.classList.remove("selected-word"));
-              btn.classList.add("selected-word");
-              selectedFr = fr;
-              tryCheck();
-            });
-            left.appendChild(btn);
-          });
-
-          esList.forEach((es) => {
-            const btn = document.createElement("div");
-            btn.className = "word-btn p-2 bg-white border rounded mb-2";
-            btn.textContent = es;
-            btn.addEventListener("click", () => {
-              document
-                .querySelectorAll("#match-es .word-btn")
-                .forEach((el) => el.classList.remove("selected-word"));
-              btn.classList.add("selected-word");
-              selectedEs = es;
-              tryCheck();
-            });
-            right.appendChild(btn);
-          });
-
-          function tryCheck() {
-            if (!selectedFr || !selectedEs) return;
-            const correct = pairs.find(
-              (p) =>
-                normalizeText(p.fr) === normalizeText(selectedFr) &&
-                normalizeText(p.es) === normalizeText(selectedEs)
-            );
-            if (correct) {
-              feedback.textContent = `Correcto: ${selectedFr} → ${selectedEs}`;
-              feedback.className = "mt-3 font-semibold text-green-600";
-              // marcar como encontrados
-              const frBtn = Array.from(left.children).find(
-                (n) => n.textContent === selectedFr
-              );
-              const esBtn = Array.from(right.children).find(
-                (n) => n.textContent === selectedEs
-              );
-              if (frBtn) {
-                frBtn.style.visibility = "hidden";
-              }
-              if (esBtn) {
-                esBtn.style.visibility = "hidden";
-              }
-              found.insertAdjacentHTML(
-                "afterbegin",
-                `<div class="p-2 bg-green-100 rounded">${selectedFr} — ${selectedEs}</div>`
-              );
-              matches++;
-              selectedFr = null;
-              selectedEs = null;
-              if (matches === pairs.length) {
-                feedback.textContent =
-                  "¡Genial! Encontraste todas las parejas.";
-              }
-            } else {
-              feedback.textContent = "No coincide. Intenta otra vez.";
-              feedback.className = "mt-3 font-semibold text-red-600";
-              // reset selection
-              document
-                .querySelectorAll("#match-fr .word-btn, #match-es .word-btn")
-                .forEach((el) => el.classList.remove("selected-word"));
-              selectedFr = null;
-              selectedEs = null;
-            }
-          }
-        }
-
-        // FLASHCARDS
-        function startFlashcards() {
-          const grid = document.getElementById("flash-grid");
-          grid.innerHTML = "";
-          const sample = [...vocabPairs]
-            .sort(() => Math.random() - 0.5)
-            .slice(0, 12);
-          sample.forEach((pair) => {
-            const card = document.createElement("div");
-            card.className = "flashcard bg-white border shadow-sm";
-            card.textContent = pair.fr;
-            card.dataset.fr = pair.fr;
-            card.dataset.es = pair.es;
-            card.dataset.show = "fr";
-            card.addEventListener("click", () => {
-              if (card.dataset.show === "fr") {
-                card.textContent = pair.es;
-                card.dataset.show = "es";
-                card.classList.add("bg-indigo-50");
-              } else {
-                card.textContent = pair.fr;
-                card.dataset.show = "fr";
-                card.classList.remove("bg-indigo-50");
-              }
-            });
-            grid.appendChild(card);
-          });
-
-          document.getElementById("flash-shuffle").onclick = () => {
-            startFlashcards();
-          };
-        }
-
-        // QUIZ (opción múltiple)
-        function startQuiz() {
-          const area = document.getElementById("quiz-area");
-          const feedback = document.getElementById("quiz-feedback");
-          area.innerHTML = "";
-          feedback.textContent = "";
-          const sample = [...vocabPairs]
-            .sort(() => Math.random() - 0.5)
-            .slice(0, 6);
-          let score = 0;
-          sample.forEach((pair, idx) => {
-            const options = new Set([pair.es]);
-            while (options.size < 4) {
-              const rand =
-                vocabPairs[Math.floor(Math.random() * vocabPairs.length)].es;
-              options.add(rand);
-            }
-            const optsArr = Array.from(options).sort(() => Math.random() - 0.5);
-            const qDiv = document.createElement("div");
-            qDiv.className = "mb-3 p-3 bg-white rounded border";
-            qDiv.innerHTML = `<div class="font-semibold mb-2">${
-              idx + 1
-            }. ¿Cómo se traduce "<span class='italic'>${
-              pair.fr
-            }</span>"?</div>`;
-            optsArr.forEach((opt) => {
-              const but = document.createElement("button");
-              but.className =
-                "block w-full text-left p-2 my-1 border rounded bg-gray-50";
-              but.textContent = opt;
-              but.addEventListener("click", () => {
-                if (but.dataset.answered) return;
-                but.dataset.answered = "1";
-                if (normalizeText(opt) === normalizeText(pair.es)) {
-                  but.classList.add("bg-green-100");
-                  score++;
-                } else {
-                  but.classList.add("bg-red-100");
-                  // marcar correcta
-                  const correctBtn = Array.from(
-                    qDiv.querySelectorAll("button")
-                  ).find(
-                    (b) =>
-                      normalizeText(b.textContent) === normalizeText(pair.es)
-                  );
-                  if (correctBtn) correctBtn.classList.add("bg-green-100");
-                }
-                // bloquear todas las opciones
-                qDiv
-                  .querySelectorAll("button")
-                  .forEach((b) => (b.disabled = true));
-                feedback.textContent = `Puntuación: ${score} / ${sample.length}`;
-              });
-              qDiv.appendChild(but);
-            });
-            area.appendChild(qDiv);
-          });
-        }
-
-        // WRITE: escribir traducción (autocorrección)
-        function startWrite() {
-          const area = document.getElementById("write-area");
-          const feedback = document.getElementById("write-feedback");
-          area.innerHTML = "";
-          feedback.textContent = "";
-          const sample = [...vocabPairs]
-            .sort(() => Math.random() - 0.5)
-            .slice(0, 8);
-          sample.forEach((pair) => {
-            const row = document.createElement("div");
-            row.className = "flex gap-2 items-center";
-            row.innerHTML = `<div class="w-1/3 p-2 bg-gray-50 rounded">${pair.fr}</div>
-              <input class="flex-1 border p-2 rounded" placeholder="traducción..." />
-              <div class="w-24 text-center"></div>`;
-            const input = row.querySelector("input");
-            const resultBox = row.querySelector("div.w-24");
-            input.addEventListener("keyup", () => {
-              if (!input.value.trim()) {
-                input.classList.remove("correct", "incorrect");
-                resultBox.textContent = "";
-                return;
-              }
-              if (normalizeText(input.value) === normalizeText(pair.es)) {
-                input.classList.add("correct");
-                input.classList.remove("incorrect");
-                resultBox.textContent = "✓";
-              } else {
-                input.classList.add("incorrect");
-                input.classList.remove("correct");
-                resultBox.textContent = "✕";
-              }
-            });
-            area.appendChild(row);
-          });
-        }
-
-        // activar game match por defecto (opcional)
-        // startMatchGame();
-      }); // DOMContentLoaded end
-
-      // Función genérica de chequeo para inputs, selects y divs (ya existente)
+      // Función para revisar respuestas de inputs
       function checkAnswer(element, correctAnswer) {
-        const userAnswer =
-          element.tagName === "INPUT" || element.tagName === "SELECT"
-            ? element.value.trim()
-            : element.textContent.trim();
-
+        const userAnswer = element.value.toLowerCase().trim();
         if (!userAnswer) {
-          element.classList.remove("correct", "incorrect");
+          element.className = element.className.replace(
+            / correct| incorrect/g,
+            ""
+          );
           return;
         }
-        // comparación simple: ignora mayúsculas y acentos
-        const normalize = (t) =>
-          t
-            .toString()
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .replace(/\s+/g, " ")
-            .trim();
-
-        if (normalize(userAnswer) === normalize(correctAnswer)) {
+        if (userAnswer === correctAnswer.toLowerCase().trim()) {
           element.classList.add("correct");
           element.classList.remove("incorrect");
         } else {
@@ -1125,6 +640,83 @@
           element.classList.remove("correct");
         }
       }
+
+      function checkRadioAnswer(radio, correctAnswer) {
+        const groupName = radio.name;
+        const allRadiosInGroup = document.querySelectorAll(
+          `input[name="${groupName}"]`
+        );
+
+        allRadiosInGroup.forEach((r) => {
+          r.nextElementSibling.classList.remove(
+            "correct-answer-text",
+            "wrong-answer-text"
+          );
+        });
+
+        if (radio.value === correctAnswer) {
+          radio.nextElementSibling.classList.add("correct-answer-text");
+        } else {
+          radio.nextElementSibling.classList.add("wrong-answer-text");
+          const correctRadio = document.querySelector(
+            `input[name="${groupName}"][value="${correctAnswer}"]`
+          );
+          if (correctRadio) {
+            correctRadio.nextElementSibling.classList.add(
+              "correct-answer-text"
+            );
+          }
+        }
+      }
+
+      // Carousel Logic
+      let slideIndex = 1;
+      showSlides(slideIndex);
+
+      function plusSlides(n) {
+        showSlides((slideIndex += n));
+      }
+
+      function currentSlide(n) {
+        showSlides((slideIndex = n));
+      }
+
+      function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("carousel-slide");
+        let dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {
+          slideIndex = 1;
+        }
+        if (n < 1) {
+          slideIndex = slides.length;
+        }
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+      }
+
+      // New interactive exercise logic
+      document.addEventListener("DOMContentLoaded", () => {
+        const professions = document.querySelectorAll(".profession");
+        professions.forEach((prof) => {
+          prof.addEventListener("click", () => {
+            const isCorrect = prof.dataset.correct === "true";
+            if (isCorrect) {
+              prof.classList.add("correct-selection");
+              prof.classList.remove("incorrect-selection");
+            } else {
+              prof.classList.add("incorrect-selection");
+              prof.classList.remove("correct-selection");
+            }
+          });
+        });
+      });
     </script>
   </body>
 </html>
