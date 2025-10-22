@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Français - Séance 9</title>
+    <title>Français - Séance 10</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       rel="stylesheet" />
     <style>
       body {
         font-family: "Inter", sans-serif;
-        background-color: #f8f9fa;
+        background-color: #f9fafb;
         scroll-behavior: smooth;
       }
       h1,
@@ -26,10 +26,24 @@
       .content-box {
         background-color: white;
         border-radius: 0.75rem;
-        padding: 2rem;
+        padding: 1.5rem 2rem;
         box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
           0 2px 4px -2px rgb(0 0 0 / 0.1);
         margin-bottom: 2.5rem;
+      }
+      /* Estilos para inputs y selects */
+      input[type="text"],
+      select {
+        transition: all 0.2s ease-in-out;
+        border: 2px solid #d1d5db;
+        border-radius: 0.375rem;
+        padding: 0.5rem 0.75rem;
+      }
+      input[type="text"]:focus,
+      select:focus {
+        border-color: #3b82f6;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
       }
       .correct {
         border-color: #4ade80 !important;
@@ -39,11 +53,8 @@
         border-color: #f87171 !important;
         background-color: #fef2f2;
       }
-      input,
-      select {
-        transition: all 0.2s ease-in-out;
-        border: 2px solid #d1d5db;
-      }
+
+      /* Estilos para radio buttons */
       input[type="radio"] {
         border: 2px solid #d1d5db;
         appearance: none;
@@ -77,559 +88,415 @@
         color: #dc2626;
         font-weight: bold;
       }
-      details > summary {
-        cursor: pointer;
-        padding: 0.75rem 1.25rem;
-        background-color: #f3f4f6;
+
+      /* Estilos para cuadros de información (Prod. Orale, Devoirs) */
+      .info-box {
+        border-left: 5px solid;
+        padding: 1.5rem;
+        border-radius: 0 0.5rem 0.5rem 0;
+        background-color: #f8fafc;
+      }
+      .info-box h3 {
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem; /* 24px */
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+      }
+      .info-box h3 i {
+        margin-right: 0.75rem;
+      }
+      .info-box-blue {
+        border-color: #3b82f6;
+      } /* Azul */
+      .info-box-blue h3 {
+        color: #1e40af;
+      }
+      .info-box-green {
+        border-color: #22c55e;
+      } /* Verde */
+      .info-box-green h3 {
+        color: #15803d;
+      }
+
+      /* Estilo para el botón de Quizlet */
+      .quizlet-link {
+        display: inline-block;
+        background: linear-gradient(135deg, #4257b2, #3b82f6);
+        color: white;
+        padding: 0.75rem 1.5rem;
         border-radius: 0.5rem;
         font-weight: 700;
-        color: #1e3a8a;
-        transition: background-color 0.2s;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       }
-      details > summary:hover {
-        background-color: #e5e7eb;
-      }
-      details[open] > summary {
-        background-color: #dbeafe;
-      }
-      /* Carousel Styles */
-      .carousel-container {
-        position: relative;
-        max-width: 600px;
-        margin: auto;
-        overflow: hidden;
-        border-radius: 0.5rem;
-      }
-      .carousel-slide {
-        display: none;
-        padding: 40px;
-        text-align: center;
-        background-color: #e0f2fe;
-        border: 2px solid #7dd3fc;
-        border-radius: 0.5rem;
-      }
-      .carousel-slide h4 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        color: #0c4a6e;
-      }
-      .carousel-slide p {
-        font-size: 1.1rem;
-        line-height: 1.6;
-      }
-      .carousel-prev,
-      .carousel-next {
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        width: auto;
-        padding: 16px;
-        margin-top: -22px;
-        color: white;
-        background-color: rgba(13, 110, 253, 0.7);
-        font-weight: bold;
-        font-size: 18px;
-        transition: 0.6s ease;
-        border-radius: 0 3px 3px 0;
-        user-select: none;
-      }
-      .carousel-next {
-        right: 0;
-        border-radius: 3px 0 0 3px;
-      }
-      .carousel-prev:hover,
-      .carousel-next:hover {
-        background-color: rgba(13, 110, 253, 1);
-      }
-      .dots-container {
-        text-align: center;
-        padding: 10px;
-      }
-      .dot {
-        cursor: pointer;
-        height: 15px;
-        width: 15px;
-        margin: 0 2px;
-        background-color: #bbb;
-        border-radius: 50%;
-        display: inline-block;
-        transition: background-color 0.6s ease;
-      }
-      .profession {
-        cursor: pointer;
-        padding: 2px 4px;
-        border-radius: 4px;
-        transition: background-color 0.3s;
-        border-bottom: 2px dotted #9ca3af;
-      }
-      .profession:hover {
-        background-color: #e5e7eb;
-      }
-      .profession.correct-selection {
-        background-color: #d1fae5;
-        border-bottom: 2px solid #10b981;
-        font-weight: bold;
-      }
-      .profession.incorrect-selection {
-        background-color: #fee2e2;
-        border-bottom: 2px solid #ef4444;
-      }
-      .active,
-      .dot:hover {
-        background-color: #717171;
+      .quizlet-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
       }
     </style>
   </head>
   <body class="text-gray-800">
-    <header
-      class="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-50">
-      <h1 class="text-3xl font-bold text-blue-900">
-        Séance 9: Les Professions et les Possessions
+    <header class="bg-white shadow-md p-4 sticky top-0 z-50">
+      <h1 class="text-3xl font-bold text-center text-blue-900">
+        Séance 10: La famille et les professions
       </h1>
     </header>
 
     <main class="max-w-4xl mx-auto p-6">
-      <!-- Page 39 -->
+      <!-- Ejercicio 1: Quiz de Profesiones -->
       <div class="content-box">
         <h2 class="text-3xl font-bold mb-6 text-center">
-          Entraînement - Page 39
+          Quiz: Masculin et Féminin
         </h2>
-        <img
-          src="./images/page-39-C.png"
-          alt="Page 39 du livre"
-          class="rounded-lg shadow-md mb-6 w-full" />
-
-        <h3 class="text-2xl font-bold mb-4">3 | Complétez.</h3>
-        <div class="space-y-4 mb-8">
-          <p>
-            a. J'ai un oncle.
-            <input
-              type="text"
-              onkeyup="checkAnswer(this, 'mon')"
-              class="rounded px-2 w-24 text-center" />
-            oncle a 48 ans.
-          </p>
-          <p>
-            b. J'ai des cousins.
-            <input
-              type="text"
-              onkeyup="checkAnswer(this, 'mes')"
-              class="rounded px-2 w-24 text-center" />
-            cousins habitent à Toulouse.
-          </p>
-          <p>
-            c. Elle a deux frères.
-            <input
-              type="text"
-              onkeyup="checkAnswer(this, 'ses')"
-              class="rounded px-2 w-24 text-center" />
-            frères sont sympas.
-          </p>
-          <p>
-            d. Nous avons une fille.
-            <input
-              type="text"
-              onkeyup="checkAnswer(this, 'notre')"
-              class="rounded px-2 w-24 text-center" />
-            fille déteste le sport.
-          </p>
-        </div>
-
-        <h3 class="text-2xl font-bold mt-8 mb-4">4 | Production écrite</h3>
-        <p class="text-gray-600 mb-4">
-          Vous organisez une fête avec votre sœur. Vous écrivez un mail à votre
-          sœur : dites qui vous invitez (famille et amis).
+        <p class="text-gray-600 mb-6 text-center">
+          Complétez avec la forme correcte de la profession (masculin ou
+          féminin).
         </p>
-        <div class="bg-gray-100 p-4 rounded-lg">
-          <div class="flex items-center mb-2">
-            <label class="font-bold w-16">De:</label>
-            <input
-              type="text"
-              class="rounded p-2 w-full bg-white"
-              placeholder="Qui envoie ce message?" />
-          </div>
-          <div class="flex items-center mb-2">
-            <label class="font-bold w-16">À:</label>
-            <input
-              type="text"
-              class="rounded p-2 w-full bg-white"
-              value="lucas.dubois@edito.com"
-              disabled />
-          </div>
-          <div class="flex items-center mb-4">
-            <label class="font-bold w-16">Objet:</label>
-            <input
-              type="text"
-              class="rounded p-2 w-full bg-white"
-              placeholder="Sujet..." />
-          </div>
-          <textarea
-            class="w-full h-40 p-3 rounded-md border-2 border-gray-300 focus:border-blue-500 focus:outline-none"
-            placeholder="Bonjour, ..."></textarea>
-        </div>
-      </div>
 
-      <!-- Wordwall Exercises -->
-      <div class="content-box">
-        <h2 class="text-3xl font-bold mb-6 text-center">
-          Activités Interactives
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="w-full">
-            <iframe
-              style="max-width: 100%"
-              src="https://wordwall.net/fr/embed/1a51b61f76a24ab88411f3cf01d4f84b?themeId=1&templateId=5&fontStackId=0"
-              width="500"
-              height="380"
-              frameborder="0"
-              allowfullscreen></iframe>
-          </div>
-          <div class="w-full">
-            <iframe
-              style="max-width: 100%"
-              src="https://wordwall.net/fr/embed/562f8f8414dd4e39954c691e8498bddd?themeId=1&templateId=36&fontStackId=0"
-              width="500"
-              height="380"
-              frameborder="0"
-              allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-
-      <!-- Page 40 & Audio -->
-      <div class="content-box">
-        <h2 class="text-3xl font-bold mb-6 text-center">
-          Compréhension Orale - Page 40
-        </h2>
-        <img
-          src="./images/page-40.png"
-          alt="Page 40 du livre"
-          class="rounded-lg shadow-md mb-6 w-full" />
-
-        <p class="mb-4 text-gray-600 text-center">
-          Écoute l'audio et réponds aux questions suivantes.
-        </p>
-        <audio controls class="w-full mb-6">
-          <source src="./audio/livre/39_Edito_A1_Livre.mp3" type="audio/mpeg" />
-          Tu navegador no soporta el elemento de audio.
-        </audio>
-
-        <details class="mb-6">
-          <summary>Voir la transcription</summary>
-          <div class="mt-4 border-t pt-4">
-            <img
-              src="./images/page-40-transcription.png"
-              alt="Transcription de l'audio"
-              class="rounded-lg shadow-md w-full" />
-          </div>
-        </details>
-
-        <h3 class="text-2xl font-bold mt-8 mb-2 text-indigo-700">
-          1<sup>re</sup> écoute
-        </h3>
-        <div class="pl-4">
-          <h4 class="text-xl font-bold mb-3">
-            2 | Vrai ou faux ? Thomas présente Barbara à ses parents.
-          </h4>
-          <div class="space-y-2 mb-6" id="q2">
-            <label class="flex items-center cursor-pointer">
-              <input
-                type="radio"
-                name="q2"
-                value="vrai"
-                onclick="checkRadioAnswer(this, 'vrai')" />
-              <span class="ml-3">Vrai</span>
-            </label>
-            <label class="flex items-center cursor-pointer">
-              <input
-                type="radio"
-                name="q2"
-                value="faux"
-                onclick="checkRadioAnswer(this, 'vrai')" />
-              <span class="ml-3">Faux</span>
-            </label>
-          </div>
-
-          <h4 class="text-xl font-bold mb-3">3 | Barbara est :</h4>
-          <div class="space-y-2 mb-6" id="q3">
-            <label class="flex items-center cursor-pointer">
-              <input
-                type="radio"
-                name="q3"
-                value="a"
-                onclick="checkRadioAnswer(this, 'a')" />
-              <span class="ml-3">a. une amie de Thomas.</span>
-            </label>
-            <label class="flex items-center cursor-pointer">
-              <input
-                type="radio"
-                name="q3"
-                value="b"
-                onclick="checkRadioAnswer(this, 'a')" />
-              <span class="ml-3">b. la petite amie de Thomas.</span>
-            </label>
-          </div>
-        </div>
-
-        <h3 class="text-2xl font-bold mt-8 mb-2 text-indigo-700">
-          2<sup>e</sup> écoute
-        </h3>
-        <div class="pl-4">
-          <h4 class="text-xl font-bold mb-3">
-            4 | Thomas et Barbara travaillent ?
-          </h4>
-          <div class="mb-6">
-            <input
-              type="text"
-              onkeyup="checkAnswer(this, 'oui')"
-              class="rounded p-2 w-full"
-              placeholder="Répondez ici..." />
-          </div>
-
-          <h4 class="text-xl font-bold mb-3">
-            5 | Qui travaille à l’hôpital ? Qui travaille à l’université ?
-          </h4>
-          <div class="space-y-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+          <!-- Columna 1 -->
+          <div class="space-y-4">
             <p>
-              À l'hôpital :
+              1. (M) acteur &rarr; (F)
               <input
                 type="text"
-                onkeyup="checkAnswer(this, 'barbara')"
-                class="rounded px-2 w-48 text-center"
-                placeholder="Nom..." />
+                onkeyup="checkAnswer(this, 'actrice')"
+                class="w-full" />
             </p>
             <p>
-              À l'université :
+              2. (F) coiffeuse &rarr; (M)
               <input
                 type="text"
-                onkeyup="checkAnswer(this, 'thomas')"
-                class="rounded px-2 w-48 text-center"
-                placeholder="Nom..." />
+                onkeyup="checkAnswer(this, 'coiffeur')"
+                class="w-full" />
+            </p>
+            <p>
+              3. (M) étudiant &rarr; (F)
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'étudiante')"
+                class="w-full" />
+            </p>
+            <p>
+              4. (F) infirmière &rarr; (M)
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'infirmier')"
+                class="w-full" />
+            </p>
+            <p>
+              5. (M) informaticien &rarr; (F)
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'informaticienne')"
+                class="w-full" />
+            </p>
+            <p>
+              6. (M) professeur &rarr; (F)
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'professeure')"
+                class="w-full" />
+            </p>
+            <p>
+              7. (M/F) fleuriste (masc.) &rarr; (F)
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'fleuriste')"
+                class="w-full" />
+            </p>
+            <p>
+              8. Paul est (acteur) &rarr;
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'acteur')"
+                class="w-2/3" />.
+            </p>
+          </div>
+          <!-- Columna 2 -->
+          <div class="space-y-4">
+            <p>
+              9. (F) actrice &rarr; (M)
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'acteur')"
+                class="w-full" />
+            </p>
+            <p>
+              10. (M) coiffeur &rarr; (F)
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'coiffeuse')"
+                class="w-full" />
+            </p>
+            <p>
+              11. (F) étudiante &rarr; (M)
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'étudiant')"
+                class="w-full" />
+            </p>
+            <p>
+              12. (M) infirmier &rarr; (F)
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'infirmière')"
+                class="w-full" />
+            </p>
+            <p>
+              13. (F) informaticienne &rarr; (M)
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'informaticien')"
+                class="w-full" />
+            </p>
+            <p>
+              14. (F) professeure &rarr; (M)
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'professeur')"
+                class="w-full" />
+            </p>
+            <p>
+              15. Marie est (informaticien) &rarr;
+              <input
+                type="text"
+                onkeyup="checkAnswer(this, 'informaticienne')"
+                class="w-2/3" />.
             </p>
           </div>
         </div>
       </div>
 
-      <!-- Le masculin et féminin des professions -->
+      <!-- Page 41 + Ejercicios -->
       <div class="content-box">
         <h2 class="text-3xl font-bold mb-6 text-center">
-          Grammaire: Le masculin et féminin des professions
+          Vocabulaire - Page 41
         </h2>
+        <img
+          src="./images/livre/page-041.png"
+          alt="Page 41 du livre"
+          class="rounded-lg shadow-md mb-8 w-full" />
 
-        <div
-          class="bg-indigo-50 p-4 rounded-lg mb-8 border-l-4 border-indigo-400">
-          <h3 class="text-2xl font-bold mb-3 text-indigo-800">Échauffement</h3>
-          <p class="text-gray-700 mb-4">
-            Lisez les phrases. Cliquez sur les professions au féminin pour les
-            souligner.
-          </p>
-          <div class="space-y-3 text-lg">
-            <p>
-              a. Tu es
-              <span class="profession" data-correct="true">étudiante</span>,
-              Barbara ?
-            </p>
-            <p>
-              b. Mon père est
-              <span class="profession" data-correct="false">informaticien</span
-              >.
-            </p>
-            <p>
-              c. Ma mère est
-              <span class="profession" data-correct="true">professeure</span>.
-            </p>
-            <p>
-              d. Moi, je suis
-              <span class="profession" data-correct="true">infirmière</span> et
-              le père de Thomas est
-              <span class="profession" data-correct="false">fleuriste</span>.
-            </p>
-          </div>
-        </div>
-
-        <div class="carousel-container">
-          <div class="carousel-slide">
-            <h4>Règle générale : On ajoute un -E</h4>
-            <p>
-              Pour la plupart des professions, il suffit d'ajouter un
-              <strong>-e</strong> à la fin de la forme masculine.
-            </p>
-            <p class="mt-2 font-mono">
-              un avocat ➔ une avocat<strong>e</strong>
-            </p>
-          </div>
-          <div class="carousel-slide">
-            <h4>Cas 1 : -EUR ➔ -EUSE</h4>
-            <p>
-              Les professions qui terminent en <strong>-eur</strong> changent
-              souvent en <strong>-euse</strong>.
-            </p>
-            <p class="mt-2 font-mono">
-              un vend<strong>eur</strong> ➔ une vend<strong>euse</strong>
-            </p>
-          </div>
-          <div class="carousel-slide">
-            <h4>Cas 2 : -TEUR ➔ -TRICE</h4>
-            <p>
-              Celles qui terminent en <strong>-teur</strong> changent souvent en
-              <strong>-trice</strong>.
-            </p>
-            <p class="mt-2 font-mono">
-              un ac<strong>teur</strong> ➔ une ac<strong>trice</strong>
-            </p>
-          </div>
-          <div class="carousel-slide">
-            <h4>Cas 3 : -IEN ➔ -IENNE</h4>
-            <p>
-              Pour les professions finissant par <strong>-ien</strong>, on
-              double le 'n' et on ajoute un -e.
-            </p>
-            <p class="mt-2 font-mono">
-              un music<strong>ien</strong> ➔ une music<strong>ienne</strong>
-            </p>
-          </div>
-          <div class="carousel-slide">
-            <h4>Cas 4 : Les invariables</h4>
-            <p>
-              Certaines professions ne changent pas ! On utilise un article
-              féminin (une/la) pour indiquer le genre.
-            </p>
-            <p class="mt-2 font-mono">un médecin ➔ une médecin</p>
-            <p class="mt-1 font-mono">un professeur ➔ une professeur</p>
-          </div>
-
-          <a class="carousel-prev" onclick="plusSlides(-1)">&#10094;</a>
-          <a class="carousel-next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
-        <div class="dots-container">
-          <span class="dot" onclick="currentSlide(1)"></span>
-          <span class="dot" onclick="currentSlide(2)"></span>
-          <span class="dot" onclick="currentSlide(3)"></span>
-          <span class="dot" onclick="currentSlide(4)"></span>
-          <span class="dot" onclick="currentSlide(5)"></span>
-        </div>
-
-        <h3 class="text-2xl font-bold mt-8 mb-4">Exercice d'application</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label>un chanteur ➔ une</label>
-            <input
-              type="text"
-              onkeyup="checkAnswer(this, 'chanteuse')"
-              class="rounded p-2 w-full mt-1" />
-          </div>
-          <div>
-            <label>un directeur ➔ une</label>
-            <input
-              type="text"
-              onkeyup="checkAnswer(this, 'directrice')"
-              class="rounded p-2 w-full mt-1" />
-          </div>
-          <div>
-            <label>un pharmacien ➔ une</label>
-            <input
-              type="text"
-              onkeyup="checkAnswer(this, 'pharmacienne')"
-              class="rounded p-2 w-full mt-1" />
-          </div>
-          <div>
-            <label>un employé ➔ une</label>
-            <input
-              type="text"
-              onkeyup="checkAnswer(this, 'employée')"
-              class="rounded p-2 w-full mt-1" />
-          </div>
-        </div>
-
-        <h3 class="text-2xl font-bold mt-10 mb-4">
-          Entraînement (Livre Page 40)
+        <!-- Ejercicio 2 -->
+        <h3 class="text-2xl font-bold mb-4">
+          2 | Choisissez la bonne réponse.
         </h3>
-        <div class="space-y-4">
-          <p>
-            a. Maxime est coiffeur. Laure est
-            <input
-              type="text"
-              onkeyup="checkAnswer(this, 'coiffeuse')"
-              class="rounded px-2 w-32 text-center" />.
-          </p>
-          <p>
-            b. Élodie est infirmière. Jean est
-            <input
-              type="text"
-              onkeyup="checkAnswer(this, 'infirmier')"
-              class="rounded px-2 w-32 text-center" />.
-          </p>
-          <p>
-            c. Gabriel est fleuriste. Florence est
-            <input
-              type="text"
-              onkeyup="checkAnswer(this, 'fleuriste')"
-              class="rounded px-2 w-32 text-center" />.
-          </p>
-          <p>
-            d. Manuelle est actrice. Xavier est
-            <input
-              type="text"
-              onkeyup="checkAnswer(this, 'acteur')"
-              class="rounded px-2 w-32 text-center" />.
-          </p>
-          <p>
-            e. Christine est étudiante. Pedro est
-            <input
-              type="text"
-              onkeyup="checkAnswer(this, 'étudiant')"
-              class="rounded px-2 w-32 text-center" />.
-          </p>
+        <div class="space-y-6 pl-4">
+          <div id="q2a">
+            <p class="font-semibold mb-2">a. Ma sœur a un mari. Elle est...</p>
+            <label class="flex items-center cursor-pointer"
+              ><input
+                type="radio"
+                name="q2a"
+                value="mariée"
+                onclick="checkRadioAnswer(this, 'mariée')" />
+              <span class="ml-3">mariée</span></label
+            >
+            <label class="flex items-center cursor-pointer"
+              ><input
+                type="radio"
+                name="q2a"
+                value="célibataire"
+                onclick="checkRadioAnswer(this, 'mariée')" />
+              <span class="ml-3">célibataire</span></label
+            >
+          </div>
+          <div id="q2b">
+            <p class="font-semibold mb-2">b. Elsa est la ... de mon frère.</p>
+            <label class="flex items-center cursor-pointer"
+              ><input
+                type="radio"
+                name="q2b"
+                value="femme"
+                onclick="checkRadioAnswer(this, 'femme')" />
+              <span class="ml-3">femme</span></label
+            >
+            <label class="flex items-center cursor-pointer"
+              ><input
+                type="radio"
+                name="q2b"
+                value="mari"
+                onclick="checkRadioAnswer(this, 'femme')" />
+              <span class="ml-3">mari</span></label
+            >
+          </div>
+          <div id="q2c">
+            <p class="font-semibold mb-2">
+              c. Hugo n'est pas marié. Thérèse est sa...
+            </p>
+            <label class="flex items-center cursor-pointer"
+              ><input
+                type="radio"
+                name="q2c"
+                value="femme"
+                onclick="checkRadioAnswer(this, 'femme')" />
+              <span class="ml-3">femme</span></label
+            >
+            <label class="flex items-center cursor-pointer"
+              ><input
+                type="radio"
+                name="q2c"
+                value="petite amie"
+                onclick="checkRadioAnswer(this, 'femme')" />
+              <span class="ml-3">petite amie</span></label
+            >
+          </div>
+          <div id="q2d">
+            <p class="font-semibold mb-2">
+              d. C'est le ... de mon oncle Laurent.
+            </p>
+            <label class="flex items-center cursor-pointer"
+              ><input
+                type="radio"
+                name="q2d"
+                value="marié"
+                onclick="checkRadioAnswer(this, 'mariage')" />
+              <span class="ml-3">marié</span></label
+            >
+            <label class="flex items-center cursor-pointer"
+              ><input
+                type="radio"
+                name="q2d"
+                value="mariage"
+                onclick="checkRadioAnswer(this, 'mariage')" />
+              <span class="ml-3">mariage</span></label
+            >
+          </div>
+        </div>
+
+        <!-- Ejercicio 3 -->
+        <h3 class="text-2xl font-bold mt-10 mb-4">3 | Associez.</h3>
+        <p class="text-gray-600 mb-6">
+          Associez la profession à la bonne image (1-5).
+        </p>
+        <div class="space-y-4 max-w-md">
+          <div class="flex items-center justify-between">
+            <label for="q3a">a. l'informaticien</label>
+            <select
+              id="q3a"
+              onchange="checkSelectAnswer(this, '2')"
+              class="w-32">
+              <option value="">...</option>
+              <option value="1">Image 1</option>
+              <option value="2">Image 2</option>
+              <option value="3">Image 3</option>
+              <option value="4">Image 4</option>
+              <option value="5">Image 5</option>
+            </select>
+          </div>
+          <div class="flex items-center justify-between">
+            <label for="q3b">b. la professeure</label>
+            <select
+              id="q3b"
+              onchange="checkSelectAnswer(this, '3')"
+              class="w-32">
+              <option value="">...</option>
+              <option value="1">Image 1</option>
+              <option value="2">Image 2</option>
+              <option value="3">Image 3</option>
+              <option value="4">Image 4</option>
+              <option value="5">Image 5</option>
+            </select>
+          </div>
+          <div class="flex items-center justify-between">
+            <label for="q3c">c. le fleuriste</label>
+            <select
+              id="q3c"
+              onchange="checkSelectAnswer(this, '5')"
+              class="w-32">
+              <option value="">...</option>
+              <option value="1">Image 1</option>
+              <option value="2">Image 2</option>
+              <option value="3">Image 3</option>
+              <option value="4">Image 4</option>
+              <option value="5">Image 5</option>
+            </select>
+          </div>
+          <div class="flex items-center justify-between">
+            <label for="q3d">d. l'infirmière</label>
+            <select
+              id="q3d"
+              onchange="checkSelectAnswer(this, '4')"
+              class="w-32">
+              <option value="">...</option>
+              <option value="1">Image 1</option>
+              <option value="2">Image 2</option>
+              <option value="3">Image 3</option>
+              <option value="4">Image 4</option>
+              <option value="5">Image 5</option>
+            </select>
+          </div>
+          <div class="flex items-center justify-between">
+            <label for="q3e">e. l'étudiante</label>
+            <select
+              id="q3e"
+              onchange="checkSelectAnswer(this, '1')"
+              class="w-32">
+              <option value="">...</option>
+              <option value="1">Image 1</option>
+              <option value="2">Image 2</option>
+              <option value="3">Image 3</option>
+              <option value="4">Image 4</option>
+              <option value="5">Image 5</option>
+            </select>
+          </div>
         </div>
       </div>
 
-      <!-- Wayground Quiz -->
+      <!-- Producción Oral -->
+      <div class="info-box info-box-blue">
+        <h3><i class="fas fa-comments"></i>Production orale</h3>
+        <p class="text-lg">À toi de présenter !</p>
+        <ul class="list-disc list-inside mt-2 space-y-1">
+          <li>Dessine un arbre généalogique (réel ou fictif).</li>
+          <li>
+            Attribue une profession (parmi celles que nous avons vues) à chaque
+            membre.
+          </li>
+          <li>Prépare une présentation orale pour le prochain cours.</li>
+        </ul>
+      </div>
+
+      <!-- Quizlet Link -->
       <div class="content-box text-center">
-        <h2 class="text-3xl font-bold mb-4">Quiz: Les Professions</h2>
-        <p class="mb-6">Pratique encore plus avec ce quiz externe !</p>
+        <h3 class="text-2xl font-bold mb-4">Pratiquons le vocabulaire !</h3>
         <a
-          href="https://wayground.com/admin/quiz/675fe16297048263e1e6f6be/le-masculin-et-le-feminin-des-professions"
+          href="https://quizlet.com/mx/1088566613/unite-2-flash-cards/"
           target="_blank"
-          class="inline-block bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold py-3 px-8 rounded-full hover:from-cyan-600 hover:to-blue-600 transition-transform transform hover:scale-105 shadow-lg">
-          <i class="fa-solid fa-star mr-2"></i> Commencer le Quiz
+          class="quizlet-link">
+          <i class="fas fa-bolt"></i> Pratiquons le vocabulaire essentiel
         </a>
       </div>
 
       <!-- Devoirs -->
-      <div class="content-box bg-blue-50 border-l-4 border-blue-500">
-        <h2 class="text-3xl font-bold mb-4 text-blue-900">Devoirs</h2>
-        <p class="text-lg mb-4">
-          Page 23 et 24 du <strong>Cahier d'Activités</strong>.
-        </p>
-        <p class="mb-6 italic text-gray-600">
-          (À l'exception de l'exercice de phone-graphie).
-        </p>
-        <div class="space-y-4">
-          <div>
-            <p class="font-semibold mb-1">Audio pour la page 23:</p>
-            <audio controls class="w-full">
-              <source src="./audio/cahier/piste_023.mp3" type="audio/mpeg" />
-            </audio>
-          </div>
-          <div>
-            <p class="font-semibold mb-1">Audio pour la page 24:</p>
-            <audio controls class="w-full">
-              <source src="./audio/cahier/piste_024.mp3" type="audio/mpeg" />
-            </audio>
-          </div>
-        </div>
+      <div class="info-box info-box-green">
+        <h3><i class="fas fa-book"></i>Devoirs</h3>
+        <p class="text-lg">Pour le prochain cours, merci de compléter :</p>
+        <ul class="list-disc list-inside mt-2 space-y-2">
+          <li>
+            <strong>Page 25 (Cahier d'activités):</strong>
+            <ul class="list-circle list-inside ml-6">
+              <li>
+                Pour la "Production orale", enregistre-toi en simulant le
+                dialogue entre les deux personnes et envoie-le-moi par WhatsApp.
+              </li>
+            </ul>
+          </li>
+          <li><strong>Page 26 (Cahier d'activités)</strong></li>
+          <li><strong>Page 27 (Cahier d'activités)</strong></li>
+        </ul>
       </div>
     </main>
 
     <script>
-      // Función para revisar respuestas de inputs
+      // Función para revisar respuestas de inputs de texto
       function checkAnswer(element, correctAnswer) {
         const userAnswer = element.value.toLowerCase().trim();
-        if (!userAnswer) {
-          element.className = element.className.replace(
-            / correct| incorrect/g,
-            ""
-          );
+        if (userAnswer === "") {
+          element.className = "w-full"; // Clase base
           return;
         }
         if (userAnswer === correctAnswer.toLowerCase().trim()) {
@@ -641,6 +508,7 @@
         }
       }
 
+      // Función para revisar radio buttons
       function checkRadioAnswer(radio, correctAnswer) {
         const groupName = radio.name;
         const allRadiosInGroup = document.querySelectorAll(
@@ -669,54 +537,20 @@
         }
       }
 
-      // Carousel Logic
-      let slideIndex = 1;
-      showSlides(slideIndex);
-
-      function plusSlides(n) {
-        showSlides((slideIndex += n));
+      // Función para revisar selects (ejercicio de asociar)
+      function checkSelectAnswer(select, correctAnswer) {
+        if (select.value === "") {
+          select.classList.remove("correct", "incorrect");
+          return;
+        }
+        if (select.value === correctAnswer) {
+          select.classList.add("correct");
+          select.classList.remove("incorrect");
+        } else {
+          select.classList.add("incorrect");
+          select.classList.remove("correct");
+        }
       }
-
-      function currentSlide(n) {
-        showSlides((slideIndex = n));
-      }
-
-      function showSlides(n) {
-        let i;
-        let slides = document.getElementsByClassName("carousel-slide");
-        let dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {
-          slideIndex = 1;
-        }
-        if (n < 1) {
-          slideIndex = slides.length;
-        }
-        for (i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-          dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
-      }
-
-      // New interactive exercise logic
-      document.addEventListener("DOMContentLoaded", () => {
-        const professions = document.querySelectorAll(".profession");
-        professions.forEach((prof) => {
-          prof.addEventListener("click", () => {
-            const isCorrect = prof.dataset.correct === "true";
-            if (isCorrect) {
-              prof.classList.add("correct-selection");
-              prof.classList.remove("incorrect-selection");
-            } else {
-              prof.classList.add("incorrect-selection");
-              prof.classList.remove("correct-selection");
-            }
-          });
-        });
-      });
     </script>
   </body>
 </html>
