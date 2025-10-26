@@ -3,554 +3,306 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Français - Séance 10</title>
+    <title>Session de Français - Ketzy</title>
+    <!-- Carga de Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
-      rel="stylesheet" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      rel="stylesheet" />
     <style>
+      /* Fuente Inter de Tailwind */
       body {
         font-family: "Inter", sans-serif;
-        background-color: #f9fafb;
-        scroll-behavior: smooth;
       }
-      h1,
-      h2,
-      h3,
-      h4 {
-        font-family: "Lora", serif;
-      }
-      .content-box {
-        background-color: white;
-        border-radius: 0.75rem;
-        padding: 1.5rem 2rem;
-        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
-          0 2px 4px -2px rgb(0 0 0 / 0.1);
-        margin-bottom: 2.5rem;
-      }
-      /* Estilos para inputs y selects */
-      input[type="text"],
-      select {
-        transition: all 0.2s ease-in-out;
-        border: 2px solid #d1d5db;
-        border-radius: 0.375rem;
-        padding: 0.5rem 0.75rem;
-      }
-      input[type="text"]:focus,
-      select:focus {
-        border-color: #3b82f6;
-        outline: none;
-        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+      /* Estilos para los mensajes de retroalimentación */
+      .feedback {
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-left: 10px;
       }
       .correct {
-        border-color: #4ade80 !important;
-        background-color: #f0fdf4;
+        color: #22c55e; /* green-500 */
       }
       .incorrect {
-        border-color: #f87171 !important;
-        background-color: #fef2f2;
-      }
-
-      /* Estilos para radio buttons */
-      input[type="radio"] {
-        border: 2px solid #d1d5db;
-        appearance: none;
-        width: 1.25em;
-        height: 1.25em;
-        border-radius: 50%;
-        vertical-align: middle;
-        position: relative;
-        cursor: pointer;
-      }
-      input[type="radio"]:checked {
-        border-color: #3b82f6;
-      }
-      input[type="radio"]:checked::before {
-        content: "";
-        display: block;
-        width: 0.75em;
-        height: 0.75em;
-        border-radius: 50%;
-        background-color: #3b82f6;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-      .correct-answer-text {
-        color: #16a34a;
-        font-weight: bold;
-      }
-      .wrong-answer-text {
-        color: #dc2626;
-        font-weight: bold;
-      }
-
-      /* Estilos para cuadros de información (Prod. Orale, Devoirs) */
-      .info-box {
-        border-left: 5px solid;
-        padding: 1.5rem;
-        border-radius: 0 0.5rem 0.5rem 0;
-        background-color: #f8fafc;
-      }
-      .info-box h3 {
-        display: flex;
-        align-items: center;
-        font-size: 1.5rem; /* 24px */
-        font-weight: 700;
-        margin-bottom: 0.75rem;
-      }
-      .info-box h3 i {
-        margin-right: 0.75rem;
-      }
-      .info-box-blue {
-        border-color: #3b82f6;
-      } /* Azul */
-      .info-box-blue h3 {
-        color: #1e40af;
-      }
-      .info-box-green {
-        border-color: #22c55e;
-      } /* Verde */
-      .info-box-green h3 {
-        color: #15803d;
-      }
-
-      /* Estilo para el botón de Quizlet */
-      .quizlet-link {
-        display: inline-block;
-        background: linear-gradient(135deg, #4257b2, #3b82f6);
-        color: white;
-        padding: 0.75rem 1.5rem;
-        border-radius: 0.5rem;
-        font-weight: 700;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      }
-      .quizlet-link:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        color: #ef4444; /* red-500 */
       }
     </style>
   </head>
-  <body class="text-gray-800">
-    <header class="bg-white shadow-md p-4 sticky top-0 z-50">
-      <h1 class="text-3xl font-bold text-center text-blue-900">
-        Séance 10: La famille et les professions
+  <body class="bg-gray-900 text-gray-300 font-sans">
+    <!-- Contenedor Principal -->
+    <div class="container max-w-4xl mx-auto p-6 sm:p-10">
+      <h1 class="text-4xl font-bold text-yellow-400 mb-6 text-center">
+        Bonjour Ketzy! Prête ?
       </h1>
-    </header>
 
-    <main class="max-w-4xl mx-auto p-6">
-      <!-- Ejercicio 1: Quiz de Profesiones -->
-      <div class="content-box">
-        <h2 class="text-3xl font-bold mb-6 text-center">
-          Quiz: Masculin et Féminin
+      <!-- 1. Enlace a Quizlet -->
+      <section class="bg-gray-800 p-8 rounded-lg shadow-lg mb-10 text-center">
+        <h2 class="text-2xl font-semibold text-yellow-300 mb-4">
+          Commençons !
         </h2>
-        <p class="text-gray-600 mb-6 text-center">
-          Complétez avec la forme correcte de la profession (masculin ou
-          féminin).
-        </p>
+        <p class="text-lg text-gray-300 mb-6">D'abord, révisons un peu.</p>
+        <a
+          href="https://quizlet.com/mx/1098448192/unite-3-flash-cards/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block bg-yellow-400 text-gray-900 font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-yellow-500 transition duration-300 transform hover:-translate-y-1">
+          Pratiquons le vocabulaire que nous avons vu jusqu'à présent
+        </a>
+      </section>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-          <!-- Columna 1 -->
-          <div class="space-y-4">
-            <p>
-              1. (M) acteur &rarr; (F)
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'actrice')"
-                class="w-full" />
-            </p>
-            <p>
-              2. (F) coiffeuse &rarr; (M)
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'coiffeur')"
-                class="w-full" />
-            </p>
-            <p>
-              3. (M) étudiant &rarr; (F)
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'étudiante')"
-                class="w-full" />
-            </p>
-            <p>
-              4. (F) infirmière &rarr; (M)
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'infirmier')"
-                class="w-full" />
-            </p>
-            <p>
-              5. (M) informaticien &rarr; (F)
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'informaticienne')"
-                class="w-full" />
-            </p>
-            <p>
-              6. (M) professeur &rarr; (F)
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'professeure')"
-                class="w-full" />
-            </p>
-            <p>
-              7. (M/F) fleuriste (masc.) &rarr; (F)
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'fleuriste')"
-                class="w-full" />
-            </p>
-            <p>
-              8. Paul est (acteur) &rarr;
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'acteur')"
-                class="w-2/3" />.
-            </p>
-          </div>
-          <!-- Columna 2 -->
-          <div class="space-y-4">
-            <p>
-              9. (F) actrice &rarr; (M)
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'acteur')"
-                class="w-full" />
-            </p>
-            <p>
-              10. (M) coiffeur &rarr; (F)
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'coiffeuse')"
-                class="w-full" />
-            </p>
-            <p>
-              11. (F) étudiante &rarr; (M)
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'étudiant')"
-                class="w-full" />
-            </p>
-            <p>
-              12. (M) infirmier &rarr; (F)
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'infirmière')"
-                class="w-full" />
-            </p>
-            <p>
-              13. (F) informaticienne &rarr; (M)
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'informaticien')"
-                class="w-full" />
-            </p>
-            <p>
-              14. (F) professeure &rarr; (M)
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'professeur')"
-                class="w-full" />
-            </p>
-            <p>
-              15. Marie est (informaticien) &rarr;
-              <input
-                type="text"
-                onkeyup="checkAnswer(this, 'informaticienne')"
-                class="w-2/3" />.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Page 41 + Ejercicios -->
-      <div class="content-box">
-        <h2 class="text-3xl font-bold mb-6 text-center">
-          Vocabulaire - Page 41
+      <!-- 2. Imagen Página 47 -->
+      <section class="mb-10">
+        <h2 class="text-3xl font-semibold text-yellow-300 mb-6">
+          Livre, page 47
         </h2>
         <img
-          src="./images/livre/page-041.png"
-          alt="Page 41 du livre"
-          class="rounded-lg shadow-md mb-8 w-full" />
+          src="./images/livre/page-047.png"
+          alt="Livre page 47"
+          class="w-full rounded-lg shadow-xl border border-gray-200"
+          onerror="this.src='https://placehold.co/800x600/e2e8f0/64748b?text=Image+page-047.png+introuvable'; this.alt='Image page-047.png non trouvée'" />
+      </section>
 
-        <!-- Ejercicio 2 -->
-        <h3 class="text-2xl font-bold mb-4">
-          2 | Choisissez la bonne réponse.
+      <!-- 3. Cuadro de Gramática -->
+      <section class="bg-gray-800 p-8 rounded-lg shadow-lg mb-10">
+        <h3 class="text-2xl font-semibold text-yellow-300 mb-6">
+          Grammaire : Les verbes 'payer' et 'acheter'
         </h3>
-        <div class="space-y-6 pl-4">
-          <div id="q2a">
-            <p class="font-semibold mb-2">a. Ma sœur a un mari. Elle est...</p>
-            <label class="flex items-center cursor-pointer"
-              ><input
-                type="radio"
-                name="q2a"
-                value="mariée"
-                onclick="checkRadioAnswer(this, 'mariée')" />
-              <span class="ml-3">mariée</span></label
-            >
-            <label class="flex items-center cursor-pointer"
-              ><input
-                type="radio"
-                name="q2a"
-                value="célibataire"
-                onclick="checkRadioAnswer(this, 'mariée')" />
-              <span class="ml-3">célibataire</span></label
-            >
-          </div>
-          <div id="q2b">
-            <p class="font-semibold mb-2">b. Elsa est la ... de mon frère.</p>
-            <label class="flex items-center cursor-pointer"
-              ><input
-                type="radio"
-                name="q2b"
-                value="femme"
-                onclick="checkRadioAnswer(this, 'femme')" />
-              <span class="ml-3">femme</span></label
-            >
-            <label class="flex items-center cursor-pointer"
-              ><input
-                type="radio"
-                name="q2b"
-                value="mari"
-                onclick="checkRadioAnswer(this, 'femme')" />
-              <span class="ml-3">mari</span></label
-            >
-          </div>
-          <div id="q2c">
-            <p class="font-semibold mb-2">
-              c. Hugo n'est pas marié. Thérèse est sa...
-            </p>
-            <label class="flex items-center cursor-pointer"
-              ><input
-                type="radio"
-                name="q2c"
-                value="femme"
-                onclick="checkRadioAnswer(this, 'femme')" />
-              <span class="ml-3">femme</span></label
-            >
-            <label class="flex items-center cursor-pointer"
-              ><input
-                type="radio"
-                name="q2c"
-                value="petite amie"
-                onclick="checkRadioAnswer(this, 'femme')" />
-              <span class="ml-3">petite amie</span></label
-            >
-          </div>
-          <div id="q2d">
-            <p class="font-semibold mb-2">
-              d. C'est le ... de mon oncle Laurent.
-            </p>
-            <label class="flex items-center cursor-pointer"
-              ><input
-                type="radio"
-                name="q2d"
-                value="marié"
-                onclick="checkRadioAnswer(this, 'mariage')" />
-              <span class="ml-3">marié</span></label
-            >
-            <label class="flex items-center cursor-pointer"
-              ><input
-                type="radio"
-                name="q2d"
-                value="mariage"
-                onclick="checkRadioAnswer(this, 'mariage')" />
-              <span class="ml-3">mariage</span></label
-            >
-          </div>
-        </div>
-
-        <!-- Ejercicio 3 -->
-        <h3 class="text-2xl font-bold mt-10 mb-4">3 | Associez.</h3>
-        <p class="text-gray-600 mb-6">
-          Associez la profession à la bonne image (1-5).
-        </p>
-        <div class="space-y-4 max-w-md">
-          <div class="flex items-center justify-between">
-            <label for="q3a">a. l'informaticien</label>
-            <select
-              id="q3a"
-              onchange="checkSelectAnswer(this, '2')"
-              class="w-32">
-              <option value="">...</option>
-              <option value="1">Image 1</option>
-              <option value="2">Image 2</option>
-              <option value="3">Image 3</option>
-              <option value="4">Image 4</option>
-              <option value="5">Image 5</option>
-            </select>
-          </div>
-          <div class="flex items-center justify-between">
-            <label for="q3b">b. la professeure</label>
-            <select
-              id="q3b"
-              onchange="checkSelectAnswer(this, '3')"
-              class="w-32">
-              <option value="">...</option>
-              <option value="1">Image 1</option>
-              <option value="2">Image 2</option>
-              <option value="3">Image 3</option>
-              <option value="4">Image 4</option>
-              <option value="5">Image 5</option>
-            </select>
-          </div>
-          <div class="flex items-center justify-between">
-            <label for="q3c">c. le fleuriste</label>
-            <select
-              id="q3c"
-              onchange="checkSelectAnswer(this, '5')"
-              class="w-32">
-              <option value="">...</option>
-              <option value="1">Image 1</option>
-              <option value="2">Image 2</option>
-              <option value="3">Image 3</option>
-              <option value="4">Image 4</option>
-              <option value="5">Image 5</option>
-            </select>
-          </div>
-          <div class="flex items-center justify-between">
-            <label for="q3d">d. l'infirmière</label>
-            <select
-              id="q3d"
-              onchange="checkSelectAnswer(this, '4')"
-              class="w-32">
-              <option value="">...</option>
-              <option value="1">Image 1</option>
-              <option value="2">Image 2</option>
-              <option value="3">Image 3</option>
-              <option value="4">Image 4</option>
-              <option value="5">Image 5</option>
-            </select>
-          </div>
-          <div class="flex items-center justify-between">
-            <label for="q3e">e. l'étudiante</label>
-            <select
-              id="q3e"
-              onchange="checkSelectAnswer(this, '1')"
-              class="w-32">
-              <option value="">...</option>
-              <option value="1">Image 1</option>
-              <option value="2">Image 2</option>
-              <option value="3">Image 3</option>
-              <option value="4">Image 4</option>
-              <option value="5">Image 5</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- Producción Oral -->
-      <div class="info-box info-box-blue">
-        <h3><i class="fas fa-comments"></i>Production orale</h3>
-        <p class="text-lg">À toi de présenter !</p>
-        <ul class="list-disc list-inside mt-2 space-y-1">
-          <li>Dessine un arbre généalogique (réel ou fictif).</li>
-          <li>
-            Attribue une profession (parmi celles que nous avons vues) à chaque
-            membre.
-          </li>
-          <li>Prépare une présentation orale pour le prochain cours.</li>
-        </ul>
-      </div>
-
-      <!-- Quizlet Link -->
-      <div class="content-box text-center">
-        <h3 class="text-2xl font-bold mb-4">Pratiquons le vocabulaire !</h3>
-        <a
-          href="https://quizlet.com/mx/1088566613/unite-2-flash-cards/"
-          target="_blank"
-          class="quizlet-link">
-          <i class="fas fa-bolt"></i> Pratiquons le vocabulaire essentiel
-        </a>
-      </div>
-
-      <!-- Devoirs -->
-      <div class="info-box info-box-green">
-        <h3><i class="fas fa-book"></i>Devoirs</h3>
-        <p class="text-lg">Pour le prochain cours, merci de compléter :</p>
-        <ul class="list-disc list-inside mt-2 space-y-2">
-          <li>
-            <strong>Page 25 (Cahier d'activités):</strong>
-            <ul class="list-circle list-inside ml-6">
-              <li>
-                Pour la "Production orale", enregistre-toi en simulant le
-                dialogue entre les deux personnes et envoie-le-moi par WhatsApp.
-              </li>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Payer -->
+          <div
+            class="bg-gray-700 border border-gray-600 p-6 rounded-lg shadow-sm">
+            <h4 class="text-xl font-bold text-yellow-300 mb-3">
+              Payer (pagar)
+            </h4>
+            <ul class="space-y-1 text-lg text-gray-200">
+              <li><strong>Je</strong> paie</li>
+              <li><strong>Tu</strong> paies</li>
+              <li><strong>Il/Elle/On</strong> paie</li>
+              <li><strong>Nous</strong> payons</li>
+              <li><strong>Vous</strong> payez</li>
+              <li><strong>Ils/Elles</strong> paient</li>
             </ul>
-          </li>
-          <li><strong>Page 26 (Cahier d'activités)</strong></li>
-          <li><strong>Page 27 (Cahier d'activités)</strong></li>
-        </ul>
-      </div>
-    </main>
+          </div>
+          <!-- Acheter -->
+          <div
+            class="bg-gray-700 border border-gray-600 p-6 rounded-lg shadow-sm">
+            <h4 class="text-xl font-bold text-yellow-300 mb-3">
+              Acheter (comprar)
+            </h4>
+            <ul class="space-y-1 text-lg text-gray-200">
+              <li><strong>J'</strong>achète</li>
+              <li><strong>Tu</strong> achètes</li>
+              <li><strong>Il/Elle/On</strong> achète</li>
+              <li><strong>Nous</strong> achetons</li>
+              <li><strong>Vous</strong> achetez</li>
+              <li><strong>Ils/Elles</strong> achètent</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
+      <!-- 4. Ejercicio de Plurales -->
+      <section class="bg-gray-800 p-8 rounded-lg shadow-lg mb-10">
+        <h3 class="text-2xl font-semibold text-yellow-300 mb-6">
+          Exercice : Transformez au pluriel
+        </h3>
+        <div class="space-y-6">
+          <!-- Pregunta A -->
+          <div class="flex flex-col sm:flex-row sm:items-center sm:gap-3">
+            <label for="pluriel-a" class="flex-shrink-0 text-lg"
+              >a. J’achète trois</label
+            >
+            <input
+              type="text"
+              id="pluriel-a"
+              name="pluriel-a"
+              class="w-full sm:w-auto flex-grow p-2 border border-gray-600 bg-gray-700 text-white rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 text-lg" />
+          </div>
+          <!-- Pregunta B -->
+          <div class="flex flex-col sm:flex-row sm:items-center sm:gap-3">
+            <label for="pluriel-b" class="flex-shrink-0 text-lg"
+              >b. Nous proposons des</label
+            >
+            <input
+              type="text"
+              id="pluriel-b"
+              name="pluriel-b"
+              class="w-full sm:w-auto flex-grow p-2 border border-gray-600 bg-gray-700 text-white rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 text-lg" />
+          </div>
+          <!-- Pregunta C -->
+          <div class="flex flex-col sm:flex-row sm:items-center sm:gap-3">
+            <label for="pluriel-c" class="flex-shrink-0 text-lg"
+              >c. Je voudrais deux</label
+            >
+            <input
+              type="text"
+              id="pluriel-c"
+              name="pluriel-c"
+              class="w-full sm:w-auto flex-grow p-2 border border-gray-600 bg-gray-700 text-white rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 text-lg" />
+            <span class="text-lg flex-shrink-0">d’huile d’olive.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Producción Escrita (Google Docs) -->
+      <section class="bg-gray-800 p-8 rounded-lg shadow-lg mb-10 text-center">
+        <h3 class="text-2xl font-semibold text-yellow-300 mb-4">
+          Production Écrite (Page 47)
+        </h3>
+        <p class="mb-6 text-lg text-gray-300">
+          Nous allons réaliser l'exercice de production écrite de la page 47 sur
+          Google Docs. Clique sur le bouton pour ouvrir le document.
+        </p>
+        <a
+          href="https://docs.google.com/document/d/1KO75hqp-5LVHtXWDq6kuHeVlZPK6HLU7ULw1bUkvYQg/edit?tab=t.hvx7k7kcfx9c"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block bg-yellow-400 text-gray-900 font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-yellow-500 transition duration-300 transform hover:-translate-y-1">
+          Ouvrir Google Docs
+        </a>
+      </section>
+
+      <!-- 6. Ejercicio Autocorregible de Verbos -->
+      <section class="bg-gray-800 p-8 rounded-lg shadow-lg mb-10">
+        <h3 class="text-2xl font-semibold text-yellow-300 mb-6">
+          Exercice : Conjugaison 'payer' et 'acheter'
+        </h3>
+        <p class="text-gray-300 mb-6">
+          Complète les phrases avec la forme correcte du verbe entre
+          parenthèses.
+        </p>
+
+        <form id="verb-quiz" class="space-y-4">
+          <!-- Aquí se generarán las 20 preguntas -->
+        </form>
+
+        <button
+          id="check-answers-btn"
+          class="mt-8 bg-green-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-green-700 transition duration-300">
+          Vérifier les réponses
+        </button>
+      </section>
+
+      <!-- 7. Imagen Página 48 -->
+      <section class="mb-10">
+        <h2 class="text-3xl font-semibold text-yellow-300 mb-6">
+          Livre, page 48
+        </h2>
+        <img
+          src="./images/livre/page-048.png"
+          alt="Livre page 48"
+          class="w-full rounded-lg shadow-xl border border-gray-200"
+          onerror="this.src='https://placehold.co/800x600/e2e8f0/64748b?text=Image+page-048.png+introuvable'; this.alt='Image page-048.png non trouvée'" />
+      </section>
+
+      <!-- 8. Tarea y Audio -->
+      <section class="bg-gray-800 text-white p-8 rounded-lg shadow-lg mb-10">
+        <h3 class="text-3xl font-semibold mb-6">Devoirs</h3>
+        <p class="text-xl text-gray-200 mb-4">
+          Pour la prochaine fois, fais les exercices du :
+        </p>
+        <p class="text-2xl font-bold text-yellow-300 mb-6">
+          Cahier d'activités, page 31.
+        </p>
+
+        <p class="text-md text-gray-300 mb-2">
+          Voici l'audio pour l'activité 2 :
+        </p>
+        <audio controls class="w-full">
+          <source src="./audio/cahier/page-31_act-2.mp3" type="audio/mpeg" />
+          Ton navigateur ne supporte pas l'élément audio. Voici un
+          <a
+            href="./audio/cahier/page-31_act-2.mp3"
+            class="text-yellow-300 underline hover:text-yellow-200"
+            >lien vers l'audio</a
+          >.
+        </audio>
+      </section>
+    </div>
+
+    <!-- JavaScript para el ejercicio autocorregible -->
     <script>
-      // Función para revisar respuestas de inputs de texto
-      function checkAnswer(element, correctAnswer) {
-        const userAnswer = element.value.toLowerCase().trim();
-        if (userAnswer === "") {
-          element.className = "w-full"; // Clase base
-          return;
-        }
-        if (userAnswer === correctAnswer.toLowerCase().trim()) {
-          element.classList.add("correct");
-          element.classList.remove("incorrect");
-        } else {
-          element.classList.add("incorrect");
-          element.classList.remove("correct");
-        }
-      }
+      document.addEventListener("DOMContentLoaded", function () {
+        const quizContainer = document.getElementById("verb-quiz");
+        const checkButton = document.getElementById("check-answers-btn");
 
-      // Función para revisar radio buttons
-      function checkRadioAnswer(radio, correctAnswer) {
-        const groupName = radio.name;
-        const allRadiosInGroup = document.querySelectorAll(
-          `input[name="${groupName}"]`
-        );
+        // Definir las preguntas y respuestas
+        const questions = [
+          { sentence: "Je ... (payer) l'addition.", answer: "paie" },
+          { sentence: "Tu ... (acheter) du pain.", answer: "achètes" },
+          { sentence: "Il ... (payer) en espèces.", answer: "paie" },
+          { sentence: "Elle ... (acheter) des fruits.", answer: "achète" },
+          { sentence: "Nous ... (payer) notre part.", answer: "payons" },
+          { sentence: "Nous ... (acheter) les billets.", answer: "achetons" },
+          { sentence: "Vous ... (payer) par carte.", answer: "payez" },
+          { sentence: "Vous ... (acheter) quoi ?", answer: "achetez" },
+          { sentence: "Ils ... (payer) les impôts.", answer: "paient" },
+          { sentence: "Elles ... (acheter) des robes.", answer: "achètent" },
+          { sentence: "J'... (acheter) un cadeau.", answer: "achète" },
+          { sentence: "Tu ... (payer) pour moi ?", answer: "paies" },
+          { sentence: "On ... (acheter) une pizza.", answer: "achète" },
+          {
+            sentence: "Nous ... (payer) toujours à l'heure.",
+            answer: "payons",
+          },
+          { sentence: "Vous ... (acheter) ce livre ?", answer: "achetez" },
+          {
+            sentence: "Ils ... (acheter) une nouvelle voiture.",
+            answer: "achètent",
+          },
+          { sentence: "Elles ... (payer) leurs dettes.", answer: "paient" },
+          { sentence: "Je ... (payer) le loyer.", answer: "paie" },
+          {
+            sentence: "Tu ... (acheter) des légumes au marché.",
+            answer: "achètes",
+          },
+          { sentence: "On ... (payer) 10 euros.", answer: "paie" },
+        ];
 
-        allRadiosInGroup.forEach((r) => {
-          r.nextElementSibling.classList.remove(
-            "correct-answer-text",
-            "wrong-answer-text"
-          );
+        // Generar el HTML de las preguntas
+        questions.forEach((q, index) => {
+          const questionId = `v-q-${index}`;
+          const feedbackId = `v-f-${index}`;
+
+          // Dividir la oración por '...' para insertar el input
+          const parts = q.sentence.split("...");
+
+          const questionHTML = `
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:gap-3">
+                        <label for="${questionId}" class="text-lg">
+                            ${index + 1}. ${parts[0]}
+                        </label>
+                        <input type="text" id="${questionId}" data-answer="${
+            q.answer
+          }" class="w-full sm:w-auto flex-grow p-2 border border-gray-600 bg-gray-700 text-white rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 text-lg">
+                        <label for="${questionId}" class="text-lg">
+                            ${parts[1]}
+                        </label>
+                        <span id="${feedbackId}" class="feedback"></span>
+                    </div>
+                `;
+          quizContainer.innerHTML += questionHTML;
         });
 
-        if (radio.value === correctAnswer) {
-          radio.nextElementSibling.classList.add("correct-answer-text");
-        } else {
-          radio.nextElementSibling.classList.add("wrong-answer-text");
-          const correctRadio = document.querySelector(
-            `input[name="${groupName}"][value="${correctAnswer}"]`
-          );
-          if (correctRadio) {
-            correctRadio.nextElementSibling.classList.add(
-              "correct-answer-text"
-            );
-          }
-        }
-      }
+        // Añadir el evento al botón de verificar
+        checkButton.addEventListener("click", function () {
+          questions.forEach((q, index) => {
+            const input = document.getElementById(`v-q-${index}`);
+            const feedback = document.getElementById(`v-f-${index}`);
+            const userAnswer = input.value.trim().toLowerCase();
+            const correctAnswer = q.answer.toLowerCase();
 
-      // Función para revisar selects (ejercicio de asociar)
-      function checkSelectAnswer(select, correctAnswer) {
-        if (select.value === "") {
-          select.classList.remove("correct", "incorrect");
-          return;
-        }
-        if (select.value === correctAnswer) {
-          select.classList.add("correct");
-          select.classList.remove("incorrect");
-        } else {
-          select.classList.add("incorrect");
-          select.classList.remove("correct");
-        }
-      }
+            if (userAnswer === correctAnswer) {
+              feedback.textContent = "Correct !";
+              feedback.className = "feedback correct";
+              input.classList.remove("border-red-500");
+              input.classList.add("border-green-500");
+            } else {
+              feedback.textContent = `Incorrect. (Réponse : ${q.answer})`;
+              feedback.className = "feedback incorrect";
+              input.classList.remove("border-green-500");
+              input.classList.add("border-red-500");
+            }
+          });
+        });
+      });
     </script>
   </body>
 </html>
