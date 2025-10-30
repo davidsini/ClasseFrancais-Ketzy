@@ -3,305 +3,666 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Session de Français - Ketzy</title>
-    <!-- Carga de Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Cours de Français A1 - Pour Ketzy</title>
+
+    <!-- Styles CSS purs - Plus besoin de Tailwind -->
     <style>
-      /* Fuente Inter de Tailwind */
+      /* Styles de base */
       body {
+        background-color: #1a202c; /* fond-sombre */
+        color: #edf2f7; /* texte-principal (gris clair) */
         font-family: "Inter", sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
       }
-      /* Estilos para los mensajes de retroalimentación */
-      .feedback {
-        font-size: 0.9rem;
-        font-weight: 500;
-        margin-left: 10px;
+
+      /* Conteneur principal centré */
+      .container {
+        width: 100%;
+        max-width: 64rem; /* 1024px */
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1.5rem; /* 24px */
+        box-sizing: border-box;
       }
+
+      @media (min-width: 640px) {
+        .container {
+          padding: 2.5rem; /* 40px */
+        }
+      }
+
+      /* --- STYLES DE TEXTE --- */
+      h1,
+      h2,
+      h3 {
+        color: white;
+        font-weight: bold;
+      }
+
+      h1 {
+        font-size: 2.25rem; /* 36px */
+        margin-bottom: 1rem;
+        color: #fbbf24; /* accent-400 */
+      }
+
+      h2 {
+        font-size: 1.875rem; /* 30px */
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #f59e0b; /* accent-500 */
+      }
+
+      h3 {
+        font-size: 1.25rem; /* 20px */
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        color: #fbbf24; /* accent-400 */
+      }
+
+      p {
+        margin-bottom: 1.5rem;
+        color: #edf2f7; /* S'assure que tout le texte de paragraphe est clair */
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .subtitle {
+        font-size: 1.5rem; /* 24px */
+        color: #edf2f7;
+      }
+
+      main {
+        /* Simule le 'space-y-16' de Tailwind */
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+      }
+
+      /* --- COMPOSANTS --- */
+
+      /* Conteneur pour l'image */
+      .img-container {
+        background-color: #2d3748;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid #4a5568;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 0.375rem; /* 6px */
+      }
+
+      /* "Carte" pour les exercices et audios */
+      .card {
+        background-color: #2d3748;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid #4a5568;
+      }
+
+      /* Simule le 'space-y-4' ou 'space-y-6' */
+      .card > *:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+
+      /* Entrées d'exercice */
+      .exercice-input {
+        background-color: #2d3748;
+        border: 1px solid #4a5568;
+        border-radius: 0.375rem;
+        padding: 0.25rem 0.5rem;
+        color: white;
+        margin: 0 0.25rem;
+        width: 120px; /* Largeur fixe pour l'alignement */
+      }
+
+      .exercice-input:focus {
+        outline: none;
+        border-color: #f59e0b;
+        box-shadow: 0 0 0 2px #f59e0b55;
+      }
+
+      /* --- BOUTONS --- */
+      .btn {
+        display: inline-block;
+        font-weight: bold;
+        padding: 0.6rem 1.25rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        margin-top: 1.5rem; /* Remplace mt-6 */
+      }
+
+      .btn-primaire {
+        background-color: #f59e0b;
+        color: #1a202c;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+      .btn-primaire:hover {
+        background-color: #fbbf24;
+      }
+
+      .grid-links {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 768px) {
+        .grid-links {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .btn-lien {
+        display: block;
+        background-color: #2d3748;
+        border: 2px solid #f59e0b;
+        color: #fbbf24;
+        text-align: center;
+        font-size: 1.125rem;
+        padding: 1rem;
+        margin-top: 0; /* Annule le margin-top de .btn */
+      }
+      .btn-lien:hover {
+        background-color: #4a5568;
+        color: white;
+      }
+
+      .btn-lien span {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: normal;
+        color: #a0aec0; /* gris clair */
+      }
+
+      /* --- TABLE --- */
+      table {
+        min-width: 100%;
+        background-color: #2d3748;
+        text-align: left;
+        border-collapse: collapse; /* Important */
+        border-radius: 0.5rem;
+        overflow: hidden; /* Pour que le radius s'applique aux coins */
+        border: 1px solid #4a5568;
+      }
+
+      th,
+      td {
+        padding: 1rem;
+      }
+
+      thead {
+        background-color: #4a5568;
+        color: white;
+        font-size: 1.125rem;
+      }
+
+      tbody tr {
+        border-bottom: 1px solid #4a5568;
+      }
+
+      tbody tr:last-child {
+        border-bottom: none;
+      }
+
+      tbody tr:hover {
+        background-color: #4a5568;
+      }
+
+      .verb-conjugation {
+        font-size: 1.5rem; /* 24px */
+        color: #fbbf24; /* Garde la conjugaison en couleur pour la clarté */
+      }
+
+      td.italic {
+        font-style: italic;
+        color: #a0aec0;
+      }
+
+      /* --- AUDIO --- */
+      audio {
+        width: 100%;
+        border-radius: 0.5rem;
+        filter: invert(100%) sepia(80%) saturate(600%) hue-rotate(320deg)
+          brightness(1.2);
+      }
+
+      /* --- FEEDBACK EXERCICE --- */
       .correct {
-        color: #22c55e; /* green-500 */
+        background-color: #c6f6d5;
+        border-color: #38a169;
+        color: #22543d;
       }
+
       .incorrect {
-        color: #ef4444; /* red-500 */
+        background-color: #fed7d7;
+        border-color: #c53030;
+        color: #742a2a;
+      }
+
+      .feedback {
+        margin-top: 1rem;
+        font-size: 1.125rem;
+        font-weight: 500;
+      }
+      .feedback-correct {
+        color: #68d391; /* Vert clair */
+      }
+      .feedback-incorrect {
+        color: #f6ad55; /* Jaune/Orange clair */
+      }
+
+      .devoirs-intro {
+        font-size: 1.5rem;
+        color: white;
       }
     </style>
   </head>
-  <body class="bg-gray-900 text-gray-300 font-sans">
-    <!-- Contenedor Principal -->
-    <div class="container max-w-4xl mx-auto p-6 sm:p-10">
-      <h1 class="text-4xl font-bold text-yellow-400 mb-6 text-center">
-        Bonjour Ketzy! Prête ?
-      </h1>
 
-      <!-- 1. Enlace a Quizlet -->
-      <section class="bg-gray-800 p-8 rounded-lg shadow-lg mb-10 text-center">
-        <h2 class="text-2xl font-semibold text-yellow-300 mb-4">
-          Commençons !
-        </h2>
-        <p class="text-lg text-gray-300 mb-6">D'abord, révisons un peu.</p>
-        <a
-          href="https://quizlet.com/mx/1098448192/unite-3-flash-cards/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-block bg-yellow-400 text-gray-900 font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-yellow-500 transition duration-300 transform hover:-translate-y-1">
-          Pratiquons le vocabulaire que nous avons vu jusqu'à présent
-        </a>
-      </section>
+  <body>
+    <!-- Conteneur principal -->
+    <div class="container">
+      <header>
+        <h1>Au magasin et les déplacements</h1>
+      </header>
 
-      <!-- 2. Imagen Página 47 -->
-      <section class="mb-10">
-        <h2 class="text-3xl font-semibold text-yellow-300 mb-6">
-          Livre, page 47
-        </h2>
-        <img
-          src="./images/livre/page-047.png"
-          alt="Livre page 47"
-          class="w-full rounded-lg shadow-xl border border-gray-200"
-          onerror="this.src='https://placehold.co/800x600/e2e8f0/64748b?text=Image+page-047.png+introuvable'; this.alt='Image page-047.png non trouvée'" />
-      </section>
-
-      <!-- 3. Cuadro de Gramática -->
-      <section class="bg-gray-800 p-8 rounded-lg shadow-lg mb-10">
-        <h3 class="text-2xl font-semibold text-yellow-300 mb-6">
-          Grammaire : Les verbes 'payer' et 'acheter'
-        </h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Payer -->
-          <div
-            class="bg-gray-700 border border-gray-600 p-6 rounded-lg shadow-sm">
-            <h4 class="text-xl font-bold text-yellow-300 mb-3">
-              Payer (pagar)
-            </h4>
-            <ul class="space-y-1 text-lg text-gray-200">
-              <li><strong>Je</strong> paie</li>
-              <li><strong>Tu</strong> paies</li>
-              <li><strong>Il/Elle/On</strong> paie</li>
-              <li><strong>Nous</strong> payons</li>
-              <li><strong>Vous</strong> payez</li>
-              <li><strong>Ils/Elles</strong> paient</li>
-            </ul>
+      <main>
+        <!-- Section 1: Dialogue (Image) -->
+        <section>
+          <h2>1. Au magasin (Livre p. 48)</h2>
+          <div class="img-container">
+            <img
+              src="./images/livre/page-048.png"
+              alt="Dialogue du livre page 48"
+              onerror="this.src='https://placehold.co/800x600/1a202c/FBBF24?text=Image+page-048.png+non+trouv%E9e'; this.onerror=null;" />
           </div>
-          <!-- Acheter -->
-          <div
-            class="bg-gray-700 border border-gray-600 p-6 rounded-lg shadow-sm">
-            <h4 class="text-xl font-bold text-yellow-300 mb-3">
-              Acheter (comprar)
-            </h4>
-            <ul class="space-y-1 text-lg text-gray-200">
-              <li><strong>J'</strong>achète</li>
-              <li><strong>Tu</strong> achètes</li>
-              <li><strong>Il/Elle/On</strong> achète</li>
-              <li><strong>Nous</strong> achetons</li>
-              <li><strong>Vous</strong> achetez</li>
-              <li><strong>Ils/Elles</strong> achètent</li>
-            </ul>
+        </section>
+        <!-- Section 2: Exercice (Acheter/Payer/Voudrais) -->
+        <section id="section-exercice-1">
+          <h2>2. Exercice : "Je voudrais..."</h2>
+          <p>
+            Complète les phrases avec la bonne conjugaison de "acheter", "payer"
+            ou l'expression "je voudrais".
+          </p>
+
+          <div id="exercice-1" class="card">
+            <p>
+              1. Bonjour,
+              <input
+                type="text"
+                data-answer="je voudrais"
+                class="exercice-input" />
+              un kilo de pommes, s'il vous plaît.
+            </p>
+            <p>
+              2. Combien est-ce que tu
+              <input
+                type="text"
+                data-answer="paies|payes"
+                class="exercice-input" />
+              pour le fromage ?
+            </p>
+            <p>
+              3. Ma mère
+              <input type="text" data-answer="achète" class="exercice-input" />
+              toujours son pain à la boulangerie du coin.
+            </p>
+            <p>
+              4. Nous
+              <input type="text" data-answer="payons" class="exercice-input" />
+              par carte de crédit.
+            </p>
+            <p>
+              5. Qu'est-ce que vous
+              <input type="text" data-answer="achetez" class="exercice-input" />
+              au marché ?
+            </p>
+            <p>
+              6. (Politesse)
+              <input
+                type="text"
+                data-answer="je voudrais"
+                class="exercice-input" />
+              parler à M. Dubois.
+            </p>
+            <p>
+              7. Ils
+              <input
+                type="text"
+                data-answer="paient|payent"
+                class="exercice-input" />
+              l'addition au restaurant.
+            </p>
+            <p>
+              8. Est-ce que tu
+              <input type="text" data-answer="achètes" class="exercice-input" />
+              des légumes bio ?
+            </p>
+
+            <!-- 7 NOUVEAUX INCISOS -->
+            <p>
+              9. Nous
+              <input
+                type="text"
+                data-answer="achetons"
+                class="exercice-input" />
+              des fruits pour le dessert.
+            </p>
+            <p>
+              10. (Politesse)
+              <input
+                type="text"
+                data-answer="je voudrais"
+                class="exercice-input" />
+              une baguette, s'il vous plaît.
+            </p>
+            <p>
+              11. Comment est-ce que vous
+              <input type="text" data-answer="payez" class="exercice-input" /> ?
+              En espèces ?
+            </p>
+            <p>
+              12. Ils
+              <input
+                type="text"
+                data-answer="achètent"
+                class="exercice-input" />
+              toujours leurs légumes au marché.
+            </p>
+            <p>
+              13. On
+              <input type="text" data-answer="achète" class="exercice-input" />
+              du fromage pour ce soir ?
+            </p>
+            <p>
+              14. (Politesse)
+              <input
+                type="text"
+                data-answer="je voudrais"
+                class="exercice-input" />
+              réserver une table pour deux.
+            </p>
+            <p>
+              15. Tu
+              <input
+                type="text"
+                data-answer="paies|payes"
+                class="exercice-input" />
+              combien pour ces chaussures ?
+            </p>
           </div>
-        </div>
-      </section>
 
-      <!-- 4. Ejercicio de Plurales -->
-      <section class="bg-gray-800 p-8 rounded-lg shadow-lg mb-10">
-        <h3 class="text-2xl font-semibold text-yellow-300 mb-6">
-          Exercice : Transformez au pluriel
-        </h3>
-        <div class="space-y-6">
-          <!-- Pregunta A -->
-          <div class="flex flex-col sm:flex-row sm:items-center sm:gap-3">
-            <label for="pluriel-a" class="flex-shrink-0 text-lg"
-              >a. J’achète trois</label
-            >
-            <input
-              type="text"
-              id="pluriel-a"
-              name="pluriel-a"
-              class="w-full sm:w-auto flex-grow p-2 border border-gray-600 bg-gray-700 text-white rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 text-lg" />
+          <button id="check-ex1" class="btn btn-primaire">
+            Vérifier l'exercice 1
+          </button>
+          <div id="feedback-ex1" class="feedback"></div>
+        </section>
+
+        <!-- Section 3: Table (Aller) -->
+        <section>
+          <h2>3. Le verbe "Aller"</h2>
+          <p>
+            "Aller" est un verbe très important (et irrégulier !). Voici sa
+            conjugaison au présent :
+          </p>
+
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Pronom</th>
+                  <th>Conjugaison</th>
+                  <th>Exemple</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Je</td>
+                  <td><strong class="verb-conjugation">vais</strong></td>
+                  <td class="italic">Je vais au parc.</td>
+                </tr>
+                <tr>
+                  <td>Tu</td>
+                  <td><strong class="verb-conjugation">vas</strong></td>
+                  <td class="italic">Tu vas à l'école.</td>
+                </tr>
+                <tr>
+                  <td>Il / Elle / On</td>
+                  <td><strong class="verb-conjugation">va</strong></td>
+                  <td class="italic">On va au cinéma.</td>
+                </tr>
+                <tr>
+                  <td>Nous</td>
+                  <td><strong class="verb-conjugation">allons</strong></td>
+                  <td class="italic">Nous allons à la piscine.</td>
+                </tr>
+                <tr>
+                  <td>Vous</td>
+                  <td><strong class="verb-conjugation">allez</strong></td>
+                  <td class="italic">Vous allez chez le médecin.</td>
+                </tr>
+                <tr>
+                  <td>Ils / Elles</td>
+                  <td><strong class="verb-conjugation">vont</strong></td>
+                  <td class="italic">Elles vont aux États-Unis.</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <!-- Pregunta B -->
-          <div class="flex flex-col sm:flex-row sm:items-center sm:gap-3">
-            <label for="pluriel-b" class="flex-shrink-0 text-lg"
-              >b. Nous proposons des</label
-            >
-            <input
-              type="text"
-              id="pluriel-b"
-              name="pluriel-b"
-              class="w-full sm:w-auto flex-grow p-2 border border-gray-600 bg-gray-700 text-white rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 text-lg" />
+        </section>
+
+        <!-- Section 4: Exercice (Aller) -->
+        <section id="section-exercice-2">
+          <h2>4. Exercice : Où vas-tu ?</h2>
+          <p>
+            Complète les 15 phrases avec la bonne conjugaison du verbe "aller".
+          </p>
+
+          <div id="exercice-2" class="card">
+            <p>
+              1. Je
+              <input type="text" data-answer="vais" class="exercice-input" /> à
+              la <strong>boulangerie</strong> pour acheter du pain.
+            </p>
+            <p>
+              2. Où est-ce que tu
+              <input type="text" data-answer="vas" class="exercice-input" /> ce
+              week-end ?
+            </p>
+            <p>
+              3. Ma sœur
+              <input type="text" data-answer="va" class="exercice-input" /> à la
+              <strong>pharmacie</strong>.
+            </p>
+            <p>
+              4. Nous
+              <input type="text" data-answer="allons" class="exercice-input" />
+              au <strong>supermarché</strong> ensemble.
+            </p>
+            <p>
+              5. Vous
+              <input type="text" data-answer="allez" class="exercice-input" />
+              souvent à la <strong>fromagerie</strong> ?
+            </p>
+            <p>
+              6. Les enfants
+              <input type="text" data-answer="vont" class="exercice-input" /> à
+              l'école en bus.
+            </p>
+            <p>
+              7. On
+              <input type="text" data-answer="va" class="exercice-input" /> au
+              restaurant ce soir ?
+            </p>
+            <p>
+              8. Je
+              <input type="text" data-answer="vais" class="exercice-input" />
+              chez le <strong>boucher</strong> pour la viande.
+            </p>
+            <p>
+              9. Tes parents
+              <input type="text" data-answer="vont" class="exercice-input" /> en
+              France cet été.
+            </p>
+            <p>
+              10. Tu
+              <input type="text" data-answer="vas" class="exercice-input" /> à
+              la <strong>poissonnerie</strong> ?
+            </p>
+            <p>
+              11. Pourquoi est-ce que vous
+              <input type="text" data-answer="allez" class="exercice-input" /> à
+              la gare ?
+            </p>
+            <p>
+              12. Nous
+              <input type="text" data-answer="allons" class="exercice-input" />
+              à la <strong>boucherie-charcuterie</strong>.
+            </p>
+            <p>
+              13. Le professeur
+              <input type="text" data-answer="va" class="exercice-input" /> au
+              bureau.
+            </p>
+            <p>
+              14. Je
+              <input type="text" data-answer="vais" class="exercice-input" />
+              bien, merci.
+            </p>
+            <p>
+              15. Mes amis
+              <input type="text" data-answer="vont" class="exercice-input" /> à
+              la <strong>pâtisserie</strong> pour un gâteau.
+            </p>
           </div>
-          <!-- Pregunta C -->
-          <div class="flex flex-col sm:flex-row sm:items-center sm:gap-3">
-            <label for="pluriel-c" class="flex-shrink-0 text-lg"
-              >c. Je voudrais deux</label
-            >
-            <input
-              type="text"
-              id="pluriel-c"
-              name="pluriel-c"
-              class="w-full sm:w-auto flex-grow p-2 border border-gray-600 bg-gray-700 text-white rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 text-lg" />
-            <span class="text-lg flex-shrink-0">d’huile d’olive.</span>
+
+          <button id="check-ex2" class="btn btn-primaire">
+            Vérifier l'exercice 2
+          </button>
+          <div id="feedback-ex2" class="feedback"></div>
+        </section>
+
+        <!-- Section 5 & 6: Liens -->
+        <section>
+          <h2>5. Activités supplémentaires</h2>
+          <p>Pratiquons un peu plus !</p>
+
+          <div class="grid-links">
+            <!-- Lien Freeform -->
+            <a
+              href="https://www.icloud.com/freeform-copy/ADB77708-FC4A-498F-B38C-0C046AB7ED0E"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-lien">
+              Révisons la grammaire ! (Freeform)
+              <span>Ouvre notre tableau collaboratif</span>
+            </a>
+
+            <!-- Lien Kahoot -->
+            <a
+              href="https://create.kahoot.it/share/aller-au-a-la-a-l-aux/1c42437f-32ac-4999-b170-65ad9e2691f2"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-lien">
+              Jouer au Kahoot !
+              <span>Aller + au, à la, à l', aux</span>
+            </a>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- 5. Producción Escrita (Google Docs) -->
-      <section class="bg-gray-800 p-8 rounded-lg shadow-lg mb-10 text-center">
-        <h3 class="text-2xl font-semibold text-yellow-300 mb-4">
-          Production Écrite (Page 47)
-        </h3>
-        <p class="mb-6 text-lg text-gray-300">
-          Nous allons réaliser l'exercice de production écrite de la page 47 sur
-          Google Docs. Clique sur le bouton pour ouvrir le document.
-        </p>
-        <a
-          href="https://docs.google.com/document/d/1KO75hqp-5LVHtXWDq6kuHeVlZPK6HLU7ULw1bUkvYQg/edit?tab=t.hvx7k7kcfx9c"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-block bg-yellow-400 text-gray-900 font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-yellow-500 transition duration-300 transform hover:-translate-y-1">
-          Ouvrir Google Docs
-        </a>
-      </section>
+        <!-- Section 7: Devoirs -->
+        <section>
+          <h2>6. Devoirs (Homework)</h2>
+          <p class="devoirs-intro">
+            Faire les <strong>pages 32 et 33</strong> du Cahier d'Activités.
+          </p>
+          <p>Voici les audios nécessaires pour tes exercices :</p>
 
-      <!-- 6. Ejercicio Autocorregible de Verbos -->
-      <section class="bg-gray-800 p-8 rounded-lg shadow-lg mb-10">
-        <h3 class="text-2xl font-semibold text-yellow-300 mb-6">
-          Exercice : Conjugaison 'payer' et 'acheter'
-        </h3>
-        <p class="text-gray-300 mb-6">
-          Complète les phrases avec la forme correcte du verbe entre
-          parenthèses.
-        </p>
+          <div class="card">
+            <!-- Audio 1 -->
+            <div>
+              <h3>Piste 029</h3>
+              <audio controls>
+                <source src="./audio/cahier/piste_029.mp3" type="audio/mpeg" />
+                Ton navigateur ne supporte pas l'élément audio. (piste_029.mp3)
+              </audio>
+            </div>
 
-        <form id="verb-quiz" class="space-y-4">
-          <!-- Aquí se generarán las 20 preguntas -->
-        </form>
-
-        <button
-          id="check-answers-btn"
-          class="mt-8 bg-green-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-green-700 transition duration-300">
-          Vérifier les réponses
-        </button>
-      </section>
-
-      <!-- 7. Imagen Página 48 -->
-      <section class="mb-10">
-        <h2 class="text-3xl font-semibold text-yellow-300 mb-6">
-          Livre, page 48
-        </h2>
-        <img
-          src="./images/livre/page-048.png"
-          alt="Livre page 48"
-          class="w-full rounded-lg shadow-xl border border-gray-200"
-          onerror="this.src='https://placehold.co/800x600/e2e8f0/64748b?text=Image+page-048.png+introuvable'; this.alt='Image page-048.png non trouvée'" />
-      </section>
-
-      <!-- 8. Tarea y Audio -->
-      <section class="bg-gray-800 text-white p-8 rounded-lg shadow-lg mb-10">
-        <h3 class="text-3xl font-semibold mb-6">Devoirs</h3>
-        <p class="text-xl text-gray-200 mb-4">
-          Pour la prochaine fois, fais les exercices du :
-        </p>
-        <p class="text-2xl font-bold text-yellow-300 mb-6">
-          Cahier d'activités, page 31.
-        </p>
-
-        <p class="text-md text-gray-300 mb-2">
-          Voici l'audio pour l'activité 2 :
-        </p>
-        <audio controls class="w-full">
-          <source src="./audio/cahier/page-31_act-2.mp3" type="audio/mpeg" />
-          Ton navigateur ne supporte pas l'élément audio. Voici un
-          <a
-            href="./audio/cahier/page-31_act-2.mp3"
-            class="text-yellow-300 underline hover:text-yellow-200"
-            >lien vers l'audio</a
-          >.
-        </audio>
-      </section>
+            <!-- Audio 2 -->
+            <div>
+              <h3>Piste 030</h3>
+              <audio controls>
+                <source src="./audio/cahier/piste_030.mp3" type="audio/mpeg" />
+                Ton navigateur ne supporte pas l'élément audio. (piste_030.mp3)
+              </audio>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
 
-    <!-- JavaScript para el ejercicio autocorregible -->
+    <!-- Script pour les exercices autocorrectibles -->
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const quizContainer = document.getElementById("verb-quiz");
-        const checkButton = document.getElementById("check-answers-btn");
+      document.addEventListener("DOMContentLoaded", () => {
+        function checkExercice(containerId, feedbackId) {
+          const container = document.getElementById(containerId);
+          const feedbackEl = document.getElementById(feedbackId);
+          const inputs = container.querySelectorAll("input[data-answer]");
 
-        // Definir las preguntas y respuestas
-        const questions = [
-          { sentence: "Je ... (payer) l'addition.", answer: "paie" },
-          { sentence: "Tu ... (acheter) du pain.", answer: "achètes" },
-          { sentence: "Il ... (payer) en espèces.", answer: "paie" },
-          { sentence: "Elle ... (acheter) des fruits.", answer: "achète" },
-          { sentence: "Nous ... (payer) notre part.", answer: "payons" },
-          { sentence: "Nous ... (acheter) les billets.", answer: "achetons" },
-          { sentence: "Vous ... (payer) par carte.", answer: "payez" },
-          { sentence: "Vous ... (acheter) quoi ?", answer: "achetez" },
-          { sentence: "Ils ... (payer) les impôts.", answer: "paient" },
-          { sentence: "Elles ... (acheter) des robes.", answer: "achètent" },
-          { sentence: "J'... (acheter) un cadeau.", answer: "achète" },
-          { sentence: "Tu ... (payer) pour moi ?", answer: "paies" },
-          { sentence: "On ... (acheter) une pizza.", answer: "achète" },
-          {
-            sentence: "Nous ... (payer) toujours à l'heure.",
-            answer: "payons",
-          },
-          { sentence: "Vous ... (acheter) ce livre ?", answer: "achetez" },
-          {
-            sentence: "Ils ... (acheter) une nouvelle voiture.",
-            answer: "achètent",
-          },
-          { sentence: "Elles ... (payer) leurs dettes.", answer: "paient" },
-          { sentence: "Je ... (payer) le loyer.", answer: "paie" },
-          {
-            sentence: "Tu ... (acheter) des légumes au marché.",
-            answer: "achètes",
-          },
-          { sentence: "On ... (payer) 10 euros.", answer: "paie" },
-        ];
+          let correctCount = 0;
 
-        // Generar el HTML de las preguntas
-        questions.forEach((q, index) => {
-          const questionId = `v-q-${index}`;
-          const feedbackId = `v-f-${index}`;
+          inputs.forEach((input) => {
+            const userValue = input.value.trim().toLowerCase();
+            const correctAnswers = input.dataset.answer
+              .toLowerCase()
+              .split("|");
 
-          // Dividir la oración por '...' para insertar el input
-          const parts = q.sentence.split("...");
+            input.classList.remove("correct", "incorrect");
 
-          const questionHTML = `
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:gap-3">
-                        <label for="${questionId}" class="text-lg">
-                            ${index + 1}. ${parts[0]}
-                        </label>
-                        <input type="text" id="${questionId}" data-answer="${
-            q.answer
-          }" class="w-full sm:w-auto flex-grow p-2 border border-gray-600 bg-gray-700 text-white rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 text-lg">
-                        <label for="${questionId}" class="text-lg">
-                            ${parts[1]}
-                        </label>
-                        <span id="${feedbackId}" class="feedback"></span>
-                    </div>
-                `;
-          quizContainer.innerHTML += questionHTML;
-        });
-
-        // Añadir el evento al botón de verificar
-        checkButton.addEventListener("click", function () {
-          questions.forEach((q, index) => {
-            const input = document.getElementById(`v-q-${index}`);
-            const feedback = document.getElementById(`v-f-${index}`);
-            const userAnswer = input.value.trim().toLowerCase();
-            const correctAnswer = q.answer.toLowerCase();
-
-            if (userAnswer === correctAnswer) {
-              feedback.textContent = "Correct !";
-              feedback.className = "feedback correct";
-              input.classList.remove("border-red-500");
-              input.classList.add("border-green-500");
+            if (correctAnswers.includes(userValue)) {
+              input.classList.add("correct");
+              correctCount++;
             } else {
-              feedback.textContent = `Incorrect. (Réponse : ${q.answer})`;
-              feedback.className = "feedback incorrect";
-              input.classList.remove("border-green-500");
-              input.classList.add("border-red-500");
+              input.classList.add("incorrect");
             }
           });
-        });
+
+          // Afficher le feedback (MAINTENANT AVEC DES CLASSES CSS PURES)
+          if (correctCount === inputs.length) {
+            feedbackEl.textContent = "Félicitations ! Tout est correct !";
+            feedbackEl.className = "feedback feedback-correct"; // Changé
+          } else {
+            feedbackEl.textContent = `Tu as ${correctCount} réponses correctes sur ${inputs.length}. Continue !`;
+            feedbackEl.className = "feedback feedback-incorrect"; // Changé
+          }
+        }
+
+        // Attacher les événements aux boutons
+        const btnEx1 = document.getElementById("check-ex1");
+        if (btnEx1) {
+          btnEx1.addEventListener("click", () => {
+            checkExercice("exercice-1", "feedback-ex1");
+          });
+        }
+
+        const btnEx2 = document.getElementById("check-ex2");
+        if (btnEx2) {
+          btnEx2.addEventListener("click", () => {
+            checkExercice("exercice-2", "feedback-ex2");
+          });
+        }
       });
     </script>
   </body>
