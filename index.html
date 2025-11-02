@@ -1,524 +1,549 @@
 <!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Français - Séance 4</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
-      rel="stylesheet" />
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours de Français A1 - Pour Ketzy (Leçon 6)</title>
+    
+    <!-- Styles personnalisés (Thème sombre sans Tailwind) -->
     <style>
-      body {
-        font-family: "Inter", sans-serif;
-        background-color: #f9fafb;
-        scroll-behavior: smooth;
-      }
-      h1,
-      h2,
-      h3,
-      h4 {
-        font-family: "Lora", serif;
-      }
-      .content-box {
-        background-color: white;
-        border-radius: 0.75rem;
-        padding: 1.5rem 2rem;
-        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
-          0 2px 4px -2px rgb(0 0 0 / 0.1);
-        margin-bottom: 2.5rem;
-      }
-      .correct {
-        border-color: #4ade80 !important;
-        background-color: #f0fdf4;
-      }
-      .incorrect {
-        border-color: #f87171 !important;
-        background-color: #fef2f2;
-      }
-      .neutral {
-        border-color: #d1d5db;
-        background-color: white;
-      }
-      input,
-      select {
-        transition: all 0.2s ease-in-out;
-        border: 2px solid #d1d5db;
-      }
-      .quiz-question input {
-        border: 2px solid #d1d5db;
-      }
-      .result-view .quiz-question input {
-        pointer-events: none;
-      }
-      .result-view .correct-answer {
-        color: #16a34a;
-        font-weight: bold;
-      }
-      .kahoot-embed {
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        padding-top: 56.25%; /* 16:9 Aspect Ratio */
-      }
-      .kahoot-embed iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-      }
+        body {
+            background-color: #1a202c; /* Fondo principal oscuro */
+            color: #edf2f7; /* Texto claro */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3 {
+            color: white;
+            font-weight: bold;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        h1 {
+            font-size: 2.25rem; /* 36px */
+            margin-bottom: 1rem;
+            color: #FBBF24; /* accent-400 */
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 1.875rem; /* 30px */
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #F59E0B; /* accent-500 */
+        }
+
+        h3 {
+            font-size: 1.25rem; /* 20px */
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #FBBF24; /* accent-400 */
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* --- STYLES DU CONTENEUR (CENTRAGE) --- */
+        .container {
+            width: 100%;
+            max-width: 64rem; /* 1024px */
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1.5rem; /* 24px */
+            box-sizing: border-box; 
+        }
+
+        @media (min-width: 640px) {
+            .container {
+                padding: 2.5rem; /* 40px */
+            }
+        }
+        /* --- FIN DES STYLES DU CONTENEUR --- */
+
+        /* Styles pour les sections d'exercices */
+        .card {
+            background-color: #2d3748;
+            border: 1px solid #4a5568;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .card p {
+            margin-bottom: 0.75rem;
+        }
+
+        /* Entrées de exercices */
+        .exercice-input {
+            background-color: #1a202c;
+            border: 1px solid #4a5568;
+            border-radius: 0.375rem;
+            padding: 0.25rem 0.5rem;
+            color: white;
+            font-size: 0.95rem;
+            margin: 0 0.25rem;
+        }
+        
+        .exercice-input:focus {
+            outline: none;
+            border-color: #F59E0B;
+            box-shadow: 0 0 0 2px #f59e0b55;
+        }
+        
+        /* Styles pour les réponses Vrai/Faux */
+        .radio-group label, .checkbox-group label {
+            margin-right: 1rem;
+        }
+
+        /* Classes de validation */
+        .correct {
+            border: 2px solid #48BB78 !important; /* green-500 */
+            background-color: #2F4C39 !important;
+        }
+        
+        .incorrect {
+            border: 2px solid #F56565 !important; /* red-500 */
+            background-color: #553030 !important;
+        }
+        
+        .feedback {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+        }
+        
+        .feedback-correct {
+            color: #9AE6B4; /* green-300 */
+            background-color: #2F4C39;
+        }
+        
+        .feedback-incorrect {
+            color: #FEB2B2; /* red-300 */
+            background-color: #553030;
+        }
+
+        /* Boutons */
+        .btn {
+            display: inline-block;
+            font-weight: bold;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .btn-primaire {
+            background-color: #F59E0B; /* accent-500 */
+            color: #1a202c;
+        }
+        
+        .btn-primaire:hover {
+            background-color: #FBBF24; /* accent-400 */
+        }
+        
+        .btn-lien {
+            background-color: #2d3748;
+            border: 2px solid #F59E0B;
+            color: #FBBF24;
+            width: 100%;
+            box-sizing: border-box; /* Pour que le padding ne l'élargisse pas */
+        }
+        
+        .btn-lien:hover {
+            background-color: #4a5568;
+            color: white;
+        }
+        
+        .btn-lien-simple {
+            color: #FBBF24;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        
+        .btn-lien-simple:hover {
+            color: #F59E0B;
+        }
+        
+        /* Grille pour les liens */
+        .grid-liens {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .grid-liens {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            border: 1px solid #4a5568;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Lecteur Audio */
+        audio {
+            width: 100%;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            filter: invert(100%) sepia(80%) saturate(600%) hue-rotate(320deg) brightness(1.2);
+        }
     </style>
-  </head>
-  <body class="text-gray-800">
-    <header
-      class="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-50">
-      <h1 class="text-3xl font-bold text-blue-900">
-        Séance 4: Villes, Pays et Nombres
-      </h1>
-    </header>
+</head>
 
-    <main class="max-w-4xl mx-auto p-6">
-      <!-- Sección Números 70-100 (Repaso) -->
-      <div class="content-box" id="nombres">
-        <h2 class="text-3xl font-bold mb-4">Repaso: Les Nombres de 70 à 100</h2>
-        <p class="mb-6 text-gray-600">
-          Continuamos practicando los números más complejos para dominarlos por
-          completo.
-        </p>
-        <h3 class="text-2xl font-bold mb-4">Exercice 1: Écris en lettres</h3>
-        <div class="grid grid-cols-2 md:grid-cols-2 gap-x-6 gap-y-4 mb-6">
-          <div class="space-y-1">
-            <label>71</label
-            ><input
-              type="text"
-              onkeyup="checkAnswer(this, 'soixante-onze')"
-              class="rounded p-2 w-full" />
-          </div>
-          <div class="space-y-1">
-            <label>80</label
-            ><input
-              type="text"
-              onkeyup="checkAnswer(this, 'quatre-vingts')"
-              class="rounded p-2 w-full" />
-          </div>
-          <div class="space-y-1">
-            <label>99</label
-            ><input
-              type="text"
-              onkeyup="checkAnswer(this, 'quatre-vingt-dix-neuf')"
-              class="rounded p-2 w-full" />
-          </div>
-          <div class="space-y-1">
-            <label>76</label
-            ><input
-              type="text"
-              onkeyup="checkAnswer(this, 'soixante-seize')"
-              class="rounded p-2 w-full" />
-          </div>
-        </div>
-        <h3 class="text-2xl font-bold mb-4">Exercice 2: Écris en chiffres</h3>
-        <div class="grid grid-cols-2 md:grid-cols-2 gap-x-6 gap-y-4 mb-6">
-          <div class="space-y-1">
-            <label>soixante-douze</label
-            ><input
-              type="text"
-              onkeyup="checkAnswer(this, '72')"
-              class="rounded p-2 w-full" />
-          </div>
-          <div class="space-y-1">
-            <label>quatre-vingt-six</label
-            ><input
-              type="text"
-              onkeyup="checkAnswer(this, '86')"
-              class="rounded p-2 w-full" />
-          </div>
-          <div class="space-y-1">
-            <label>quatre-vingt-dix</label
-            ><input
-              type="text"
-              onkeyup="checkAnswer(this, '90')"
-              class="rounded p-2 w-full" />
-          </div>
-          <div class="space-y-1">
-            <label>cent</label
-            ><input
-              type="text"
-              onkeyup="checkAnswer(this, '100')"
-              class="rounded p-2 w-full" />
-          </div>
-        </div>
-      </div>
+<body>
+    <!-- Conteneur principal -->
+    <div class="container">
 
-      <!-- Sección Preposiciones -->
-      <div class="content-box" id="prepositions">
-        <h2 class="text-3xl font-bold mb-4">
-          Les prépositions de lieu (villes et pays)
-        </h2>
-        <div
-          class="bg-teal-100 border-l-4 border-teal-500 p-4 rounded-r-lg mb-6">
-          <h4 class="text-xl font-bold mb-2">Conceptos Clave</h4>
-          <ul class="list-disc list-inside space-y-2 font-semibold">
-            <li>
-              Para todas las ciudades:
-              <span class="bg-teal-200 px-2 py-1 rounded">à</span> (Ej: `à
-              Toronto`)
-            </li>
-            <li>
-              Para países femeninos (terminan en -e):
-              <span class="bg-teal-200 px-2 py-1 rounded">en</span> (Ej: `en
-              France`)
-            </li>
-            <li>
-              Para países masculinos (no terminan en -e):
-              <span class="bg-teal-200 px-2 py-1 rounded">au</span> (Ej: `au
-              Canada`)
-            </li>
-            <li>
-              Para países en plural:
-              <span class="bg-teal-200 px-2 py-1 rounded">aux</span> (Ej: `aux
-              États-Unis`)
-            </li>
-          </ul>
-        </div>
+        <header>
+            <h1>Cours de français pour Ketzy (Leçon 6)</h1>
+        </header>
 
-        <h3 class="text-2xl font-bold mb-4">Exercice du livre (adapté)</h3>
-        <img
-          src="./images/exercice-01.png"
-          alt="Ejercicio del libro sobre preposiciones y adjetivos interrogativos"
-          class="rounded-lg shadow-md mb-6 w-full" />
+        <main>
+            <!-- Exercice 1: Prépositions (Autocorrectible) -->
+            <section id="section-exercice-1">
+                <h2>1. Exercice : Les prépositions (à, à la, au, aux, à l', chez)</h2>
+                <p>Complète les phrases avec la bonne préposition.</p>
+                <div id="exercice-1" class="card">
+                    <p>1. Je vais <input type="text" data-answer="à la" class="exercice-input"> boulangerie.</p>
+                    <p>2. Il va <input type="text" data-answer="chez" class="exercice-input"> le boucher.</p>
+                    <p>3. Nous allons <input type="text" data-answer="au" class="exercice-input"> supermarché.</p>
+                    <p>4. Tu vas <input type="text" data-answer="à la" class="exercice-input"> pharmacie.</p>
+                    <p>5. Elle va <input type="text" data-answer="à l'" class="exercice-input"> épicerie.</p>
+                    <p>6. Ils vont <input type="text" data-answer="au" class="exercice-input"> marché.</p>
+                    <p>7. Vous allez <input type="text" data-answer="à la" class="exercice-input"> fromagerie.</p>
+                    <p>8. Je vais <input type="text" data-answer="chez" class="exercice-input"> le poissonnier.</p>
+                    <p>9. On va <input type="text" data-answer="à la" class="exercice-input"> pâtisserie.</p>
+                    <p>10. Elle va <input type="text" data-answer="chez" class="exercice-input"> son ami Arnaud.</p>
+                    <p>11. Nous allons <input type="text" data-answer="aux" class="exercice-input"> États-Unis. (Pluriel)</p>
+                    <p>12. Tu vas <input type="text" data-answer="à" class="exercice-input"> Paris.</p>
+                    <p>13. Je vais <input type="text" data-answer="chez" class="exercice-input"> le médecin.</p>
+                    <p>14. Ils vont <input type="text" data-answer="à l'" class="exercice-input"> université.</p>
+                    <p>15. Vous allez <input type="text" data-answer="au" class="exercice-input"> cinéma ce soir ?</p>
+                    <p>16. Le livre est <input type="text" data-answer="à" class="exercice-input"> Sonia.</p>
+                    <p>17. Je vais <input type="text" data-answer="à la" class="exercice-input"> maison.</p>
+                    <p>18. Elle habite <input type="text" data-answer="à" class="exercice-input"> Calgary.</p>
+                    <p>19. Nous allons <input type="text" data-answer="à la" class="exercice-input"> piscine.</p>
+                    <p>20. Le boucher travaille <input type="text" data-answer="à la" class="exercice-input"> boucherie.</p>
+                </div>
+                <button id="check-ex1" class="btn btn-primaire">Vérifier l'exercice 1</button>
+                <div id="feedback-ex1" class="feedback"></div>
+            </section>
+            
+            <!-- Section 2: Liens -->
+            <section id="section-liens">
+                <h2>2. Activités supplémentaires</h2>
+                <div class="grid-liens">
+                    <a href="https://docs.google.com/document/d/1KO75hqp-5LVHtXWDq6kuHeVlZPK6HLU7ULw1bUkvYQg/edit?tab=t.mwte47rd74om" target="_blank" rel="noopener noreferrer" class="btn btn-lien">
+                        Pratiquons la production écrite!
+                    </a>
+                    <a href="https://quizlet.com/mx/1098448192/unite-3-flash-cards/?i=4yxl6m&x=1jqt" target="_blank" rel="noopener noreferrer" class="btn btn-lien">
+                        Révision du vocabulaire (Quizlet)
+                    </a>
+                </div>
+            </section>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h4 class="font-bold mb-2 text-xl">1. Les prépositions</h4>
-            <div class="space-y-3">
-              <p>
-                a. Samia est née
-                <input
-                  type="text"
-                  onkeyup="checkAnswer(this, 'en')"
-                  class="rounded px-2 w-20 text-center" />
-                Algérie.
-              </p>
-              <p>
-                b. Mike habite
-                <input
-                  type="text"
-                  onkeyup="checkAnswer(this, 'aux')"
-                  class="rounded px-2 w-20 text-center" />
-                États-Unis.
-              </p>
-              <p>
-                c. Pietro est né
-                <input
-                  type="text"
-                  onkeyup="checkAnswer(this, 'à')"
-                  class="rounded px-2 w-20 text-center" />
-                Rome.
-              </p>
-              <p>
-                d. Bruna habite
-                <input
-                  type="text"
-                  onkeyup="checkAnswer(this, 'au')"
-                  class="rounded px-2 w-20 text-center" />
-                Cambodge.
-              </p>
-              <p>
-                e. Pablo est né
-                <input
-                  type="text"
-                  onkeyup="checkAnswer(this, 'à')"
-                  class="rounded px-2 w-20 text-center" />
-                Barcelone.
-              </p>
-            </div>
-          </div>
-          <div>
-            <h4 class="font-bold mb-2 text-xl">
-              2. L'adjectif interrogatif "quel"
-            </h4>
-            <div class="space-y-3">
-              <p>
-                <input
-                  type="text"
-                  onkeyup="checkAnswer(this, 'dans quelle')"
-                  class="rounded p-1 w-32" />
-                ville/pays tu habites?
-              </p>
-              <p>
-                a. Tu aimes
-                <input
-                  type="text"
-                  onkeyup="checkAnswer(this, 'quelles')"
-                  class="rounded p-1 w-24" />
-                langues/musiques?
-              </p>
-              <p>
-                b.
-                <input
-                  type="text"
-                  onkeyup="checkAnswer(this, 'quel')"
-                  class="rounded p-1 w-20" />
-                est le numéro de Paul?
-              </p>
-              <p>
-                c.
-                <input
-                  type="text"
-                  onkeyup="checkAnswer(this, 'quel')"
-                  class="rounded p-1 w-20" />
-                est le lieu de naissance?
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+            <!-- Section 3: Livre Page 49 -->
+            <section id="section-livre-p49">
+                <h2>3. Vocabulaire (Livre p. 49)</h2>
+                <img src="./images/livre/page-049.png" alt="Page 49 Vocabulaire" onerror="this.src='https://placehold.co/800x1000/1a202c/FBBF24?text=Image+page-049.png+non+trouv%E9e'; this.onerror=null;">
+                
+                <!-- Exercices de la page 49 -->
+                <h3 style="margin-top: 2rem;">Exercice 1 : Complétez (Autocorrectible)</h3>
+                <div id="exercice-p49-1" class="card">
+                    <p>a. Où travaille le boucher ? À la <input type="text" data-answer="boucherie" class="exercice-input">.</p>
+                    <p>b. Où travaille la <input type="text" data-answer="boulangère" class="exercice-input"> ? À la boulangerie.</p>
+                    <p>c. Où travaille le <input type="text" data-answer="fromager" class="exercice-input"> ? À la fromagerie.</p>
+                    <p>d. Où travaille le poissonnier ? À la <input type="text" data-answer="poissonnerie" class="exercice-input">.</p>
+                </div>
+                <button id="check-p49-1" class="btn btn-primaire">Vérifier l'ex 1 (p.49)</button>
+                <div id="feedback-p49-1" class="feedback"></div>
 
-      <!-- Comprensión Oral -->
-      <div class="content-box" id="comprehension-orale">
-        <h2 class="text-3xl font-bold mb-4">Exercice: Compréhension Orale</h2>
-        <p class="mb-4 text-gray-600">
-          Écoute l'audio et réponds aux questions suivantes.
-        </p>
-        <audio controls class="w-full mb-6">
-          <source src="./audio/29_Edito_A1_Livre.mp3" type="audio/mpeg" />
-          Tu navegador no soporta el elemento de audio.
-        </audio>
-        <div class="space-y-4">
-          <p>
-            1. Dans quel pays et dans quelle ville Sébastien Leroux est né ?<br /><input
-              type="text"
-              placeholder="Pays et ville..."
-              class="rounded p-2 w-full mt-1" />
-          </p>
-          <p>
-            2. Dans quel pays il habite aujourd'hui ?<br /><input
-              type="text"
-              placeholder="Pays..."
-              class="rounded p-2 w-full mt-1" />
-          </p>
-          <p>
-            3. Quel est le numéro de téléphone de Sébastien ?<br /><input
-              type="text"
-              placeholder="Numéro..."
-              class="rounded p-2 w-full mt-1" />
-          </p>
-          <p>
-            4. Quelle est l'adresse mail de Sébastien ?<br /><input
-              type="text"
-              placeholder="Email..."
-              class="rounded p-2 w-full mt-1" />
-          </p>
-        </div>
-      </div>
+                <h3 style="margin-top: 2rem;">Exercice 2 : Écoutez et remettez (Non autocorrectible)</h3>
+                <p>Écoute l'audio et écris l'ordre des photos (1 à 5).</p>
+                <div id="exercice-p49-2" class="card">
+                    <label>Photo 1 (Lait): <input type="number" min="1" max="5" class="exercice-input" style="width: 50px;"></label><br>
+                    <label>Photo 2 (Pâtes): <input type="number" min="1" max="5" class="exercice-input" style="width: 50px;"></label><br>
+                    <label>Photo 3 (Pain): <input type="number" min="1" max="5" class="exercice-input" style="width: 50px;"></label><br>
+                    <label>Photo 4 (Poisson): <input type="number" min="1" max="5" class="exercice-input" style="width: 50px;"></label><br>
+                    <label>Photo 5 (Beurre): <input type="number" min="1" max="5" class="exercice-input" style="width: 50px;"></label>
+                </div>
+                
+                <h3 style="margin-top: 2rem;">Exercice 3 : Complétez (Autocorrectible)</h3>
+                <div id="exercice-p49-3" class="card">
+                    <p><input type="text" data-answer="un kilo" class="exercice-input"> de farine</p>
+                    <p><input type="text" data-answer="une bouteille" class="exercice-input"> de jus de tomate</p>
+                    <p><input type="text" data-answer="une boîte" class="exercice-input"> de thon</p>
+                    <p><input type="text" data-answer="un paquet" class="exercice-input"> de biscuits</p>
+                </div>
+                <button id="check-p49-3" class="btn btn-primaire">Vérifier l'ex 3 (p.49)</button>
+                <div id="feedback-p49-3" class="feedback"></div>
+            </section>
 
-      <!-- Kahoot -->
-      <div class="content-box text-center">
-        <h2 class="text-3xl font-bold mb-4">Activité: Jouons à Kahoot!</h2>
-        <p class="mb-4">
-          ¡Es hora de poner a prueba tus conocimientos sobre las preposiciones
-          con un juego!
-        </p>
+            <!-- Section 4: Livre Page 50 (Grammaire & CO) -->
+            <section id="section-livre-p50">
+                <h2>4. Grammaire et Compréhension (Livre p. 50)</h2>
+                <!-- L'image de la page 50 est celle de la grammaire -->
+                <img src="./images/livre/page-050.png" alt="Page 50 Grammaire et Compréhension" onerror="this.src='https://placehold.co/800x1000/1a202c/FBBF24?text=Image+p.50+(Grammaire)+non+trouv%E9e'; this.onerror=null;">
 
-        <a
-          href="https://create.kahoot.it/share/les-prepositions-devant-les-noms-de-villes-et-des-pays/9b623f6b-5a9b-4cad-9995-07bfb17b90c8"
-          >Cliquez ici</a
-        >
-      </div>
+                <h3 style="margin-top: 2rem;">Grammaire 1 : Le pluriel (Autocorrectible)</h3>
+                <div id="exercice-p50-g1" class="card">
+                    <p>a. Il y a des <input type="text" data-answer="pêches" class="exercice-input"> dans ton panier ?</p>
+                    <p>b. Je voudrais six <input type="text" data-answer="œufs" class="exercice-input">, s'il vous plaît.</p>
+                    <p>c. J'adore les <input type="text" data-answer="pâtes" class="exercice-input"> avec des pâtes.</p>
+                    <p>d. Trois <input type="text" data-answer="boîtes" class="exercice-input"> de thon, s'il vous plaît.</p>
+                    <p>e. J'aime manger des <input type="text" data-answer="fruits" class="exercice-input"> et des <input type="text" data-answer="légumes" class="exercice-input"> bio.</p>
+                </div>
+                <button id="check-p50-g1" class="btn btn-primaire">Vérifier Grammaire 1</button>
+                <div id="feedback-p50-g1" class="feedback"></div>
 
-      <!-- Tema Québecois -->
-      <div class="content-box" id="quebecois">
-        <h2 class="text-3xl font-bold mb-4">
-          Le français québécois: L'accent Québecois vs l'accent Français
-        </h2>
+                <h3 style="margin-top: 2rem;">Grammaire 2 : Prépositions (Autocorrectible)</h3>
+                <div id="exercice-p50-g2" class="card">
+                    <p>J'achète le fromage <input type="text" data-answer="chez" class="exercice-input"> le fromager, la viande <input type="text" data-answer="chez" class="exercice-input"> le boucher et le poisson <input type="text" data-answer="à la" class="exercice-input"> poissonnière.</p>
+                    <p>J'achète ma baguette <input type="text" data-answer="à la" class="exercice-input"> boulangerie.</p>
+                    <p>Pour les autres produits, je vais <input type="text" data-answer="au" class="exercice-input"> supermarché ou <input type="text" data-answer="à l'" class="exercice-input"> épicerie.</p>
+                </div>
+                <button id="check-p50-g2" class="btn btn-primaire">Vérifier Grammaire 2</button>
+                <div id="feedback-p50-g2" class="feedback"></div>
 
-        <div class="mt-6">
-          <div
-            class="aspect-w-16 aspect-h-9 relative"
-            style="padding-bottom: 5%">
-            <iframe
-              width="100%"
-              height="400px"
-              src="https://www.youtube.com/embed/VrPj8mKcf6I"
-              title="SPEAK QUEBEC IN 5 MINUTES | DENYZEE"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
+                <h3 style="margin-top: 2rem;">Compréhension Orale (Autocorrectible)</h3>
+                <div id="exercice-p50-co" class="card">
+                    <!-- 1. Vrai ou Faux -->
+                    <p><b>1. Vrai ou faux ?</b></p>
+                    <div class="radio-group" data-answer="vrai">
+                        <p>a. Arnaud achète un panier de fruits et légumes en ligne.
+                            <label><input type="radio" name="co-1a" value="vrai"> Vrai</label>
+                            <label><input type="radio" name="co-1a" value="faux"> Faux</label>
+                        </p>
+                    </div>
+                    <div class="radio-group" data-answer="faux">
+                        <p>b. Arnaud paye en espèces.
+                            <label><input type="radio" name="co-1b" value="vrai"> Vrai</label>
+                            <label><input type="radio" name="co-1b" value="faux"> Faux</label>
+                        </p>
+                    </div>
 
-      <!-- Devoirs -->
-      <div class="content-box" id="devoirs">
-        <h2 class="text-3xl font-bold mb-4">Devoirs (Tareas)</h2>
+                    <!-- 2. Questions ouvertes -->
+                    <p><b>2. Qu'est-ce que Sonia achète au marché ?</b></p>
+                    <input type="text" data-answer="les fruits, les légumes, la viande et le poisson" class="exercice-input" style="width: 90%;">
+                    
+                    <p><b>3. Où Sonia achète le fromage, le pain ?</b></p>
+                    <input type="text" data-answer="chez le fromager et à la boulangerie" class="exercice-input" style="width: 90%;">
+                    
+                    <p><b>4. Qu'est-ce qu'elle achète au supermarché ?</b></p>
+                    <input type="text" data-answer="les céréales, le lait, les paquets de biscuits" class="exercice-input" style="width: 90%;">
+                    
+                    <p><b>5. Quels fruits et légumes Arnaud a dans son panier cette semaine ?</b></p>
+                    <input type="text" data-answer="1 salade, des pêches, des tomates, des poivrons" class="exercice-input" style="width: 90%;">
+                    
+                    <!-- 6. Checkbox -->
+                    <p><b>6. Arnaud a aussi dans son panier (2 réponses possibles) :</b></p>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" data-answer="correct" value="a"> a. des œufs.</label>
+                        <label><input type="checkbox" data-answer="incorrect" value="b"> b. un poulet.</label>
+                        <label><input type="checkbox" data-answer="correct" value="c"> c. un fromage de chèvre.</label>
+                    </div>
+                </div>
+                <button id="check-p50-co" class="btn btn-primaire">Vérifier Compréhension Orale</button>
+                <div id="feedback-p50-co" class="feedback"></div>
+            </section>
+            
+            <!-- Section 5: Livre Page 51 -->
+            <section id="section-livre-p51">
+                <h2>5. L'essentiel (Livre p. 51)</h2>
+                <img src="./images/livre/page-051.png" alt="Page 51 L'essentiel" onerror="this.src='https://placehold.co/800x600/1a202c/FBBF24?text=Image+page-051.png+non+trouv%E9e'; this.onerror=null;">
+                <p style="margin-top: 1.5rem; text-align: center;">
+                    Retrouve la vidéo de l'Essentiel avec le code : 
+                    <a href="https://e-didier.fr/code/neda1503" target="_blank" rel="noopener noreferrer" class="btn-lien-simple">
+                        neda1503 sur e-didier.fr
+                    </a>
+                </p>
+            </section>
+            
+            <!-- Section 6: Devoirs -->
+            <section id="section-devoirs">
+                <h2>6. Devoirs (Homework)</h2>
+                <div class="card">
+                    <p><b>Cahier d'Activités :</b></p>
+                    <ul style="list-style-type: disc; margin-left: 2rem;">
+                        <li>Page 37 (toute la page).</li>
+                        <li>Page 38 (exercices 1 et 2).</li>
+                        <li>Page 39 (exercices 1, 2 et 4).</li>
+                    </ul>
+                    
+                    <h3 style="margin-top: 2rem;">Audio pour la page 37</h3>
+                    <audio controls>
+                        <source src="./audio/cahier/page-37.mp3" type="audio/mpeg">
+                        Ton navigateur ne supporte pas l'élément audio. (page-37.mp3)
+                    </audio>
+                </div>
+            </section>
 
-        <div class="mb-8 p-4 bg-gray-50 rounded-lg">
-          <h3 class="text-2xl font-bold mb-3">
-            1. Présenter un artiste québécois
-          </h3>
-          <p>
-            Crea una pequeña presentación o diaporama sobre un artista de
-            Québec. Puede ser un cantante (comme Céline Dion, Cœur de Pirate),
-            un actor (comme Xavier Dolan), etc. Incluye su nombre, dónde nació,
-            su nacionalidad, y qué hace. ¡Inspírate en el ejercicio del libro!
-          </p>
-          <p class="text-sm italic text-gray-500 mt-2">
-            (Tarea para preparar y presentar oralmente en la próxima clase).
-          </p>
-        </div>
+        </main>
+    </div>
 
-        <div class="mb-8 p-4 bg-gray-50 rounded-lg">
-          <h3 class="text-2xl font-bold mb-3">2. Quiz: Les Nombres (70-100)</h3>
-          <form id="quiz-nombres" class="space-y-4">
-            <!-- Las 15 preguntas se generarán aquí con JavaScript -->
-          </form>
-          <button
-            onclick="checkQuiz('quiz-nombres')"
-            class="mt-4 bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700">
-            Corriger le Quiz
-          </button>
-        </div>
-
-        <div class="p-4 bg-gray-50 rounded-lg">
-          <h3 class="text-2xl font-bold mb-3">3. Quiz: Les Prépositions</h3>
-          <form id="quiz-prepositions" class="space-y-4">
-            <!-- Las 20 preguntas se generarán aquí con JavaScript -->
-          </form>
-          <button
-            onclick="checkQuiz('quiz-prepositions')"
-            class="mt-4 bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700">
-            Corriger le Quiz
-          </button>
-        </div>
-      </div>
-    </main>
-
+    <!-- Script pour les exercices autocorrectibles -->
     <script>
-      // Función genérica para revisar respuestas de inputs individuales
-      function checkAnswer(input, correctAnswer) {
-        const userAnswer = input.value
-          .toLowerCase()
-          .trim()
-          .replace(/\s+/g, " ");
-        if (!userAnswer) {
-          input.className = "rounded p-2 w-full"; // Clase base
-          return;
-        }
-        if (userAnswer === correctAnswer.toLowerCase().trim()) {
-          input.classList.add("correct");
-          input.classList.remove("incorrect");
-        } else {
-          input.classList.add("incorrect");
-          input.classList.remove("correct");
-        }
-      }
+        document.addEventListener('DOMContentLoaded', () => {
 
-      // Datos para los quizzes de tarea
-      const quizData = {
-        "quiz-nombres": [
-          { q: "Écris 78 en lettres", a: "soixante-dix-huit" },
-          { q: "Écris 91 en lettres", a: "quatre-vingt-onze" },
-          { q: "Écris 85 en lettres", a: "quatre-vingt-cinq" },
-          { q: "soixante-douze", a: "72" },
-          { q: "quatre-vingt-dix-sept", a: "97" },
-          { q: "quatre-vingts", a: "80" },
-          { q: "70 + 15 = ? (lettres)", a: "quatre-vingt-cinq" },
-          { q: "100 - 11 = ? (lettres)", a: "quatre-vingt-neuf" },
-          { q: "Écris 94 en lettres", a: "quatre-vingt-quatorze" },
-          { q: "soixante-dix", a: "70" },
-          { q: "Écris 88 en lettres", a: "quatre-vingt-huit" },
-          { q: "quatre-vingt-seize", a: "96" },
-          { q: "quatre-vingt-deux", a: "82" },
-          { q: "Écris 73 en lettres", a: "soixante-treize" },
-          { q: "Écris 100 en lettres", a: "cent" },
-        ],
-        "quiz-prepositions": [
-          { q: "J'habite ___ Montréal.", a: "à" },
-          { q: "Elle va ___ France.", a: "en" },
-          { q: "Il travaille ___ Canada.", a: "au" },
-          { q: "Nous voyageons ___ États-Unis.", a: "aux" },
-          { q: "Tu es né ___ Rome?", a: "à" },
-          { q: "Mon ami vient ___ Portugal.", a: "au" }, // 'venir de' no lo hemos visto, usamos 'être/habiter'
-          { q: "Elle habite ___ Allemagne.", a: "en" },
-          { q: "Ils sont ___ Japon.", a: "au" },
-          { q: "Mes cousins vivent ___ Pays-Bas.", a: "aux" },
-          { q: "Je vais ___ Québec (la ville).", a: "à" },
-          { q: "Elle est née ___ Italie.", a: "en" },
-          { q: "Il habite ___ Bruxelles.", a: "à" },
-          { q: "Elle habite ___ Chine.", a: "en" },
-          { q: "Il habite ___ Mexique.", a: "au" },
-          { q: "Je vais ___ Chine.", a: "en" },
-          { q: "Tu vas ___ Londres?", a: "à" },
-          { q: "Il est né ___ Maroc.", a: "au" },
-          { q: "Nous sommes ___ Argentine.", a: "en" },
-          { q: "Elle voyage ___ Danemark.", a: "au" },
-          { q: "Ils habitent ___ Vancouver.", a: "à" },
-        ],
-      };
+            /**
+             * Fonction générique pour vérifier les INPUTS de texte
+             */
+            function checkTextInputExercice(containerId, feedbackId) {
+                const container = document.getElementById(containerId);
+                const feedbackEl = document.getElementById(feedbackId);
+                if (!container || !feedbackEl) return;
+                
+                const inputs = container.querySelectorAll('input[type="text"][data-answer]');
+                if (inputs.length === 0) return;
+                
+                let correctCount = 0;
+                
+                inputs.forEach(input => {
+                    const userValue = input.value.trim().toLowerCase().replace(/\s+/g, ' '); // Nettoie
+                    const correctAnswers = input.dataset.answer.toLowerCase().split('|').map(ans => ans.trim());
+                    
+                    input.classList.remove('correct', 'incorrect');
+                    
+                    // Simple "includes" pour les réponses de vocabulaire
+                    // Pour les réponses plus longues (CO), on vérifie si la réponse est exacte
+                    if (correctAnswers.includes(userValue)) {
+                        input.classList.add('correct');
+                        correctCount++;
+                    } else {
+                        input.classList.add('incorrect');
+                    }
+                });
 
-      // Función para poblar los quizzes en la página
-      function populateQuiz(quizId) {
-        const form = document.getElementById(quizId);
-        if (!form) return;
-        const data = quizData[quizId];
-        data.forEach((item, index) => {
-          const isNumberQuestion =
-            quizId === "quiz-nombres" && !isNaN(parseInt(item.q));
-          const questionText = isNumberQuestion
-            ? `Écris ${item.q} en lettres`
-            : item.q.includes("en chiffres")
-            ? `Écris ${item.q.replace(" en chiffres", "")} en chiffres`
-            : item.q;
+                showFeedback(feedbackEl, correctCount, inputs.length);
+                return correctCount === inputs.length;
+            }
+            
+            /**
+             * Fonction pour afficher le feedback
+             */
+            function showFeedback(feedbackEl, correctCount, total) {
+                if (correctCount === total) {
+                    feedbackEl.textContent = "Félicitations ! Tout est correct !";
+                    feedbackEl.className = "feedback feedback-correct";
+                } else {
+                    feedbackEl.textContent = `Tu as ${correctCount} réponses correctes sur ${total}. Continue !`;
+                    feedbackEl.className = "feedback feedback-incorrect";
+                }
+            }
 
-          const div = document.createElement("div");
-          div.className = "quiz-question";
-          div.innerHTML = `<label for="${quizId}-${index}" class="block mb-1 text-gray-700">${
-            index + 1
-          }. ${questionText}</label>
-                                 <input type="text" id="${quizId}-${index}" data-answer="${
-            item.a
-          }" class="rounded p-2 w-full">
-                                 <div id="result-${quizId}-${index}" class="text-sm mt-1 h-5"></div>`; // h-5 para evitar saltos de layout
-          form.appendChild(div);
+            /**
+             * Fonction spéciale pour la Compréhension Orale (CO)
+             */
+            function checkCO() {
+                const container = document.getElementById('exercice-p50-co');
+                const feedbackEl = document.getElementById('feedback-p50-co');
+                if (!container || !feedbackEl) return;
+
+                let correctCount = 0;
+                let total = 0;
+                
+                // 1. Vérifier les inputs texte
+                const inputs = container.querySelectorAll('input[type="text"][data-answer]');
+                total += inputs.length;
+                inputs.forEach(input => {
+                    const userValue = input.value.trim().toLowerCase().replace(/\s+/g, ' ').replace(/[.,]/g, ''); // Enlève points et virgules
+                    const answer = input.dataset.answer.toLowerCase().replace(/[.,]/g, '');
+                    
+                    input.classList.remove('correct', 'incorrect');
+                    if (userValue === answer) {
+                        input.classList.add('correct');
+                        correctCount++;
+                    } else {
+                        input.classList.add('incorrect');
+                    }
+                });
+
+                // 2. Vérifier les radios Vrai/Faux
+                const radios = container.querySelectorAll('.radio-group');
+                total += radios.length;
+                radios.forEach(group => {
+                    const answer = group.dataset.answer;
+                    const checked = group.querySelector(`input[value="${answer}"]:checked`);
+                    const allInputs = group.querySelectorAll('input');
+                    
+                    allInputs.forEach(r => r.parentElement.style.color = 'inherit'); // Reset color
+                    
+                    if (checked) {
+                        correctCount++;
+                        checked.parentElement.style.color = '#48BB78'; // Vert
+                    } else {
+                        const wrongChecked = group.querySelector('input:checked');
+                        if (wrongChecked) {
+                            wrongChecked.parentElement.style.color = '#F56565'; // Rouge
+                        }
+                    }
+                });
+
+                // 3. Vérifier les checkboxes
+                const checkboxes = container.querySelectorAll('.checkbox-group input[type="checkbox"]');
+                total++; // Le groupe de checkboxes compte comme 1 question
+                let correctChecks = 0;
+                let incorrectChecks = 0;
+                
+                checkboxes.forEach(cb => {
+                    const answer = cb.dataset.answer;
+                    cb.parentElement.style.color = 'inherit'; // Reset
+                    
+                    if (cb.checked && answer === 'correct') {
+                        correctChecks++;
+                        cb.parentElement.style.color = '#48BB78'; // Vert
+                    } else if (cb.checked && answer === 'incorrect') {
+                        incorrectChecks++;
+                        cb.parentElement.style.color = '#F56565'; // Rouge
+                    } else if (!cb.checked && answer === 'correct') {
+                        incorrectChecks++; // Pénalité pour ne pas cocher la bonne
+                        cb.parentElement.style.color = '#F56565'; // Rouge
+                    }
+                });
+                
+                // 2 bonnes réponses, 0 mauvaises
+                if (correctChecks === 2 && incorrectChecks === 0) { 
+                    correctCount++;
+                }
+
+                showFeedback(feedbackEl, correctCount, total);
+            }
+
+            // Attacher les événements aux boutons
+            document.getElementById('check-ex1')?.addEventListener('click', () => {
+                checkTextInputExercice('exercice-1', 'feedback-ex1');
+            });
+            document.getElementById('check-p49-1')?.addEventListener('click', () => {
+                checkTextInputExercice('exercice-p49-1', 'feedback-p49-1');
+            });
+            document.getElementById('check-p49-3')?.addEventListener('click', () => {
+                checkTextInputExercice('exercice-p49-3', 'feedback-p49-3');
+            });
+            document.getElementById('check-p50-g1')?.addEventListener('click', () => {
+                checkTextInputExercice('exercice-p50-g1', 'feedback-p50-g1');
+            });
+            document.getElementById('check-p50-g2')?.addEventListener('click', () => {
+                checkTextInputExercice('exercice-p50-g2', 'feedback-p50-g2');
+            });
+            document.getElementById('check-p50-co')?.addEventListener('click', checkCO);
         });
-      }
-
-      // Función para corregir un quiz completo
-      function checkQuiz(quizId) {
-        const form = document.getElementById(quizId);
-        if (!form) return;
-        form.parentElement.classList.add("result-view");
-        const data = quizData[quizId];
-        data.forEach((item, index) => {
-          const input = document.getElementById(`${quizId}-${index}`);
-          const resultDiv = document.getElementById(
-            `result-${quizId}-${index}`
-          );
-          const userAnswer = input.value
-            .toLowerCase()
-            .trim()
-            .replace(/\s+/g, " ");
-
-          input.classList.remove("correct", "incorrect", "neutral");
-          if (userAnswer === item.a.toLowerCase().trim()) {
-            input.classList.add("correct");
-            resultDiv.innerHTML = "";
-          } else {
-            input.classList.add("incorrect");
-            resultDiv.innerHTML = `Respuesta correcta: <span class="correct-answer">${item.a}</span>`;
-          }
-        });
-      }
-
-      // Cargar los quizzes cuando el DOM esté listo
-      document.addEventListener("DOMContentLoaded", () => {
-        populateQuiz("quiz-nombres");
-        populateQuiz("quiz-prepositions");
-      });
     </script>
-  </body>
+</body>
 </html>
