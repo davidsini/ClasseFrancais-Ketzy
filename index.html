@@ -3,48 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cours de Français A1 - Pour Ketzy</title>
+    <title>Cours de Français A1 - Pour Ketzy (Leçon 6)</title>
 
-    <!-- Styles CSS purs - Plus besoin de Tailwind -->
+    <!-- Styles personnalisés (Thème sombre sans Tailwind) -->
     <style>
-      /* Styles de base */
       body {
-        background-color: #1a202c; /* fond-sombre */
-        color: #edf2f7; /* texte-principal (gris clair) */
-        font-family: "Inter", sans-serif;
-        margin: 0;
-        padding: 0;
+        background-color: #1a202c; /* Fondo principal oscuro */
+        color: #edf2f7; /* Texto claro */
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
         line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
-      /* Conteneur principal centré */
-      .container {
-        width: 100%;
-        max-width: 64rem; /* 1024px */
-        margin-left: auto;
-        margin-right: auto;
-        padding: 1.5rem; /* 24px */
-        box-sizing: border-box;
-      }
-
-      @media (min-width: 640px) {
-        .container {
-          padding: 2.5rem; /* 40px */
-        }
-      }
-
-      /* --- STYLES DE TEXTE --- */
       h1,
       h2,
       h3 {
         color: white;
         font-weight: bold;
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
       }
 
       h1 {
         font-size: 2.25rem; /* 36px */
         margin-bottom: 1rem;
         color: #fbbf24; /* accent-400 */
+        text-align: center;
       }
 
       h2 {
@@ -63,66 +49,50 @@
       }
 
       p {
-        margin-bottom: 1.5rem;
-        color: #edf2f7; /* S'assure que tout le texte de paragraphe est clair */
-      }
-
-      header {
-        text-align: center;
-        margin-bottom: 3rem;
-      }
-
-      .subtitle {
-        font-size: 1.5rem; /* 24px */
-        color: #edf2f7;
-      }
-
-      main {
-        /* Simule le 'space-y-16' de Tailwind */
-        display: flex;
-        flex-direction: column;
-        gap: 4rem;
-      }
-
-      /* --- COMPOSANTS --- */
-
-      /* Conteneur pour l'image */
-      .img-container {
-        background-color: #2d3748;
-        padding: 1rem;
-        border-radius: 0.5rem;
-        border: 1px solid #4a5568;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      img {
-        width: 100%;
-        height: auto;
-        border-radius: 0.375rem; /* 6px */
-      }
-
-      /* "Carte" pour les exercices et audios */
-      .card {
-        background-color: #2d3748;
-        padding: 1.5rem;
-        border-radius: 0.5rem;
-        border: 1px solid #4a5568;
-      }
-
-      /* Simule le 'space-y-4' ou 'space-y-6' */
-      .card > *:not(:last-child) {
         margin-bottom: 1rem;
       }
 
-      /* Entrées d'exercice */
-      .exercice-input {
+      /* --- STYLES DU CONTENEUR (CENTRAGE) --- */
+      .container {
+        width: 100%;
+        max-width: 64rem; /* 1024px */
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1.5rem; /* 24px */
+        box-sizing: border-box;
+      }
+
+      @media (min-width: 640px) {
+        .container {
+          padding: 2.5rem; /* 40px */
+        }
+      }
+      /* --- FIN DES STYLES DU CONTENEUR --- */
+
+      /* Styles pour les sections d'exercices */
+      .card {
         background-color: #2d3748;
+        border: 1px solid #4a5568;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      }
+
+      .card p {
+        margin-bottom: 0.75rem;
+      }
+
+      /* Entrées de exercices */
+      .exercice-input {
+        background-color: #1a202c;
         border: 1px solid #4a5568;
         border-radius: 0.375rem;
         padding: 0.25rem 0.5rem;
         color: white;
+        font-size: 0.95rem;
         margin: 0 0.25rem;
-        width: 120px; /* Largeur fixe pour l'alignement */
       }
 
       .exercice-input:focus {
@@ -131,142 +101,115 @@
         box-shadow: 0 0 0 2px #f59e0b55;
       }
 
-      /* --- BOUTONS --- */
+      /* Styles pour les réponses Vrai/Faux */
+      .radio-group label,
+      .checkbox-group label {
+        margin-right: 1rem;
+      }
+
+      /* Classes de validation */
+      .correct {
+        border: 2px solid #48bb78 !important; /* green-500 */
+        background-color: #2f4c39 !important;
+      }
+
+      .incorrect {
+        border: 2px solid #f56565 !important; /* red-500 */
+        background-color: #553030 !important;
+      }
+
+      .feedback {
+        margin-top: 1rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+        padding: 0.5rem;
+        border-radius: 0.375rem;
+      }
+
+      .feedback-correct {
+        color: #9ae6b4; /* green-300 */
+        background-color: #2f4c39;
+      }
+
+      .feedback-incorrect {
+        color: #feb2b2; /* red-300 */
+        background-color: #553030;
+      }
+
+      /* Boutons */
       .btn {
         display: inline-block;
         font-weight: bold;
-        padding: 0.6rem 1.25rem;
+        padding: 0.75rem 1.25rem;
         border-radius: 0.5rem;
         text-decoration: none;
         transition: all 0.3s ease;
-        border: none;
-        cursor: pointer;
-        margin-top: 1.5rem; /* Remplace mt-6 */
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        text-align: center;
       }
 
       .btn-primaire {
-        background-color: #f59e0b;
+        background-color: #f59e0b; /* accent-500 */
         color: #1a202c;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      }
-      .btn-primaire:hover {
-        background-color: #fbbf24;
       }
 
-      .grid-links {
+      .btn-primaire:hover {
+        background-color: #fbbf24; /* accent-400 */
+      }
+
+      .btn-lien {
+        background-color: #2d3748;
+        border: 2px solid #f59e0b;
+        color: #fbbf24;
+        width: 100%;
+        box-sizing: border-box; /* Pour que le padding ne l'élargisse pas */
+      }
+
+      .btn-lien:hover {
+        background-color: #4a5568;
+        color: white;
+      }
+
+      .btn-lien-simple {
+        color: #fbbf24;
+        text-decoration: underline;
+        font-weight: bold;
+      }
+
+      .btn-lien-simple:hover {
+        color: #f59e0b;
+      }
+
+      /* Grille pour les liens */
+      .grid-liens {
         display: grid;
         grid-template-columns: 1fr;
         gap: 1.5rem;
       }
 
       @media (min-width: 768px) {
-        .grid-links {
+        .grid-liens {
           grid-template-columns: 1fr 1fr;
         }
       }
 
-      .btn-lien {
-        display: block;
-        background-color: #2d3748;
-        border: 2px solid #f59e0b;
-        color: #fbbf24;
-        text-align: center;
-        font-size: 1.125rem;
-        padding: 1rem;
-        margin-top: 0; /* Annule le margin-top de .btn */
-      }
-      .btn-lien:hover {
-        background-color: #4a5568;
-        color: white;
-      }
-
-      .btn-lien span {
-        display: block;
-        font-size: 0.875rem;
-        font-weight: normal;
-        color: #a0aec0; /* gris clair */
-      }
-
-      /* --- TABLE --- */
-      table {
-        min-width: 100%;
-        background-color: #2d3748;
-        text-align: left;
-        border-collapse: collapse; /* Important */
+      /* Images */
+      img {
+        max-width: 100%;
+        height: auto;
         border-radius: 0.5rem;
-        overflow: hidden; /* Pour que le radius s'applique aux coins */
         border: 1px solid #4a5568;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
       }
 
-      th,
-      td {
-        padding: 1rem;
-      }
-
-      thead {
-        background-color: #4a5568;
-        color: white;
-        font-size: 1.125rem;
-      }
-
-      tbody tr {
-        border-bottom: 1px solid #4a5568;
-      }
-
-      tbody tr:last-child {
-        border-bottom: none;
-      }
-
-      tbody tr:hover {
-        background-color: #4a5568;
-      }
-
-      .verb-conjugation {
-        font-size: 1.5rem; /* 24px */
-        color: #fbbf24; /* Garde la conjugaison en couleur pour la clarté */
-      }
-
-      td.italic {
-        font-style: italic;
-        color: #a0aec0;
-      }
-
-      /* --- AUDIO --- */
+      /* Lecteur Audio */
       audio {
         width: 100%;
         border-radius: 0.5rem;
+        margin-top: 0.5rem;
         filter: invert(100%) sepia(80%) saturate(600%) hue-rotate(320deg)
           brightness(1.2);
-      }
-
-      /* --- FEEDBACK EXERCICE --- */
-      .correct {
-        background-color: #c6f6d5;
-        border-color: #38a169;
-        color: #22543d;
-      }
-
-      .incorrect {
-        background-color: #fed7d7;
-        border-color: #c53030;
-        color: #742a2a;
-      }
-
-      .feedback {
-        margin-top: 1rem;
-        font-size: 1.125rem;
-        font-weight: 500;
-      }
-      .feedback-correct {
-        color: #68d391; /* Vert clair */
-      }
-      .feedback-incorrect {
-        color: #f6ad55; /* Jaune/Orange clair */
-      }
-
-      .devoirs-intro {
-        font-size: 1.5rem;
-        color: white;
       }
     </style>
   </head>
@@ -275,339 +218,480 @@
     <!-- Conteneur principal -->
     <div class="container">
       <header>
-        <h1>Au magasin et les déplacements</h1>
+        <h1>Cours de français pour Ketzy (Leçon 6)</h1>
       </header>
 
       <main>
-        <!-- Section 1: Dialogue (Image) -->
-        <section>
-          <h2>1. Au magasin (Livre p. 48)</h2>
-          <div class="img-container">
-            <img
-              src="./images/livre/page-048.png"
-              alt="Dialogue du livre page 48"
-              onerror="this.src='https://placehold.co/800x600/1a202c/FBBF24?text=Image+page-048.png+non+trouv%E9e'; this.onerror=null;" />
-          </div>
-        </section>
-        <!-- Section 2: Exercice (Acheter/Payer/Voudrais) -->
+        <!-- Exercice 1: Prépositions (Autocorrectible) -->
         <section id="section-exercice-1">
-          <h2>2. Exercice : "Je voudrais..."</h2>
-          <p>
-            Complète les phrases avec la bonne conjugaison de "acheter", "payer"
-            ou l'expression "je voudrais".
-          </p>
-
+          <h2>1. Exercice : Les prépositions (à, à la, au, aux, à l', chez)</h2>
+          <p>Complète les phrases avec la bonne préposition.</p>
           <div id="exercice-1" class="card">
             <p>
-              1. Bonjour,
-              <input
-                type="text"
-                data-answer="je voudrais"
-                class="exercice-input" />
-              un kilo de pommes, s'il vous plaît.
+              1. Je vais
+              <input type="text" data-answer="à la" class="exercice-input" />
+              boulangerie.
             </p>
             <p>
-              2. Combien est-ce que tu
-              <input
-                type="text"
-                data-answer="paies|payes"
-                class="exercice-input" />
-              pour le fromage ?
+              2. Il va
+              <input type="text" data-answer="chez" class="exercice-input" /> le
+              boucher.
             </p>
             <p>
-              3. Ma mère
-              <input type="text" data-answer="achète" class="exercice-input" />
-              toujours son pain à la boulangerie du coin.
+              3. Nous allons
+              <input type="text" data-answer="au" class="exercice-input" />
+              supermarché.
             </p>
             <p>
-              4. Nous
-              <input type="text" data-answer="payons" class="exercice-input" />
-              par carte de crédit.
+              4. Tu vas
+              <input type="text" data-answer="à la" class="exercice-input" />
+              pharmacie.
             </p>
             <p>
-              5. Qu'est-ce que vous
-              <input type="text" data-answer="achetez" class="exercice-input" />
-              au marché ?
+              5. Elle va
+              <input type="text" data-answer="à l'" class="exercice-input" />
+              épicerie.
             </p>
             <p>
-              6. (Politesse)
-              <input
-                type="text"
-                data-answer="je voudrais"
-                class="exercice-input" />
-              parler à M. Dubois.
+              6. Ils vont
+              <input type="text" data-answer="au" class="exercice-input" />
+              marché.
             </p>
             <p>
-              7. Ils
-              <input
-                type="text"
-                data-answer="paient|payent"
-                class="exercice-input" />
-              l'addition au restaurant.
+              7. Vous allez
+              <input type="text" data-answer="à la" class="exercice-input" />
+              fromagerie.
             </p>
             <p>
-              8. Est-ce que tu
-              <input type="text" data-answer="achètes" class="exercice-input" />
-              des légumes bio ?
-            </p>
-
-            <!-- 7 NOUVEAUX INCISOS -->
-            <p>
-              9. Nous
-              <input
-                type="text"
-                data-answer="achetons"
-                class="exercice-input" />
-              des fruits pour le dessert.
+              8. Je vais
+              <input type="text" data-answer="chez" class="exercice-input" /> le
+              poissonnier.
             </p>
             <p>
-              10. (Politesse)
-              <input
-                type="text"
-                data-answer="je voudrais"
-                class="exercice-input" />
-              une baguette, s'il vous plaît.
+              9. On va
+              <input type="text" data-answer="à la" class="exercice-input" />
+              pâtisserie.
             </p>
             <p>
-              11. Comment est-ce que vous
-              <input type="text" data-answer="payez" class="exercice-input" /> ?
-              En espèces ?
+              10. Elle va
+              <input type="text" data-answer="chez" class="exercice-input" />
+              son ami Arnaud.
             </p>
             <p>
-              12. Ils
-              <input
-                type="text"
-                data-answer="achètent"
-                class="exercice-input" />
-              toujours leurs légumes au marché.
+              11. Nous allons
+              <input type="text" data-answer="aux" class="exercice-input" />
+              États-Unis. (Pluriel)
             </p>
             <p>
-              13. On
-              <input type="text" data-answer="achète" class="exercice-input" />
-              du fromage pour ce soir ?
+              12. Tu vas
+              <input type="text" data-answer="à" class="exercice-input" />
+              Paris.
             </p>
             <p>
-              14. (Politesse)
-              <input
-                type="text"
-                data-answer="je voudrais"
-                class="exercice-input" />
-              réserver une table pour deux.
+              13. Je vais
+              <input type="text" data-answer="chez" class="exercice-input" /> le
+              médecin.
             </p>
             <p>
-              15. Tu
-              <input
-                type="text"
-                data-answer="paies|payes"
-                class="exercice-input" />
-              combien pour ces chaussures ?
+              14. Ils vont
+              <input type="text" data-answer="à l'" class="exercice-input" />
+              université.
+            </p>
+            <p>
+              15. Vous allez
+              <input type="text" data-answer="au" class="exercice-input" />
+              cinéma ce soir ?
+            </p>
+            <p>
+              16. Le livre est
+              <input type="text" data-answer="à" class="exercice-input" />
+              Sonia.
+            </p>
+            <p>
+              17. Je vais
+              <input type="text" data-answer="à la" class="exercice-input" />
+              maison.
+            </p>
+            <p>
+              18. Elle habite
+              <input type="text" data-answer="à" class="exercice-input" />
+              Calgary.
+            </p>
+            <p>
+              19. Nous allons
+              <input type="text" data-answer="à la" class="exercice-input" />
+              piscine.
+            </p>
+            <p>
+              20. Le boucher travaille
+              <input type="text" data-answer="à la" class="exercice-input" />
+              boucherie.
             </p>
           </div>
-
           <button id="check-ex1" class="btn btn-primaire">
             Vérifier l'exercice 1
           </button>
           <div id="feedback-ex1" class="feedback"></div>
         </section>
 
-        <!-- Section 3: Table (Aller) -->
-        <section>
-          <h2>3. Le verbe "Aller"</h2>
-          <p>
-            "Aller" est un verbe très important (et irrégulier !). Voici sa
-            conjugaison au présent :
-          </p>
-
-          <div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Pronom</th>
-                  <th>Conjugaison</th>
-                  <th>Exemple</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Je</td>
-                  <td><strong class="verb-conjugation">vais</strong></td>
-                  <td class="italic">Je vais au parc.</td>
-                </tr>
-                <tr>
-                  <td>Tu</td>
-                  <td><strong class="verb-conjugation">vas</strong></td>
-                  <td class="italic">Tu vas à l'école.</td>
-                </tr>
-                <tr>
-                  <td>Il / Elle / On</td>
-                  <td><strong class="verb-conjugation">va</strong></td>
-                  <td class="italic">On va au cinéma.</td>
-                </tr>
-                <tr>
-                  <td>Nous</td>
-                  <td><strong class="verb-conjugation">allons</strong></td>
-                  <td class="italic">Nous allons à la piscine.</td>
-                </tr>
-                <tr>
-                  <td>Vous</td>
-                  <td><strong class="verb-conjugation">allez</strong></td>
-                  <td class="italic">Vous allez chez le médecin.</td>
-                </tr>
-                <tr>
-                  <td>Ils / Elles</td>
-                  <td><strong class="verb-conjugation">vont</strong></td>
-                  <td class="italic">Elles vont aux États-Unis.</td>
-                </tr>
-              </tbody>
-            </table>
+        <!-- Section 2: Liens -->
+        <section id="section-liens">
+          <h2>2. Activités supplémentaires</h2>
+          <div class="grid-liens">
+            <a
+              href="https://docs.google.com/document/d/1KO75hqp-5LVHtXWDq6kuHeVlZPK6HLU7ULw1bUkvYQg/edit?tab=t.mwte47rd74om"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-lien">
+              Pratiquons la production écrite!
+            </a>
+            <a
+              href="https://quizlet.com/mx/1098448192/unite-3-flash-cards/?i=4yxl6m&x=1jqt"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-lien">
+              Révision du vocabulaire (Quizlet)
+            </a>
           </div>
         </section>
 
-        <!-- Section 4: Exercice (Aller) -->
-        <section id="section-exercice-2">
-          <h2>4. Exercice : Où vas-tu ?</h2>
-          <p>
-            Complète les 15 phrases avec la bonne conjugaison du verbe "aller".
-          </p>
+        <!-- Section 3: Livre Page 49 -->
+        <section id="section-livre-p49">
+          <h2>3. Vocabulaire (Livre p. 49)</h2>
+          <img
+            src="./images/livre/page-049.png"
+            alt="Page 49 Vocabulaire"
+            onerror="this.src='https://placehold.co/800x1000/1a202c/FBBF24?text=Image+page-049.png+non+trouv%E9e'; this.onerror=null;" />
 
-          <div id="exercice-2" class="card">
+          <!-- Exercices de la page 49 -->
+          <h3 style="margin-top: 2rem">
+            Exercice 1 : Complétez (Autocorrectible)
+          </h3>
+          <div id="exercice-p49-1" class="card">
             <p>
-              1. Je
-              <input type="text" data-answer="vais" class="exercice-input" /> à
-              la <strong>boulangerie</strong> pour acheter du pain.
+              a. Où travaille le boucher ? À la
+              <input
+                type="text"
+                data-answer="boucherie"
+                class="exercice-input" />.
             </p>
             <p>
-              2. Où est-ce que tu
-              <input type="text" data-answer="vas" class="exercice-input" /> ce
-              week-end ?
+              b. Où travaille la
+              <input
+                type="text"
+                data-answer="boulangère"
+                class="exercice-input" />
+              ? À la boulangerie.
             </p>
             <p>
-              3. Ma sœur
-              <input type="text" data-answer="va" class="exercice-input" /> à la
-              <strong>pharmacie</strong>.
+              c. Où travaille le
+              <input
+                type="text"
+                data-answer="fromager"
+                class="exercice-input" />
+              ? À la fromagerie.
             </p>
             <p>
-              4. Nous
-              <input type="text" data-answer="allons" class="exercice-input" />
-              au <strong>supermarché</strong> ensemble.
-            </p>
-            <p>
-              5. Vous
-              <input type="text" data-answer="allez" class="exercice-input" />
-              souvent à la <strong>fromagerie</strong> ?
-            </p>
-            <p>
-              6. Les enfants
-              <input type="text" data-answer="vont" class="exercice-input" /> à
-              l'école en bus.
-            </p>
-            <p>
-              7. On
-              <input type="text" data-answer="va" class="exercice-input" /> au
-              restaurant ce soir ?
-            </p>
-            <p>
-              8. Je
-              <input type="text" data-answer="vais" class="exercice-input" />
-              chez le <strong>boucher</strong> pour la viande.
-            </p>
-            <p>
-              9. Tes parents
-              <input type="text" data-answer="vont" class="exercice-input" /> en
-              France cet été.
-            </p>
-            <p>
-              10. Tu
-              <input type="text" data-answer="vas" class="exercice-input" /> à
-              la <strong>poissonnerie</strong> ?
-            </p>
-            <p>
-              11. Pourquoi est-ce que vous
-              <input type="text" data-answer="allez" class="exercice-input" /> à
-              la gare ?
-            </p>
-            <p>
-              12. Nous
-              <input type="text" data-answer="allons" class="exercice-input" />
-              à la <strong>boucherie-charcuterie</strong>.
-            </p>
-            <p>
-              13. Le professeur
-              <input type="text" data-answer="va" class="exercice-input" /> au
-              bureau.
-            </p>
-            <p>
-              14. Je
-              <input type="text" data-answer="vais" class="exercice-input" />
-              bien, merci.
-            </p>
-            <p>
-              15. Mes amis
-              <input type="text" data-answer="vont" class="exercice-input" /> à
-              la <strong>pâtisserie</strong> pour un gâteau.
+              d. Où travaille le poissonnier ? À la
+              <input
+                type="text"
+                data-answer="poissonnerie"
+                class="exercice-input" />.
             </p>
           </div>
-
-          <button id="check-ex2" class="btn btn-primaire">
-            Vérifier l'exercice 2
+          <button id="check-p49-1" class="btn btn-primaire">
+            Vérifier l'ex 1 (p.49)
           </button>
-          <div id="feedback-ex2" class="feedback"></div>
-        </section>
+          <div id="feedback-p49-1" class="feedback"></div>
 
-        <!-- Section 5 & 6: Liens -->
-        <section>
-          <h2>5. Activités supplémentaires</h2>
-          <p>Pratiquons un peu plus !</p>
-
-          <div class="grid-links">
-            <!-- Lien Freeform -->
-            <a
-              href="https://www.icloud.com/freeform-copy/ADB77708-FC4A-498F-B38C-0C046AB7ED0E"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-lien">
-              Révisons la grammaire ! (Freeform)
-              <span>Ouvre notre tableau collaboratif</span>
-            </a>
-
-            <!-- Lien Kahoot -->
-            <a
-              href="https://create.kahoot.it/share/aller-au-a-la-a-l-aux/1c42437f-32ac-4999-b170-65ad9e2691f2"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-lien">
-              Jouer au Kahoot !
-              <span>Aller + au, à la, à l', aux</span>
-            </a>
+          <h3 style="margin-top: 2rem">
+            Exercice 2 : Écoutez et remettez (Non autocorrectible)
+          </h3>
+          <p>Écoute l'audio et écris l'ordre des photos (1 à 5).</p>
+          <div id="exercice-p49-2" class="card">
+            <label
+              >Photo 1 (Lait):
+              <input
+                type="number"
+                min="1"
+                max="5"
+                class="exercice-input"
+                style="width: 50px" /></label
+            ><br />
+            <label
+              >Photo 2 (Pâtes):
+              <input
+                type="number"
+                min="1"
+                max="5"
+                class="exercice-input"
+                style="width: 50px" /></label
+            ><br />
+            <label
+              >Photo 3 (Pain):
+              <input
+                type="number"
+                min="1"
+                max="5"
+                class="exercice-input"
+                style="width: 50px" /></label
+            ><br />
+            <label
+              >Photo 4 (Poisson):
+              <input
+                type="number"
+                min="1"
+                max="5"
+                class="exercice-input"
+                style="width: 50px" /></label
+            ><br />
+            <label
+              >Photo 5 (Beurre):
+              <input
+                type="number"
+                min="1"
+                max="5"
+                class="exercice-input"
+                style="width: 50px"
+            /></label>
           </div>
+
+          <h3 style="margin-top: 2rem">
+            Exercice 3 : Complétez (Autocorrectible)
+          </h3>
+          <div id="exercice-p49-3" class="card">
+            <p>
+              <input type="text" data-answer="un kilo" class="exercice-input" />
+              de farine
+            </p>
+            <p>
+              <input
+                type="text"
+                data-answer="une bouteille"
+                class="exercice-input" />
+              de jus de tomate
+            </p>
+            <p>
+              <input
+                type="text"
+                data-answer="une boîte"
+                class="exercice-input" />
+              de thon
+            </p>
+            <p>
+              <input
+                type="text"
+                data-answer="un paquet"
+                class="exercice-input" />
+              de biscuits
+            </p>
+          </div>
+          <button id="check-p49-3" class="btn btn-primaire">
+            Vérifier l'ex 3 (p.49)
+          </button>
+          <div id="feedback-p49-3" class="feedback"></div>
         </section>
 
-        <!-- Section 7: Devoirs -->
-        <section>
-          <h2>6. Devoirs (Homework)</h2>
-          <p class="devoirs-intro">
-            Faire les <strong>pages 32 et 33</strong> du Cahier d'Activités.
+        <!-- Section 4: Livre Page 50 (Grammaire & CO) -->
+        <section id="section-livre-p50">
+          <h2>4. Grammaire et Compréhension (Livre p. 50)</h2>
+          <!-- L'image de la page 50 est celle de la grammaire -->
+          <img
+            src="./images/livre/page-050.png"
+            alt="Page 50 Grammaire et Compréhension"
+            onerror="this.src='https://placehold.co/800x1000/1a202c/FBBF24?text=Image+p.50+(Grammaire)+non+trouv%E9e'; this.onerror=null;" />
+
+          <h3 style="margin-top: 2rem">
+            Grammaire 1 : Le pluriel (Autocorrectible)
+          </h3>
+          <div id="exercice-p50-g1" class="card">
+            <p>
+              a. Il y a des
+              <input type="text" data-answer="pêches" class="exercice-input" />
+              dans ton panier ?
+            </p>
+            <p>
+              b. Je voudrais six
+              <input type="text" data-answer="œufs" class="exercice-input" />,
+              s'il vous plaît.
+            </p>
+            <p>
+              c. J'adore les
+              <input type="text" data-answer="pâtes" class="exercice-input" />
+              avec des pâtes.
+            </p>
+            <p>
+              d. Trois
+              <input type="text" data-answer="boîtes" class="exercice-input" />
+              de thon, s'il vous plaît.
+            </p>
+            <p>
+              e. J'aime manger des
+              <input type="text" data-answer="fruits" class="exercice-input" />
+              et des
+              <input type="text" data-answer="légumes" class="exercice-input" />
+              bio.
+            </p>
+          </div>
+          <button id="check-p50-g1" class="btn btn-primaire">
+            Vérifier Grammaire 1
+          </button>
+          <div id="feedback-p50-g1" class="feedback"></div>
+
+          <h3 style="margin-top: 2rem">
+            Grammaire 2 : Prépositions (Autocorrectible)
+          </h3>
+          <div id="exercice-p50-g2" class="card">
+            <p>
+              J'achète le fromage
+              <input type="text" data-answer="chez" class="exercice-input" /> le
+              fromager, la viande
+              <input type="text" data-answer="chez" class="exercice-input" /> le
+              boucher et le poisson
+              <input type="text" data-answer="à la" class="exercice-input" />
+              poissonnière.
+            </p>
+            <p>
+              J'achète ma baguette
+              <input type="text" data-answer="à la" class="exercice-input" />
+              boulangerie.
+            </p>
+            <p>
+              Pour les autres produits, je vais
+              <input type="text" data-answer="au" class="exercice-input" />
+              supermarché ou
+              <input type="text" data-answer="à l'" class="exercice-input" />
+              épicerie.
+            </p>
+          </div>
+          <button id="check-p50-g2" class="btn btn-primaire">
+            Vérifier Grammaire 2
+          </button>
+          <div id="feedback-p50-g2" class="feedback"></div>
+
+          <h3 style="margin-top: 2rem">
+            Compréhension Orale (Autocorrectible)
+          </h3>
+          <div id="exercice-p50-co" class="card">
+            <!-- 1. Vrai ou Faux -->
+            <p><b>1. Vrai ou faux ?</b></p>
+            <div class="radio-group" data-answer="vrai">
+              <p>
+                a. Arnaud achète un panier de fruits et légumes en ligne.
+                <label
+                  ><input type="radio" name="co-1a" value="vrai" /> Vrai</label
+                >
+                <label
+                  ><input type="radio" name="co-1a" value="faux" /> Faux</label
+                >
+              </p>
+            </div>
+            <div class="radio-group" data-answer="faux">
+              <p>
+                b. Arnaud paye en espèces.
+                <label
+                  ><input type="radio" name="co-1b" value="vrai" /> Vrai</label
+                >
+                <label
+                  ><input type="radio" name="co-1b" value="faux" /> Faux</label
+                >
+              </p>
+            </div>
+
+            <!-- 2. Questions ouvertes -->
+            <p><b>2. Qu'est-ce que Sonia achète au marché ?</b></p>
+            <input
+              type="text"
+              data-answer="les fruits, les légumes, la viande et le poisson"
+              class="exercice-input"
+              style="width: 90%" />
+
+            <p><b>3. Où Sonia achète le fromage, le pain ?</b></p>
+            <input
+              type="text"
+              data-answer="chez le fromager et à la boulangerie"
+              class="exercice-input"
+              style="width: 90%" />
+
+            <p><b>4. Qu'est-ce qu'elle achète au supermarché ?</b></p>
+            <input
+              type="text"
+              data-answer="les céréales, le lait, les paquets de biscuits"
+              class="exercice-input"
+              style="width: 90%" />
+
+            <p>
+              <b
+                >5. Quels fruits et légumes Arnaud a dans son panier cette
+                semaine ?</b
+              >
+            </p>
+            <input
+              type="text"
+              data-answer="1 salade, des pêches, des tomates, des poivrons"
+              class="exercice-input"
+              style="width: 90%" />
+
+            <!-- 6. Checkbox -->
+            <p>
+              <b>6. Arnaud a aussi dans son panier (2 réponses possibles) :</b>
+            </p>
+            <div class="checkbox-group">
+              <label
+                ><input type="checkbox" data-answer="correct" value="a" /> a.
+                des œufs.</label
+              >
+              <label
+                ><input type="checkbox" data-answer="incorrect" value="b" /> b.
+                un poulet.</label
+              >
+              <label
+                ><input type="checkbox" data-answer="correct" value="c" /> c. un
+                fromage de chèvre.</label
+              >
+            </div>
+          </div>
+          <button id="check-p50-co" class="btn btn-primaire">
+            Vérifier Compréhension Orale
+          </button>
+          <div id="feedback-p50-co" class="feedback"></div>
+        </section>
+
+        <!-- Section 5: Livre Page 51 -->
+        <section id="section-livre-p51">
+          <h2>5. L'essentiel (Livre p. 51)</h2>
+          <img
+            src="./images/livre/page-051.png"
+            alt="Page 51 L'essentiel"
+            onerror="this.src='https://placehold.co/800x600/1a202c/FBBF24?text=Image+page-051.png+non+trouv%E9e'; this.onerror=null;" />
+          <p style="margin-top: 1.5rem; text-align: center">
+            Retrouve la vidéo de l'Essentiel avec le code :
+            <a
+              href="https://e-didier.fr/code/neda1503"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-lien-simple">
+              neda1503 sur e-didier.fr
+            </a>
           </p>
-          <p>Voici les audios nécessaires pour tes exercices :</p>
+        </section>
 
+        <!-- Section 6: Devoirs -->
+        <section id="section-devoirs">
+          <h2>6. Devoirs (Homework)</h2>
           <div class="card">
-            <!-- Audio 1 -->
-            <div>
-              <h3>Piste 029</h3>
-              <audio controls>
-                <source src="./audio/cahier/piste_029.mp3" type="audio/mpeg" />
-                Ton navigateur ne supporte pas l'élément audio. (piste_029.mp3)
-              </audio>
-            </div>
+            <p><b>Cahier d'Activités :</b></p>
+            <ul style="list-style-type: disc; margin-left: 2rem">
+              <li>Page 37 (toute la page).</li>
+              <li>Page 38 (exercices 1 et 2).</li>
+              <li>Page 39 (exercices 1, 2 et 4).</li>
+            </ul>
 
-            <!-- Audio 2 -->
-            <div>
-              <h3>Piste 030</h3>
-              <audio controls>
-                <source src="./audio/cahier/piste_030.mp3" type="audio/mpeg" />
-                Ton navigateur ne supporte pas l'élément audio. (piste_030.mp3)
-              </audio>
-            </div>
+            <h3 style="margin-top: 2rem">Audio pour la page 37</h3>
+            <audio controls>
+              <source src="./audio/cahier/page-37.mp3" type="audio/mpeg" />
+              Ton navigateur ne supporte pas l'élément audio. (page-37.mp3)
+            </audio>
           </div>
         </section>
       </main>
@@ -616,21 +700,35 @@
     <!-- Script pour les exercices autocorrectibles -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        function checkExercice(containerId, feedbackId) {
+        /**
+         * Fonction générique pour vérifier les INPUTS de texte
+         */
+        function checkTextInputExercice(containerId, feedbackId) {
           const container = document.getElementById(containerId);
           const feedbackEl = document.getElementById(feedbackId);
-          const inputs = container.querySelectorAll("input[data-answer]");
+          if (!container || !feedbackEl) return;
+
+          const inputs = container.querySelectorAll(
+            'input[type="text"][data-answer]'
+          );
+          if (inputs.length === 0) return;
 
           let correctCount = 0;
 
           inputs.forEach((input) => {
-            const userValue = input.value.trim().toLowerCase();
+            const userValue = input.value
+              .trim()
+              .toLowerCase()
+              .replace(/\s+/g, " "); // Nettoie
             const correctAnswers = input.dataset.answer
               .toLowerCase()
-              .split("|");
+              .split("|")
+              .map((ans) => ans.trim());
 
             input.classList.remove("correct", "incorrect");
 
+            // Simple "includes" pour les réponses de vocabulaire
+            // Pour les réponses plus longues (CO), on vérifie si la réponse est exacte
             if (correctAnswers.includes(userValue)) {
               input.classList.add("correct");
               correctCount++;
@@ -639,30 +737,140 @@
             }
           });
 
-          // Afficher le feedback (MAINTENANT AVEC DES CLASSES CSS PURES)
-          if (correctCount === inputs.length) {
+          showFeedback(feedbackEl, correctCount, inputs.length);
+          return correctCount === inputs.length;
+        }
+
+        /**
+         * Fonction pour afficher le feedback
+         */
+        function showFeedback(feedbackEl, correctCount, total) {
+          if (correctCount === total) {
             feedbackEl.textContent = "Félicitations ! Tout est correct !";
-            feedbackEl.className = "feedback feedback-correct"; // Changé
+            feedbackEl.className = "feedback feedback-correct";
           } else {
-            feedbackEl.textContent = `Tu as ${correctCount} réponses correctes sur ${inputs.length}. Continue !`;
-            feedbackEl.className = "feedback feedback-incorrect"; // Changé
+            feedbackEl.textContent = `Tu as ${correctCount} réponses correctes sur ${total}. Continue !`;
+            feedbackEl.className = "feedback feedback-incorrect";
           }
         }
 
-        // Attacher les événements aux boutons
-        const btnEx1 = document.getElementById("check-ex1");
-        if (btnEx1) {
-          btnEx1.addEventListener("click", () => {
-            checkExercice("exercice-1", "feedback-ex1");
+        /**
+         * Fonction spéciale pour la Compréhension Orale (CO)
+         */
+        function checkCO() {
+          const container = document.getElementById("exercice-p50-co");
+          const feedbackEl = document.getElementById("feedback-p50-co");
+          if (!container || !feedbackEl) return;
+
+          let correctCount = 0;
+          let total = 0;
+
+          // 1. Vérifier les inputs texte
+          const inputs = container.querySelectorAll(
+            'input[type="text"][data-answer]'
+          );
+          total += inputs.length;
+          inputs.forEach((input) => {
+            const userValue = input.value
+              .trim()
+              .toLowerCase()
+              .replace(/\s+/g, " ")
+              .replace(/[.,]/g, ""); // Enlève points et virgules
+            const answer = input.dataset.answer
+              .toLowerCase()
+              .replace(/[.,]/g, "");
+
+            input.classList.remove("correct", "incorrect");
+            if (userValue === answer) {
+              input.classList.add("correct");
+              correctCount++;
+            } else {
+              input.classList.add("incorrect");
+            }
           });
+
+          // 2. Vérifier les radios Vrai/Faux
+          const radios = container.querySelectorAll(".radio-group");
+          total += radios.length;
+          radios.forEach((group) => {
+            const answer = group.dataset.answer;
+            const checked = group.querySelector(
+              `input[value="${answer}"]:checked`
+            );
+            const allInputs = group.querySelectorAll("input");
+
+            allInputs.forEach((r) => (r.parentElement.style.color = "inherit")); // Reset color
+
+            if (checked) {
+              correctCount++;
+              checked.parentElement.style.color = "#48BB78"; // Vert
+            } else {
+              const wrongChecked = group.querySelector("input:checked");
+              if (wrongChecked) {
+                wrongChecked.parentElement.style.color = "#F56565"; // Rouge
+              }
+            }
+          });
+
+          // 3. Vérifier les checkboxes
+          const checkboxes = container.querySelectorAll(
+            '.checkbox-group input[type="checkbox"]'
+          );
+          total++; // Le groupe de checkboxes compte comme 1 question
+          let correctChecks = 0;
+          let incorrectChecks = 0;
+
+          checkboxes.forEach((cb) => {
+            const answer = cb.dataset.answer;
+            cb.parentElement.style.color = "inherit"; // Reset
+
+            if (cb.checked && answer === "correct") {
+              correctChecks++;
+              cb.parentElement.style.color = "#48BB78"; // Vert
+            } else if (cb.checked && answer === "incorrect") {
+              incorrectChecks++;
+              cb.parentElement.style.color = "#F56565"; // Rouge
+            } else if (!cb.checked && answer === "correct") {
+              incorrectChecks++; // Pénalité pour ne pas cocher la bonne
+              cb.parentElement.style.color = "#F56565"; // Rouge
+            }
+          });
+
+          // 2 bonnes réponses, 0 mauvaises
+          if (correctChecks === 2 && incorrectChecks === 0) {
+            correctCount++;
+          }
+
+          showFeedback(feedbackEl, correctCount, total);
         }
 
-        const btnEx2 = document.getElementById("check-ex2");
-        if (btnEx2) {
-          btnEx2.addEventListener("click", () => {
-            checkExercice("exercice-2", "feedback-ex2");
+        // Attacher les événements aux boutons
+        document.getElementById("check-ex1")?.addEventListener("click", () => {
+          checkTextInputExercice("exercice-1", "feedback-ex1");
+        });
+        document
+          .getElementById("check-p49-1")
+          ?.addEventListener("click", () => {
+            checkTextInputExercice("exercice-p49-1", "feedback-p49-1");
           });
-        }
+        document
+          .getElementById("check-p49-3")
+          ?.addEventListener("click", () => {
+            checkTextInputExercice("exercice-p49-3", "feedback-p49-3");
+          });
+        document
+          .getElementById("check-p50-g1")
+          ?.addEventListener("click", () => {
+            checkTextInputExercice("exercice-p50-g1", "feedback-p50-g1");
+          });
+        document
+          .getElementById("check-p50-g2")
+          ?.addEventListener("click", () => {
+            checkTextInputExercice("exercice-p50-g2", "feedback-p50-g2");
+          });
+        document
+          .getElementById("check-p50-co")
+          ?.addEventListener("click", checkCO);
       });
     </script>
   </body>
